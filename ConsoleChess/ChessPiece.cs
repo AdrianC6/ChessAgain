@@ -79,7 +79,23 @@ namespace ConsoleChess
                     pieceCoords = line.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
                     foreach (string s in pieceCoords)
                     {
-                        getPiece(s);
+                        if (Place.IsMatch(s))
+                        {
+                            PlacePiece(s);
+                        }
+                        else if (Move.IsMatch(s))
+                        {
+                            MovePiece(s);
+                        }
+                        else if (Capture.IsMatch(s))
+                        {
+                            CapturePiece(s);
+                        }
+                        else if (MoveTwo.IsMatch(s))
+                        {
+                            MoveTwoPiece(s);
+                        }
+                        //getPiece(s);
                     }
                 }
             }
@@ -97,83 +113,85 @@ namespace ConsoleChess
             return result;
         }
         //checks to see what is wanted whether its placing a piece or moving
-        public void getPiece(string s)
+
+        public void PlacePiece(string s)
         {
             ChessPiece piece = new ChessPiece();
-            ChessPiece piece2 = new ChessPiece();
             piece.Piece = pieceDeterminer(s[0]);
             piece.Color = colorDeterminer(s[1]);
             piece.CurrentXCoordinate = (char)s[2];
             piece.CurrentYCoordinate = validYCoord(s[3]);
-            if (MoveTwo.IsMatch(s))
+            Console.WriteLine(piece.neededString(s));
+            AllPieces.Add(piece);
+        }
+
+        public void MovePiece(string s)
+        {
+            ChessPiece piece = new ChessPiece();
+            foreach (ChessPiece p in AllPieces)
             {
-                foreach (ChessPiece p in AllPieces)
+                if (p.CurrentXCoordinate == s[3] && p.CurrentYCoordinate == validYCoord(s[4]))
                 {
-                    if (p.CurrentXCoordinate == s[0] && p.CurrentYCoordinate == validYCoord(s[1]))
-                    {
-                        p.FutureXCoordinate = (char)s[3];
-                        p.FutureYCoordinate = validYCoord(s[4]);
-                        Console.Write($"{p.neededString(s)}and ");
-                        p.CurrentXCoordinate = p.FutureXCoordinate;
-                        p.CurrentYCoordinate = p.FutureYCoordinate;
-                    }
-                    else if (p.CurrentXCoordinate == s[6] && p.CurrentYCoordinate == validYCoord(s[7]))
-                    {
-                        p.FutureXCoordinate = (char)s[9];
-                        p.FutureYCoordinate = validYCoord(s[10]);
-                        Console.WriteLine($"{p.neededString(s)}");
-                        p.CurrentXCoordinate = p.FutureXCoordinate;
-                        p.CurrentYCoordinate = p.FutureYCoordinate;
-                    }
+                    Console.WriteLine("Piece is already here");
                 }
-                AllPieces.Add(piece);
-            }
-            else if (Capture.IsMatch(s))
-            {
-                foreach (ChessPiece p in AllPieces)
+                else if (p.CurrentXCoordinate == s[0] && p.CurrentYCoordinate == validYCoord(s[1]))
                 {
-                    if(p.CurrentXCoordinate == s[3] && p.CurrentYCoordinate == validYCoord(s[4]))
-                    {
-                        piece2 = p;
-                    }
-                    else if (p.CurrentXCoordinate == s[0] && p.CurrentYCoordinate == validYCoord(s[1]))
-                    {
-                        p.FutureXCoordinate = (char)s[3];
-                        p.FutureYCoordinate = validYCoord(s[4]);
-                        //capturingPiece();
-                        Console.WriteLine(p.neededString(s));
-                        p.CurrentXCoordinate = p.FutureXCoordinate;
-                        p.CurrentYCoordinate = p.FutureYCoordinate;
-                    }
+                    p.FutureXCoordinate = (char)s[3];
+                    p.FutureYCoordinate = validYCoord(s[4]);
+                    Console.WriteLine(p.neededString(s));
+                    p.CurrentXCoordinate = p.FutureXCoordinate;
+                    p.CurrentYCoordinate = p.FutureYCoordinate;
                 }
-                AllPieces.Remove(piece2);
-                AllPieces.Add(piece);
             }
-            else if (Move.IsMatch(s))
+            AllPieces.Add(piece);
+        }
+
+        public void CapturePiece(string s)
+        {
+            ChessPiece piece = new ChessPiece();
+            ChessPiece piece2 = new ChessPiece();
+            foreach (ChessPiece p in AllPieces)
             {
-                foreach (ChessPiece p in AllPieces)
+                if (p.CurrentXCoordinate == s[3] && p.CurrentYCoordinate == validYCoord(s[4]))
                 {
-                    if (p.CurrentXCoordinate == s[3] && p.CurrentYCoordinate == validYCoord(s[4]))
-                    {
-                        AllPieces.Remove(p);
-                    }
-                    else if (p.CurrentXCoordinate == s[0] && p.CurrentYCoordinate == validYCoord(s[1]))
-                    {
-                        p.FutureXCoordinate = (char)s[3];
-                        p.FutureYCoordinate = validYCoord(s[4]);
-                        Console.WriteLine(p.neededString(s));
-                        p.CurrentXCoordinate = p.FutureXCoordinate;
-                        p.CurrentYCoordinate = p.FutureYCoordinate;
-                    }
+                    piece2 = p;
                 }
-                AllPieces.Add(piece);
-                //Console.WriteLine($"piece at {s[0]}{s[1]} moved to {s[3]}{s[4]}");
+                else if (p.CurrentXCoordinate == s[0] && p.CurrentYCoordinate == validYCoord(s[1]))
+                {
+                    p.FutureXCoordinate = (char)s[3];
+                    p.FutureYCoordinate = validYCoord(s[4]);
+                    Console.WriteLine(p.neededString(s));
+                    p.CurrentXCoordinate = p.FutureXCoordinate;
+                    p.CurrentYCoordinate = p.FutureYCoordinate;
+                }
             }
-            else if (Place.IsMatch(s))
+            AllPieces.Remove(piece2);
+            AllPieces.Add(piece);
+        }
+
+        public void MoveTwoPiece(string s)
+        {
+            ChessPiece piece = new ChessPiece();
+            foreach (ChessPiece p in AllPieces)
             {
-                AllPieces.Add(piece);
-                Console.WriteLine(piece.neededString(s));
+                if (p.CurrentXCoordinate == s[0] && p.CurrentYCoordinate == validYCoord(s[1]))
+                {
+                    p.FutureXCoordinate = (char)s[3];
+                    p.FutureYCoordinate = validYCoord(s[4]);
+                    Console.Write($"{p.neededString(s)}and ");
+                    p.CurrentXCoordinate = p.FutureXCoordinate;
+                    p.CurrentYCoordinate = p.FutureYCoordinate;
+                }
+                else if (p.CurrentXCoordinate == s[6] && p.CurrentYCoordinate == validYCoord(s[7]))
+                {
+                    p.FutureXCoordinate = (char)s[9];
+                    p.FutureYCoordinate = validYCoord(s[10]);
+                    Console.WriteLine($"{p.neededString(s)}");
+                    p.CurrentXCoordinate = p.FutureXCoordinate;
+                    p.CurrentYCoordinate = p.FutureYCoordinate;
+                }
             }
+            AllPieces.Add(piece);
         }
 
         //returns a string for what happens depending on what moves or placed
@@ -253,3 +271,4 @@ namespace ConsoleChess
         }
     }
 }
+
