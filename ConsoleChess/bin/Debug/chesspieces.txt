@@ -1,0 +1,17 @@
+Kle7
+Ple3
+Pld3
+Qde4
+Nde8
+Kde1
+Rdh1
+
+a4 a5
+e7 b3
+b3 a8
+e4 d3*
+
+
+e1 g1 h1 f1
+
+e3 j1 h3 f9
