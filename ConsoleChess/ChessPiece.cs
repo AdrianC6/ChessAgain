@@ -128,11 +128,12 @@ namespace ConsoleChess
         public void MovePiece(string s)
         {
             ChessPiece piece = new ChessPiece();
+            ChessPiece piece2 = new ChessPiece();
             foreach (ChessPiece p in AllPieces)
             {
                 if (p.CurrentXCoordinate == s[3] && p.CurrentYCoordinate == validYCoord(s[4]))
                 {
-                    Console.WriteLine("Piece is already here");
+                    piece2 = p;
                 }
                 else if (p.CurrentXCoordinate == s[0] && p.CurrentYCoordinate == validYCoord(s[1]))
                 {
@@ -143,6 +144,7 @@ namespace ConsoleChess
                     p.CurrentYCoordinate = p.FutureYCoordinate;
                 }
             }
+            AllPieces.Remove(piece2);
             AllPieces.Add(piece);
         }
 
