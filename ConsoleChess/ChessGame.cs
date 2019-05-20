@@ -8,6 +8,7 @@ namespace ConsoleChess
 {
     class ChessGame
     {
+
         Movement move = new Movement();
         //list of Pieces
         //board array
@@ -27,15 +28,15 @@ namespace ConsoleChess
         //place or move piece to where is needed
         public void replace()
         {
-            foreach (ChessPiece cp in ChessPiece.AllPieces)
+            foreach (Piece p in ReadInPieces.AllPieces)
             {
-                if (cp.FutureXCoordinate != 0 && cp.FutureYCoordinate != 0)
+                if (p.FutureXCoordinate != 0 && p.FutureYCoordinate != 0)
                 {
-                    board[cp.FutureYCoordinate, cp.FutureXCoordinate] = $"[{cp.stringRep}]";
+                    board[p.FutureYCoordinate, p.FutureXCoordinate] = $"[{p.stringRep}]";
                 }
                 else
                 {
-                    board[cp.CurrentYCoordinate, cp.CurrentXCoordinate] = $"[{cp.stringRep}]";
+                    board[p.CurrentYCoordinate, p.CurrentXCoordinate] = $"[{p.stringRep}]";
                 }
             }
             Console.WriteLine("  A  B  C  D  E  F  G  H");
@@ -48,7 +49,7 @@ namespace ConsoleChess
                 }
                 Console.Write("\n");
             }
-            move.CheckPiece();
+            //move.CheckPiece();
         }
     }
 }
