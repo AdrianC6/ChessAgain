@@ -36,7 +36,7 @@ namespace ConsoleChess
 
         public override void Move(char futureX, int futureY)
         {
-            if (CurrentXCoordinate + 1 == futureX && CurrentYCoordinate == futureY)
+            if (CurrentXCoordinate + 1 == futureX && CurrentYCoordinate == futureY || CurrentXCoordinate - 1 == futureX && CurrentYCoordinate == futureY)
             {
                 CanMove = true;
             }
