@@ -36,13 +36,13 @@ namespace ConsoleChess
 
         public override void Move(char futureX, int futureY)
         {
-            if (CurrentXCoordinate + 1 == futureX && CurrentYCoordinate == futureY || CurrentXCoordinate - 1 == futureX && CurrentYCoordinate == futureY)
+            if (CanMove)
             {
-                CanMove = true;
+
             }
             else
             {
-                CanMove = false;
+                Console.WriteLine("This piece cannot move");
             }
         }
 
