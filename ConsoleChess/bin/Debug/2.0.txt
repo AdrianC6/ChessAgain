@@ -3,6 +3,8 @@ Kle8
 Rlh8
 Rla1
 Plc2
+Ndh1
+h1 g3
 c2 c5
 c2 c4
 c2 c3
