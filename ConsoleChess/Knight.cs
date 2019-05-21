@@ -8,7 +8,8 @@ namespace ConsoleChess
 {
     class Knight : Piece
     {
-        public Knight() {
+        public Knight()
+        {
             this.CanMove = true;
             this.HasMoved = false;
         }
@@ -35,15 +36,26 @@ namespace ConsoleChess
 
         public override void Move(char futureX, int futureY)
         {
-            if (CanMove)
+            if ((CurrentXCoordinate + 1 == futureX && CurrentYCoordinate + 2 == futureY) || (CurrentXCoordinate - 1 == futureX && CurrentYCoordinate + 2 == futureY))
             {
-
+                CanMove = true;
+            }
+            else if ((CurrentXCoordinate - 1 == futureX && CurrentYCoordinate - 2 == futureY) || (CurrentXCoordinate + 1 == futureX && CurrentYCoordinate - 2 == futureY))
+            {
+                CanMove = true;
+            }
+            else if ((CurrentXCoordinate - 2 == futureX && CurrentYCoordinate - 1 == futureY) || (CurrentXCoordinate - 2 == futureX && CurrentYCoordinate + 1 == futureY))
+            {
+                CanMove = true;
+            }
+            else if ((CurrentXCoordinate + 2 == futureX && CurrentYCoordinate - 1 == futureY) || (CurrentXCoordinate + 2 == futureX && CurrentYCoordinate + 1 == futureY))
+            {
+                CanMove = true;
             }
             else
             {
-                Console.WriteLine("This piece cannot move");
+                CanMove = false;
             }
-            throw new NotImplementedException();
         }
 
         public override string ToString()
