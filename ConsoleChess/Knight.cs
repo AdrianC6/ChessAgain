@@ -8,7 +8,10 @@ namespace ConsoleChess
 {
     class Knight : Piece
     {
-        public Knight() { }
+        public Knight() {
+            this.CanMove = true;
+            this.HasMoved = false;
+        }
         public Knight(ChessPieces pieceType, PieceColors color, char currentXcoordinate, int currentYCoordinate, bool canMove, bool hasMoved)
         {
             this.PieceType = pieceType;
@@ -30,7 +33,7 @@ namespace ConsoleChess
             this.HasMoved = hasMoved;
         }
 
-        public override void Move()
+        public override void Move(char futureX, int futureY)
         {
             if (CanMove)
             {

@@ -8,7 +8,10 @@ namespace ConsoleChess
 {
     class Rook : Piece
     {
-        public Rook() { }
+        public Rook() {
+            this.CanMove = false;
+            this.HasMoved = false;
+        }
 
         public Rook(ChessPieces pieceType, PieceColors color, char currentXcoordinate, int currentYCoordinate, bool canMove, bool hasMoved)
         {
@@ -31,7 +34,7 @@ namespace ConsoleChess
             this.HasMoved = hasMoved;
         }
 
-        public override void Move()
+        public override void Move(char futureX, int futureY)
         {
             if (CanMove)
             {

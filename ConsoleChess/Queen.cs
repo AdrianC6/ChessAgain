@@ -8,7 +8,10 @@ namespace ConsoleChess
 {
     class Queen : Piece
     {
-        public Queen() { }
+        public Queen() {
+            this.CanMove = false;
+            this.HasMoved = false;
+        }
 
         public Queen(ChessPieces pieceType, PieceColors color, char currentXcoordinate, int currentYCoordinate, bool canMove, bool hasMoved)
         {
@@ -30,7 +33,7 @@ namespace ConsoleChess
             this.CanMove = canMove;
             this.HasMoved = hasMoved;
         }
-        public override void Move()
+        public override void Move(char futureX, int futureY)
         {
             if (CanMove)
             {

@@ -8,7 +8,10 @@ namespace ConsoleChess
 {
     class Pawn : Piece
     {
-        public Pawn() { }
+        public Pawn() {
+            this.CanMove = true;
+            this.HasMoved = false;
+        }
         public Pawn(ChessPieces pieceType, PieceColors color, char currentXcoordinate, int currentYCoordinate, bool canMove, bool hasMoved)
         {
             this.PieceType = pieceType;
@@ -30,31 +33,42 @@ namespace ConsoleChess
             this.HasMoved = hasMoved;
         }
 
-        public void determineMove()
-        {
-            if (HasMoved)
-            {
-                Move();
-            }
-            else
-            {
-                SpecialMove();
-            }
-        }
-        public override void Move()
+        //public void determineMove()
+        //{
+        //    if (HasMoved)
+        //    {
+        //        Move();
+        //    }
+        //    else
+        //    {
+        //        SpecialMove();
+        //    }
+        //}
+        public override void Move(char futureX, int futureY)
         {
             if (Color == PieceColors.BLACK)
             {
-                if ((CurrentYCoordinate - 1) == FutureYCoordinate)
+                if (CurrentXCoordinate == futureX && ((CurrentYCoordinate - 1) == FutureYCoordinate))
                 {
-                    CurrentYCoordinate = FutureYCoordinate;
+                    CanMove = true;
                 }
+                else
+                {
+                    CurrentYCoordinate = CurrentYCoordinate;
+                    CanMove = false;
+                }
+
             }
             else
             {
-                if ((CurrentYCoordinate + 1) == FutureYCoordinate)
+                if (CurrentXCoordinate == futureX && ((CurrentYCoordinate + 1) == FutureYCoordinate))
                 {
-                    CurrentYCoordinate = FutureYCoordinate;
+                    CanMove = true;
+                }
+                else
+                {
+                    CurrentYCoordinate = CurrentYCoordinate;
+                    CanMove = false;
                 }
             }
         }

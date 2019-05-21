@@ -45,7 +45,7 @@ namespace ConsoleChess
         public bool CanMove;
         public bool HasMoved;
         protected Piece() { }
-        protected Piece(ChessPieces piece, PieceColors color, char x, int y, char fx, int fy,bool canMove, bool hasMoved)
+        protected Piece(ChessPieces piece, PieceColors color, char x, int y, char fx, int fy, bool canMove, bool hasMoved)
         {
             this.PieceType = piece;
             this.Color = color;
@@ -57,7 +57,7 @@ namespace ConsoleChess
             this.HasMoved = hasMoved;
         }
 
-        public abstract void Move();
+        public abstract void Move(char futureX, int futureY);
 
         //    public static List<ChessPiece> AllPieces = new List<ChessPiece>();
         //    public static string placePiece = @"(^[PNBRQK][ld][a-h][1-8]$)";

@@ -131,11 +131,18 @@ namespace ConsoleChess
                 }
                 else if (p.CurrentXCoordinate == s[0] && p.CurrentYCoordinate == validYCoord(s[1]))
                 {
-                    p.FutureXCoordinate = (char)s[3];
-                    p.FutureYCoordinate = validYCoord(s[4]);
-                    Console.WriteLine(p);
-                    p.CurrentXCoordinate = p.FutureXCoordinate;
-                    p.CurrentYCoordinate = p.FutureYCoordinate;
+                    //p.FutureXCoordinate = (char)s[3];
+                    //p.FutureYCoordinate = validYCoord(s[4]);
+                    p.Move(p.FutureXCoordinate = (char)s[3], p.FutureYCoordinate = validYCoord(s[4]));
+                    if (p.CanMove == true)
+                    {
+                        Console.WriteLine(p);
+                        p.CurrentXCoordinate = p.FutureXCoordinate;
+                        p.CurrentYCoordinate = p.FutureYCoordinate;
+                    }else
+                    {
+                        Console.WriteLine("not a valid move");
+                    }
                 }
             }
             AllPieces.Remove(piece);

@@ -32,7 +32,7 @@ namespace ConsoleChess
             {
                 if (p.FutureXCoordinate != 0 && p.FutureYCoordinate != 0)
                 {
-                    board[p.FutureYCoordinate, p.FutureXCoordinate] = $"[{p.stringRep}]";
+                    board[p.CurrentYCoordinate, p.CurrentXCoordinate] = $"[{p.stringRep}]";
                 }
                 else
                 {
