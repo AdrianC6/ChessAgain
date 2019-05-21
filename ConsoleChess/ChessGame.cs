@@ -51,6 +51,14 @@ namespace ConsoleChess
             }
             //move.CheckPiece();
         }
+
+        //This will be used to get an individual piece and check it's contents
+        //Inputs an int x and a char y and gets the value of the location in the 2d Array "board"
+        public string spaceChecker(int x, char y)
+        {
+            return (board[x, y]);
+        }
+
     }
 }
 
