@@ -8,9 +8,9 @@ namespace ConsoleChess
 {
     class ChessGame
     {
+
+        Movement move = new Movement();
         //list of Pieces
-        List<ChessPiece> allPieces = new List<ChessPiece>();
-        
         //board array
         string[,] board = new string[9, 'i'];
         public void GenerateBoard()
@@ -28,16 +28,15 @@ namespace ConsoleChess
         //place or move piece to where is needed
         public void replace()
         {
-            allPieces = ChessPiece.AllPieces;
-            foreach (ChessPiece cp in allPieces)
+            foreach (Piece p in ReadInPieces.AllPieces)
             {
-                if (cp.FutureXCoordinate != 0 && cp.FutureYCoordinate != 0)
+                if (p.FutureXCoordinate != 0 && p.FutureYCoordinate != 0)
                 {
-                    board[cp.FutureYCoordinate, cp.FutureXCoordinate] = $"[{cp.stringRep}]";
+                    board[p.CurrentYCoordinate, p.CurrentXCoordinate] = $"[{p.stringRep}]";
                 }
                 else
                 {
-                    board[cp.CurrentYCoordinate, cp.CurrentXCoordinate] = $"[{cp.stringRep}]";
+                    board[p.CurrentYCoordinate, p.CurrentXCoordinate] = $"[{p.stringRep}]";
                 }
             }
             Console.WriteLine("  A  B  C  D  E  F  G  H");
@@ -50,6 +49,7 @@ namespace ConsoleChess
                 }
                 Console.Write("\n");
             }
+            //move.CheckPiece();
         }
     }
 }
