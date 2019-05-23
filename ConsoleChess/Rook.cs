@@ -36,14 +36,56 @@ namespace ConsoleChess
 
         public override void Move(char futureX, int futureY)
         {
-            if (CanMove)
-            {
+            int Ymax = 9;
+            int Ymin = 0;
+            char Xmax = 'h';
+            char Xmin = 'a';
 
+            if((futureX >= Xmin && futureX <= Xmax) && CurrentYCoordinate == futureY)
+            {
+                CanMove = true;
+            }else if((futureY > Ymin && futureY < Ymax) && CurrentXCoordinate == futureX)
+            {
+                CanMove = true;
             }
             else
             {
-                Console.WriteLine("This piece cannot move");
+                CanMove = false;
             }
+            //for(int i = 1; i < max; i++)
+            //{
+            //    if(futureX == i && CurrentYCoordinate == futureY)
+            //    {
+            //        CurrentXCoordinate = futureX;
+            //        CanMove = true;
+            //    }
+            //    else if(futureY == i && CurrentXCoordinate == futureX)
+            //    {
+            //        CurrentYCoordinate = futureY;
+            //        CanMove = true;
+            //    }
+            //    else
+            //    {
+            //        CanMove = false;
+            //    }
+            //}
+            //for (int i = 8; i > min; i--)
+            //{
+            //    if(futureX == i && CurrentYCoordinate == futureY)
+            //    {
+            //        CurrentXCoordinate = futureX;
+            //        CanMove = true;
+            //    }
+            //    else if (futureY == i && CurrentXCoordinate == futureX)
+            //    {
+            //        CurrentYCoordinate = futureY;
+            //        CanMove = true;
+            //    }
+            //    else
+            //    {
+            //        CanMove = false;
+            //    }
+            //}
         }
 
         public void SpecialMove()

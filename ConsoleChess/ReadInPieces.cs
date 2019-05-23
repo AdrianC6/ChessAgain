@@ -28,14 +28,17 @@ namespace ConsoleChess
         Regex MoveTwo = new Regex(moveTwoPieces);
         public void run(string args)
         {
-            if (!File.Exists(args))
+            do
             {
-                Console.WriteLine("Enter a valid file path");
-            }
-            else
-            {
-                ReadFile(args);
-            }
+                if (!File.Exists(args))
+                {
+                    Console.WriteLine("Enter a valid file path");
+                }
+                else
+                {
+                    ReadFile(args);
+                }
+            } while (!File.Exists(args));
         }
         //reads the File
         public void ReadFile(string file)
@@ -128,6 +131,7 @@ namespace ConsoleChess
                 if (p.CurrentXCoordinate == s[3] && p.CurrentYCoordinate == validYCoord(s[4]))
                 {
                     piece = p;
+                    Console.WriteLine("Piece Captured");
                 }
                 else if (p.CurrentXCoordinate == s[0] && p.CurrentYCoordinate == validYCoord(s[1]))
                 {
@@ -139,7 +143,8 @@ namespace ConsoleChess
                         Console.WriteLine(p);
                         p.CurrentXCoordinate = p.FutureXCoordinate;
                         p.CurrentYCoordinate = p.FutureYCoordinate;
-                    }else
+                    }
+                    else
                     {
                         Console.WriteLine("not a valid move");
                     }
@@ -151,7 +156,7 @@ namespace ConsoleChess
         public void CapturePiece(string s)
         {
             MovePiece(s);
-            Console.WriteLine("piece captured");
+            //Console.WriteLine("piece captured");
         }
 
         public void MoveTwoPieces(string s)

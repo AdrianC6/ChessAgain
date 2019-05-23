@@ -49,7 +49,8 @@ namespace ConsoleChess
                 }
                 Console.Write("\n");
             }
-            //move.CheckPiece();
+            //Console.Write("Enter your file(ctrl+c to exit):");
+            //string file = Console.ReadLine();
         }
     }
 }
