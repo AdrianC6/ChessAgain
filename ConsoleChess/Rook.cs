@@ -8,10 +8,14 @@ namespace ConsoleChess
 {
     class Rook : Piece
     {
-        public Rook() {
+        public Rook()
+        {
             this.CanMove = false;
             this.HasMoved = false;
         }
+
+        private int min = 1;
+        private int max = 8;
 
         public Rook(ChessPieces pieceType, PieceColors color, char currentXcoordinate, int currentYCoordinate, bool canMove, bool hasMoved)
         {
@@ -36,14 +40,42 @@ namespace ConsoleChess
 
         public override void Move(char futureX, int futureY)
         {
-            if (CanMove)
+
+            for (int i = min; i < max; i++)
             {
 
+                if (futureX == i)
+                {
+                    CurrentXCoordinate = futureX;
+                }
+
             }
-            else
+
+            for (int i = max; i > min; i--)
             {
-                Console.WriteLine("This piece cannot move");
+
+                if (futureX == i)
+                {
+                    CurrentXCoordinate = futureX;
+                }
+
             }
+
+            for (int i = min; i < max; i++)
+            {
+                if (futureY == i)
+                {
+                    CurrentYCoordinate = futureY;
+                }
+            }
+            for (int i = max; i > min; i--)
+            {
+                if (futureY == i)
+                {
+                    CurrentYCoordinate = futureY;
+                }
+            }
+
         }
 
         public void SpecialMove()
