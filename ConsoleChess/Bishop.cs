@@ -8,7 +8,8 @@ namespace ConsoleChess
 {
     class Bishop : Piece
     {
-        public Bishop() {
+        public Bishop()
+        {
             this.CanMove = false;
             this.HasMoved = false;
         }
@@ -34,16 +35,86 @@ namespace ConsoleChess
             this.HasMoved = hasMoved;
         }
 
+        private int min = 1;
+        private int max = 8;
+
         public override void Move(char futureX, int futureY)
         {
-            if (CanMove)
+            for (int i = min; i < max; i++)
             {
+                for (int j = min; j < max; j++)
+                {
+                    if (futureX == i && futureY == j)
+                    {
+                        CurrentXCoordinate = futureX;
+                        CurrentYCoordinate = futureY;
+                    }
+                }
+            }
 
-            }
-            else
+            for (int i = max; i > min; i--)
             {
-                Console.WriteLine("This piece cannot move");
+                for (int j = max; j > min; j--)
+                {
+                    if (futureX == i && futureY == j)
+                    {
+                        CurrentXCoordinate = futureX;
+                        CurrentYCoordinate = futureY;
+                    }
+                }
             }
+
+            for (int i = min; i < max; i++)
+            {
+                for (int j = max; j > min; j--)
+                {
+                    if (futureX == i && futureY == j)
+                    {
+                        CurrentXCoordinate = futureX;
+                        CurrentYCoordinate = futureY;
+                    }
+                }
+            }
+
+            for (int i = max; i > min; i--)
+            {
+                for (int j = min; j < max; j++)
+                {
+                    if (futureX == i && futureY == j)
+                    {
+                        CurrentXCoordinate = futureX;
+                        CurrentYCoordinate = futureY;
+                    }
+                }
+            }
+
+
+
+
+
+
+
+
+            //if ((CurrentXCoordinate + 1 == futureX && CurrentYCoordinate + 1 == futureY))
+            //{
+            //    CanMove = true;
+            //}
+            //else if ((CurrentXCoordinate - 1 == futureX && CurrentYCoordinate - 1 == futureY))
+            //{
+            //    CanMove = true;
+            //}
+            //else if ((CurrentXCoordinate - 1 == futureX && CurrentYCoordinate + 1 == futureY))
+            //{
+            //    CanMove = true;
+            //}
+            //else if ((CurrentXCoordinate + 1 == futureX && CurrentYCoordinate - 1 == futureY))
+            //{
+            //    CanMove = true;
+            //}
+            //else
+            //{
+            //    CanMove = false;
+            //}
         }
 
         public override string ToString()

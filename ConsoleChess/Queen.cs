@@ -8,10 +8,14 @@ namespace ConsoleChess
 {
     class Queen : Piece
     {
-        public Queen() {
+        public Queen()
+        {
             this.CanMove = false;
             this.HasMoved = false;
         }
+
+        private int min = 1;
+        private int max = 8;
 
         public Queen(ChessPieces pieceType, PieceColors color, char currentXcoordinate, int currentYCoordinate, bool canMove, bool hasMoved)
         {
@@ -35,13 +39,83 @@ namespace ConsoleChess
         }
         public override void Move(char futureX, int futureY)
         {
-            if (CanMove)
-            {
-
+            for (int i = min; i < max; i++)
+            { 
+                if (futureX == i)
+                {
+                    CurrentXCoordinate = futureX;
+                }
             }
-            else
+
+            for (int i = max; i > min; i--)
             {
-                Console.WriteLine("This piece cannot move");
+                if (futureX == i)
+                {
+                    CurrentXCoordinate = futureX;
+                }
+            }
+
+            for (int i = min; i < max; i++)
+            {
+                if (futureY == i)
+                {
+                    CurrentYCoordinate = futureY;
+                }
+            }
+            for (int i = max; i > min; i--)
+            {
+                if (futureY == i)
+                {
+                    CurrentYCoordinate = futureY;
+                }
+            }
+
+            for (int i = min; i < max; i++)
+            {
+                for (int j = min; j < max; j++)
+                {
+                    if (futureX == i && futureY == j)
+                    {
+                        CurrentXCoordinate = futureX;
+                        CurrentYCoordinate = futureY;
+                    }
+                }
+            }
+
+            for (int i = max; i > min; i--)
+            {
+                for (int j = max; j > min; j--)
+                {
+                    if (futureX == i && futureY == j)
+                    {
+                        CurrentXCoordinate = futureX;
+                        CurrentYCoordinate = futureY;
+                    }
+                }
+            }
+
+            for (int i = min; i < max; i++)
+            {
+                for (int j = max; j > min; j--)
+                {
+                    if (futureX == i && futureY == j)
+                    {
+                        CurrentXCoordinate = futureX;
+                        CurrentYCoordinate = futureY;
+                    }
+                }
+            }
+
+            for (int i = max; i > min; i--)
+            {
+                for (int j = min; j < max; j++)
+                {
+                    if (futureX == i && futureY == j)
+                    {
+                        CurrentXCoordinate = futureX;
+                        CurrentYCoordinate = futureY;
+                    }
+                }
             }
         }
 
