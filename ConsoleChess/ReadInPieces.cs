@@ -12,11 +12,6 @@ namespace ConsoleChess
     {
 
         public static List<Piece> AllPieces = new List<Piece>();
-        //Pawn pawn = new Pawn();
-        //Knight knight = new Knight();
-        //Bishop bishop = new Bishop();
-        //Rook rook = new Rook();
-        //Queen queen = new Queen();
 
         public static string placePiece = @"(^[PNBRQK][ld][a-h][1-8]$)";
         public static string movePiece = @"(^[a-h][1-8] [a-h][1-8]$)";
@@ -26,16 +21,21 @@ namespace ConsoleChess
         Regex Move = new Regex(movePiece);
         Regex Capture = new Regex(capturePiece);
         Regex MoveTwo = new Regex(moveTwoPieces);
+        ChessGame chessy = new ChessGame();
+        //Person player = new Person();
         public void run(string args)
         {
-            if (!File.Exists(args))
+            do
             {
-                Console.WriteLine("Enter a valid file path");
-            }
-            else
-            {
-                ReadFile(args);
-            }
+                if (!File.Exists(args))
+                {
+                    Console.WriteLine("Enter a valid file path");
+                }
+                else
+                {
+                    ReadFile(args);
+                }
+            } while (!File.Exists(args));
         }
         //reads the File
         public void ReadFile(string file)
@@ -68,6 +68,10 @@ namespace ConsoleChess
                         }
                     }
                 }
+                chessy.GenerateBoard();
+                Console.Write("Enter your file(ctrl+c to exit):");
+                string file1 = Console.ReadLine();
+                this.ReadFile(file1);
             }
             catch (IOException e)
             {
@@ -123,35 +127,66 @@ namespace ConsoleChess
         public void MovePiece(string s)
         {
             Piece piece = null;
+            Piece piece1 = null;
+            foreach (Piece p in AllPieces)
+            {
+                if (p.CurrentXCoordinate == s[0] && p.CurrentYCoordinate == validYCoord(s[1]))
+                {
+                    piece = p;
+                    break;
+                }
+            }
             foreach (Piece p in AllPieces)
             {
                 if (p.CurrentXCoordinate == s[3] && p.CurrentYCoordinate == validYCoord(s[4]))
                 {
-                    piece = p;
-                }
-                else if (p.CurrentXCoordinate == s[0] && p.CurrentYCoordinate == validYCoord(s[1]))
-                {
-                    //p.FutureXCoordinate = (char)s[3];
-                    //p.FutureYCoordinate = validYCoord(s[4]);
-                    p.Move(p.FutureXCoordinate = (char)s[3], p.FutureYCoordinate = validYCoord(s[4]));
-                    if (p.CanMove == true)
-                    {
-                        Console.WriteLine(p);
-                        p.CurrentXCoordinate = p.FutureXCoordinate;
-                        p.CurrentYCoordinate = p.FutureYCoordinate;
-                    }else
-                    {
-                        Console.WriteLine("not a valid move");
-                    }
+                    piece1 = p;
+                    break;
                 }
             }
-            AllPieces.Remove(piece);
+            if (piece != null)
+            {
+                if (piece1 == null)
+                {
+                    piece.Move(piece.FutureXCoordinate = (char)s[3], piece.FutureYCoordinate = validYCoord(s[4]));
+                    if (piece.CanMove == true)
+                    {
+                        Console.WriteLine($"\n{piece}");
+                        piece.CurrentXCoordinate = piece.FutureXCoordinate;
+                        piece.CurrentYCoordinate = piece.FutureYCoordinate;
+                        chessy.GenerateBoard();
+                        //player.Turn(p);
+                    }
+                }
+                else if (piece1.Color != piece.Color)
+                {
+                    piece.Move(piece.FutureXCoordinate = (char)s[3], piece.FutureYCoordinate = validYCoord(s[4]));
+                    if (piece.CanMove == true)
+                    {
+                        Console.WriteLine($"\n{piece}");
+                        piece.CurrentXCoordinate = piece.FutureXCoordinate;
+                        piece.CurrentYCoordinate = piece.FutureYCoordinate;
+                        AllPieces.Remove(piece1);
+                        Console.WriteLine("Piece Captured");
+                        chessy.GenerateBoard();
+                        //player.Turn(p);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("\nCant take own pieces:/");
+                }
+            }
+            else
+            {
+                Console.WriteLine("\nno piece there");
+            }
         }
 
         public void CapturePiece(string s)
         {
             MovePiece(s);
-            Console.WriteLine("piece captured");
+            //Console.WriteLine("piece captured");
         }
 
         public void MoveTwoPieces(string s)

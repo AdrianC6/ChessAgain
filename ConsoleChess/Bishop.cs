@@ -40,52 +40,19 @@ namespace ConsoleChess
 
         public override void Move(char futureX, int futureY)
         {
-            for (int i = min; i < max; i++)
+            //int Ymin = 0;
+            //int Ymax = 9;
+            //char Xmin = 'a';
+            //char Xmax = 'h';
+            
+            if (Math.Abs(((double)CurrentYCoordinate - futureY)/(CurrentXCoordinate - futureX)) == 1)
             {
-                for (int j = min; j < max; j++)
-                {
-                    if (futureX == i && futureY == j)
-                    {
-                        CurrentXCoordinate = futureX;
-                        CurrentYCoordinate = futureY;
-                    }
-                }
+                CanMove = true;
             }
 
             for (int i = max; i > min; i--)
             {
-                for (int j = max; j > min; j--)
-                {
-                    if (futureX == i && futureY == j)
-                    {
-                        CurrentXCoordinate = futureX;
-                        CurrentYCoordinate = futureY;
-                    }
-                }
-            }
-
-            for (int i = min; i < max; i++)
-            {
-                for (int j = max; j > min; j--)
-                {
-                    if (futureX == i && futureY == j)
-                    {
-                        CurrentXCoordinate = futureX;
-                        CurrentYCoordinate = futureY;
-                    }
-                }
-            }
-
-            for (int i = max; i > min; i--)
-            {
-                for (int j = min; j < max; j++)
-                {
-                    if (futureX == i && futureY == j)
-                    {
-                        CurrentXCoordinate = futureX;
-                        CurrentYCoordinate = futureY;
-                    }
-                }
+                CanMove = false;
             }
 
 

@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 namespace ConsoleChess
 {
     class Movement
-    { }
+    {
+    }
         //ChessGame game = new ChessGame();
     //    ChessPiece piece = new ChessPiece();
 

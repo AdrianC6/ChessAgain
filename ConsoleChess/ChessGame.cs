@@ -8,11 +8,9 @@ namespace ConsoleChess
 {
     class ChessGame
     {
-
-        Movement move = new Movement();
-        //list of Pieces
+        //ReadInPieces rp = new ReadInPieces();
         //board array
-        string[,] board = new string[9, 'i'];
+        public string[,] board = new string[9, 'i'];
         public void GenerateBoard()
         {
             for (int i = 1; i < 9; i++)
@@ -49,7 +47,7 @@ namespace ConsoleChess
                 }
                 Console.Write("\n");
             }
-            //move.CheckPiece();
+
         }
     }
 }
