@@ -8,10 +8,9 @@ namespace ConsoleChess
 {
     class ChessGame
     {
-        ReadInPieces rp = new ReadInPieces();
-        //list of Pieces
+        //ReadInPieces rp = new ReadInPieces();
         //board array
-        string[,] board = new string[9, 'i'];
+        public string[,] board = new string[9, 'i'];
         public void GenerateBoard()
         {
             for (int i = 1; i < 9; i++)
@@ -48,11 +47,7 @@ namespace ConsoleChess
                 }
                 Console.Write("\n");
             }
-            Console.Write("Enter your file(ctrl+c to exit):");
-            string file = Console.ReadLine();
-            //string file = "C:\\Users\\ACastellon\\source\\repos\\ConsoleChess\\ConsoleChess\\bin\\Debug\\move rook.txt";
-            rp.ReadFile(file);
-            //Console.ReadLine();
+
         }
     }
 }
