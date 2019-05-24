@@ -26,7 +26,7 @@ namespace ConsoleChess
         Regex Move = new Regex(movePiece);
         Regex Capture = new Regex(capturePiece);
         Regex MoveTwo = new Regex(moveTwoPieces);
-        Person player = new Person();
+        //Person player = new Person();
         public void run(string args)
         {
             do
@@ -131,16 +131,10 @@ namespace ConsoleChess
             Piece piece = null;
             foreach (Piece p in AllPieces)
             {
-                if (p.CurrentXCoordinate == s[3] && p.CurrentYCoordinate == validYCoord(s[4]))
+                if (p.CurrentXCoordinate == s[0] && p.CurrentYCoordinate == validYCoord(s[1]))
                 {
-                    piece = p;
-                    Console.WriteLine("Piece Captured");
-                }
-                else if (p.CurrentXCoordinate == s[0] && p.CurrentYCoordinate == validYCoord(s[1]))
-                {
-                    //p.FutureXCoordinate = (char)s[3];
-                    //p.FutureYCoordinate = validYCoord(s[4]);
                     p.Move(p.FutureXCoordinate = (char)s[3], p.FutureYCoordinate = validYCoord(s[4]));
+                    //player.Turn(p);
                     if (p.CanMove == true)
                     {
                         Console.WriteLine(p);
@@ -159,6 +153,11 @@ namespace ConsoleChess
 
         public void CapturePiece(string s)
         {
+            //if (p.CurrentXCoordinate == s[3] && p.CurrentYCoordinate == validYCoord(s[4]))
+            //{
+            //    piece = p;
+            //    Console.WriteLine("Piece Captured");
+            //}
             MovePiece(s);
             //Console.WriteLine("piece captured");
         }

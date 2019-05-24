@@ -8,6 +8,7 @@ namespace ConsoleChess
 {
     class Person
     {
+        int turn = 1;
         Piece.PieceColors Color;
         public Person()
         {
@@ -21,13 +22,32 @@ namespace ConsoleChess
 
         public void Turn(Piece p)
         {
-            if(p.Color == Piece.PieceColors.WHITE)
+            p.CanMove = true;
+            if (p.Color == Piece.PieceColors.WHITE)
             {
                 //turn logic
+                if (p.CanMove == true && turn == 1)
+                {
+                    turn += 1;
+                }
+                else
+                {
+                    turn = 1;
+                    p.CanMove = false;
+                }
             }
-            else if(p.Color == Piece.PieceColors.BLACK)
+            else if (p.Color == Piece.PieceColors.BLACK)
             {
                 //turn logic
+                if (p.CanMove == true && turn == 2)
+                {
+                    turn -= 1;
+                }
+                else
+                {
+                    turn = 2;
+                    p.CanMove = false;
+                }
             }
         }
     }

@@ -40,7 +40,8 @@ namespace ConsoleChess
             int Ymax = 9;
             char Xmin = 'a';
             char Xmax = 'h';
-            if ((futureX % 2 == 1 && futureY % 2 == 1) || (futureX % 2 == 0 && futureY % 2 == 0))
+            
+            if (Math.Abs(((double)CurrentYCoordinate - futureY) / (CurrentXCoordinate - futureX)) == 1)
             {
                 CanMove = true;
             }

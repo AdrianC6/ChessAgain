@@ -1,4 +1,7 @@
-//a1 a4
+a1 a4
 c1 e3
 e3 a7
-e1 f3
+e1 h4
+a8 a6
+d1 d1
+d8 d7

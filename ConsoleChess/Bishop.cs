@@ -37,11 +37,12 @@ namespace ConsoleChess
 
         public override void Move(char futureX, int futureY)
         {
-            //double Ymin = 0;
-            //double Ymax = 9;
+            //int Ymin = 0;
+            //int Ymax = 9;
             //char Xmin = 'a';
             //char Xmax = 'h';
-            if ((futureX % 2 == 1 && futureY % 2 == 1) || (futureX % 2 == 0 && futureY % 2 == 0))
+            
+            if (Math.Abs(((double)CurrentYCoordinate - futureY)/(CurrentXCoordinate - futureX)) == 1)
             {
                 CanMove = true;
             }

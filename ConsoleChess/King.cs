@@ -8,7 +8,8 @@ namespace ConsoleChess
 {
     class King : Piece
     {
-        public King() {
+        public King()
+        {
             this.CanMove = false;
             this.HasMoved = false;
         }
@@ -36,13 +37,20 @@ namespace ConsoleChess
 
         public override void Move(char futureX, int futureY)
         {
-            if (CanMove)
+            if (Math.Abs(CurrentYCoordinate - futureY) <= 1 && Math.Abs(CurrentXCoordinate - futureX) <= 1)
             {
-
+                if (Math.Abs(CurrentYCoordinate - futureY) == 1 || Math.Abs(CurrentXCoordinate - futureX) == 1)
+                {
+                    CanMove = true;
+                }
+                else
+                {
+                    CanMove = false;
+                }
             }
             else
             {
-                Console.WriteLine("This piece cannot move");
+                CanMove = false;
             }
         }
 
