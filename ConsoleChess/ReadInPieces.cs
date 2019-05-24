@@ -26,6 +26,7 @@ namespace ConsoleChess
         Regex Move = new Regex(movePiece);
         Regex Capture = new Regex(capturePiece);
         Regex MoveTwo = new Regex(moveTwoPieces);
+        Person player = new Person();
         public void run(string args)
         {
             do
@@ -71,6 +72,8 @@ namespace ConsoleChess
                         }
                     }
                 }
+                ChessGame chessy = new ChessGame();
+                chessy.GenerateBoard();
             }
             catch (IOException e)
             {
@@ -143,6 +146,7 @@ namespace ConsoleChess
                         Console.WriteLine(p);
                         p.CurrentXCoordinate = p.FutureXCoordinate;
                         p.CurrentYCoordinate = p.FutureYCoordinate;
+                        //player.Turn(p);
                     }
                     else
                     {

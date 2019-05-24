@@ -52,40 +52,6 @@ namespace ConsoleChess
             {
                 CanMove = false;
             }
-            //for(int i = 1; i < max; i++)
-            //{
-            //    if(futureX == i && CurrentYCoordinate == futureY)
-            //    {
-            //        CurrentXCoordinate = futureX;
-            //        CanMove = true;
-            //    }
-            //    else if(futureY == i && CurrentXCoordinate == futureX)
-            //    {
-            //        CurrentYCoordinate = futureY;
-            //        CanMove = true;
-            //    }
-            //    else
-            //    {
-            //        CanMove = false;
-            //    }
-            //}
-            //for (int i = 8; i > min; i--)
-            //{
-            //    if(futureX == i && CurrentYCoordinate == futureY)
-            //    {
-            //        CurrentXCoordinate = futureX;
-            //        CanMove = true;
-            //    }
-            //    else if (futureY == i && CurrentXCoordinate == futureX)
-            //    {
-            //        CurrentYCoordinate = futureY;
-            //        CanMove = true;
-            //    }
-            //    else
-            //    {
-            //        CanMove = false;
-            //    }
-            //}
         }
 
         public void SpecialMove()

@@ -8,7 +8,8 @@ namespace ConsoleChess
 {
     class Queen : Piece
     {
-        public Queen() {
+        public Queen()
+        {
             this.CanMove = false;
             this.HasMoved = false;
         }
@@ -35,13 +36,25 @@ namespace ConsoleChess
         }
         public override void Move(char futureX, int futureY)
         {
-            if (CanMove)
+            int Ymin = 0;
+            int Ymax = 9;
+            char Xmin = 'a';
+            char Xmax = 'h';
+            if ((futureX % 2 == 1 && futureY % 2 == 1) || (futureX % 2 == 0 && futureY % 2 == 0))
             {
-
+                CanMove = true;
+            }
+            else if ((futureX >= Xmin && futureX <= Xmax) && CurrentYCoordinate == futureY)
+            {
+                CanMove = true;
+            }
+            else if ((futureY > Ymin && futureY < Ymax) && CurrentXCoordinate == futureX)
+            {
+                CanMove = true;
             }
             else
             {
-                Console.WriteLine("This piece cannot move");
+                CanMove = false;
             }
         }
 

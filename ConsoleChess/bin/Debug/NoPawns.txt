@@ -1,0 +1,16 @@
+Rda8
+Rdh8
+Rla1
+Rlh1
+Ndb8
+Ndg8
+Nlb1
+Nlg1
+Bdc8
+Bdf8
+Blc1
+Blf1
+Kdd8
+Kld1
+Qde8
+Qle1

@@ -8,8 +8,7 @@ namespace ConsoleChess
 {
     class ChessGame
     {
-
-        Movement move = new Movement();
+        ReadInPieces rp = new ReadInPieces();
         //list of Pieces
         //board array
         string[,] board = new string[9, 'i'];
@@ -49,8 +48,11 @@ namespace ConsoleChess
                 }
                 Console.Write("\n");
             }
-            //Console.Write("Enter your file(ctrl+c to exit):");
-            //string file = Console.ReadLine();
+            Console.Write("Enter your file(ctrl+c to exit):");
+            string file = Console.ReadLine();
+            //string file = "C:\\Users\\ACastellon\\source\\repos\\ConsoleChess\\ConsoleChess\\bin\\Debug\\move rook.txt";
+            rp.ReadFile(file);
+            //Console.ReadLine();
         }
     }
 }
