@@ -22,7 +22,7 @@ namespace ConsoleChess
         Regex Capture = new Regex(capturePiece);
         Regex MoveTwo = new Regex(moveTwoPieces);
         ChessGame chessy = new ChessGame();
-        //Person player = new Person();
+        Person player = new Person();
         public void run(string args)
         {
             do
@@ -151,11 +151,18 @@ namespace ConsoleChess
                     piece.Move(piece.FutureXCoordinate = (char)s[3], piece.FutureYCoordinate = validYCoord(s[4]));
                     if (piece.CanMove == true)
                     {
-                        Console.WriteLine($"\n{piece}");
-                        piece.CurrentXCoordinate = piece.FutureXCoordinate;
-                        piece.CurrentYCoordinate = piece.FutureYCoordinate;
-                        chessy.GenerateBoard();
-                        //player.Turn(p);
+                        player.Turn(piece);
+                        if (piece.CanMove == true)
+                        {
+                            Console.WriteLine($"\n{piece}");
+                            piece.CurrentXCoordinate = piece.FutureXCoordinate;
+                            piece.CurrentYCoordinate = piece.FutureYCoordinate;
+                            chessy.GenerateBoard();
+                        }
+                        else
+                        {
+                            chessy.GenerateBoard();
+                        }
                     }
                 }
                 else if (piece1.Color != piece.Color)
@@ -163,13 +170,21 @@ namespace ConsoleChess
                     piece.Move(piece.FutureXCoordinate = (char)s[3], piece.FutureYCoordinate = validYCoord(s[4]));
                     if (piece.CanMove == true)
                     {
-                        Console.WriteLine($"\n{piece}");
-                        piece.CurrentXCoordinate = piece.FutureXCoordinate;
-                        piece.CurrentYCoordinate = piece.FutureYCoordinate;
-                        AllPieces.Remove(piece1);
-                        Console.WriteLine("Piece Captured");
-                        chessy.GenerateBoard();
-                        //player.Turn(p);
+                        player.Turn(piece);
+                        if (piece.CanMove == true)
+                        {
+                            player.Turn(piece);
+                            Console.WriteLine($"\n{piece}");
+                            piece.CurrentXCoordinate = piece.FutureXCoordinate;
+                            piece.CurrentYCoordinate = piece.FutureYCoordinate;
+                            AllPieces.Remove(piece1);
+                            Console.WriteLine("Piece Captured");
+                            chessy.GenerateBoard();
+                        }
+                        else
+                        {
+                            chessy.GenerateBoard();
+                        }
                     }
                 }
                 else

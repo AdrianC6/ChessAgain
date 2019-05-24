@@ -48,26 +48,23 @@ namespace ConsoleChess
         {
             if (Color == PieceColors.BLACK)
             {
-                if (CurrentXCoordinate == futureX && ((CurrentYCoordinate - 1) == FutureYCoordinate))
+                if (CurrentXCoordinate == futureX && ((CurrentYCoordinate - 1) == futureY))
                 {
                     CanMove = true;
                 }
                 else
                 {
-                    CurrentYCoordinate = CurrentYCoordinate;
                     CanMove = false;
                 }
-
             }
             else
             {
-                if (CurrentXCoordinate == futureX && ((CurrentYCoordinate + 1) == FutureYCoordinate))
+                if (CurrentXCoordinate == futureX && ((CurrentYCoordinate + 1) == futureY))
                 {
                     CanMove = true;
                 }
                 else
                 {
-                    CurrentYCoordinate = CurrentYCoordinate;
                     CanMove = false;
                 }
             }
