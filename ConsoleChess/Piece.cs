@@ -57,7 +57,7 @@ namespace ConsoleChess
             this.HasMoved = hasMoved;
         }
 
-        public abstract void Move(char futureX, int futureY);
+        public abstract void Move(char futureX, int futureY, string[,] board);
 
         //    public static List<ChessPiece> AllPieces = new List<ChessPiece>();
         //    public static string placePiece = @"(^[PNBRQK][ld][a-h][1-8]$)";
