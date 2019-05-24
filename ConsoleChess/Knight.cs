@@ -55,6 +55,7 @@ namespace ConsoleChess
             else
             {
                 CanMove = false;
+                Console.WriteLine("Bad move u spineless seasponge");
             }
         }
 

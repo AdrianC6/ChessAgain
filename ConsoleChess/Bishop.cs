@@ -53,6 +53,7 @@ namespace ConsoleChess
             for (int i = max; i > min; i--)
             {
                 CanMove = false;
+                Console.WriteLine("Invalid move u uncultered swine");
             }
 
 

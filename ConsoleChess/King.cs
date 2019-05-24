@@ -46,11 +46,13 @@ namespace ConsoleChess
                 else
                 {
                     CanMove = false;
+                    Console.WriteLine("Invalid move u foon");
                 }
             }
             else
             {
                 CanMove = false;
+                Console.WriteLine("Invalid move u foon");
             }
         }
 

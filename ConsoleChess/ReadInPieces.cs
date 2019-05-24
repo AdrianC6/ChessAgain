@@ -40,8 +40,9 @@ namespace ConsoleChess
         //reads the File
         public void ReadFile(string file)
         {
-            try
+            do
             {
+
                 using (StreamReader path = new StreamReader(file))
                 {
                     string line = path.ReadToEnd();
@@ -69,15 +70,11 @@ namespace ConsoleChess
                     }
                 }
                 chessy.GenerateBoard();
-                Console.Write("Enter your file(ctrl+c to exit):");
+                Console.Write("Enter your file (Ctrl+c to exit):");
                 string file1 = Console.ReadLine();
                 this.ReadFile(file1);
-            }
-            catch (IOException e)
-            {
-                Console.WriteLine("The file could not be read:");
-                Console.WriteLine(e.Message);
-            }
+
+            } while (!File.Exists(file));
         }
 
         public void PlacePiece(string s)
