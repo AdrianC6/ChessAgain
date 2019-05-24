@@ -9,7 +9,12 @@ namespace ConsoleChess
     class Person
     {
         Piece.PieceColors Color;
-        Person(Piece.PieceColors colors)
+        public Person()
+        {
+
+        }
+
+        public Person(Piece.PieceColors colors)
         {
             this.Color = colors;
         }
