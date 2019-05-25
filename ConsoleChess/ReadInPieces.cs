@@ -89,6 +89,10 @@ namespace ConsoleChess
                         Console.WriteLine("Please enter a valid file: ");
                         file = Console.ReadLine();
                     }
+                    if (File.Exists(file))
+                    {
+
+                    }
                 }
             } while (!File.Exists(file));
         }
