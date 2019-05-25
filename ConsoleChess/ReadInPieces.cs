@@ -29,7 +29,8 @@ namespace ConsoleChess
             {
                 if (!File.Exists(args))
                 {
-                    Console.WriteLine("Enter a valid file path");
+                    Console.WriteLine("Please enter a valid file: ");
+                    args = Console.ReadLine();
                 }
                 else
                 {
@@ -42,38 +43,53 @@ namespace ConsoleChess
         {
             do
             {
-
-                using (StreamReader path = new StreamReader(file))
+                if (!File.Exists(file))
                 {
-                    string line = path.ReadToEnd();
-                    string[] pieceCoords;
-
-                    pieceCoords = line.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
-                    foreach (string s in pieceCoords)
+                    Console.WriteLine("Please enter a valid file: ");
+                    file = Console.ReadLine();
+                }
+                try
+                {
+                    using (StreamReader path = new StreamReader(file))
                     {
-                        if (Place.IsMatch(s))
+                        string line = path.ReadToEnd();
+                        string[] pieceCoords;
+
+                        pieceCoords = line.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+                        foreach (string s in pieceCoords)
                         {
-                            PlacePiece(s);
-                        }
-                        else if (Move.IsMatch(s))
-                        {
-                            MovePiece(s);
-                        }
-                        else if (Capture.IsMatch(s))
-                        {
-                            CapturePiece(s);
-                        }
-                        else if (MoveTwo.IsMatch(s))
-                        {
-                            MoveTwoPieces(s);
+                            if (Place.IsMatch(s))
+                            {
+                                PlacePiece(s);
+                            }
+                            else if (Move.IsMatch(s))
+                            {
+                                MovePiece(s);
+                            }
+                            else if (Capture.IsMatch(s))
+                            {
+                                CapturePiece(s);
+                            }
+                            else if (MoveTwo.IsMatch(s))
+                            {
+                                MoveTwoPieces(s);
+                            }
                         }
                     }
+                    chessy.GenerateBoard();
+                    Console.Write("Enter your file (Ctrl+c to exit) :");
+                    string file1 = Console.ReadLine();
+                    this.ReadFile(file1);
                 }
-                chessy.GenerateBoard();
-                Console.Write("Enter your file (Ctrl+c to exit):");
-                string file1 = Console.ReadLine();
-                this.ReadFile(file1);
 
+                catch
+                {
+                    if (!File.Exists(file))
+                    {
+                        Console.WriteLine("Please enter a valid file: ");
+                        file = Console.ReadLine();
+                    }
+                }
             } while (!File.Exists(file));
         }
 
