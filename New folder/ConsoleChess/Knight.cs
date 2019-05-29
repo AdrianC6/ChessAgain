@@ -52,7 +52,11 @@ namespace ConsoleChess
                     {
                         CanMove = true;
                         ReadInPieces.player.Turn(this);
-                        if (CanMove)
+                        if (!CanMove)
+                        {
+
+                        }
+                        else
                         {
                             Console.WriteLine($"\n\n{this.ToString()}");
                             CurrentXCoordinate = futureX;
@@ -63,7 +67,11 @@ namespace ConsoleChess
                     {
                         CanMove = true;
                         ReadInPieces.player.Turn(this);
-                        if (CanMove)
+                        if (!CanMove)
+                        {
+
+                        }
+                        else
                         {
                             Console.WriteLine($"\n\n{this.ToString()}");
                             CurrentXCoordinate = futureX;
@@ -74,9 +82,8 @@ namespace ConsoleChess
                     }
                     else
                     {
-                        CanMove = false;
-                        ReadInPieces.player.Turn(this);
                         Console.WriteLine("\n\nCan't take own pieces");
+                        CanMove = false;
                     }
                 }
                 else
@@ -92,7 +99,11 @@ namespace ConsoleChess
                     {
                         CanMove = true;
                         ReadInPieces.player.Turn(this);
-                        if (CanMove)
+                        if (!CanMove)
+                        {
+
+                        }
+                        else
                         {
                             Console.WriteLine(this.ToString());
                             CurrentXCoordinate = futureX;
@@ -103,7 +114,10 @@ namespace ConsoleChess
                     {
                         CanMove = true;
                         ReadInPieces.AllPieces.Remove(piece);
-                        if (CanMove)
+                        if (!CanMove)
+                        {
+                        }
+                        else
                         {
                             Console.WriteLine(this.ToString());
                             CurrentXCoordinate = futureX;
@@ -131,7 +145,11 @@ namespace ConsoleChess
                     {
                         CanMove = true;
                         ReadInPieces.player.Turn(this);
-                        if (CanMove)
+                        if (!CanMove)
+                        {
+
+                        }
+                        else
                         {
                             Console.WriteLine(this.ToString());
                             CurrentXCoordinate = futureX;
@@ -142,7 +160,11 @@ namespace ConsoleChess
                     {
                         CanMove = true;
                         ReadInPieces.player.Turn(this);
-                        if (CanMove)
+                        if (!CanMove)
+                        {
+
+                        }
+                        else
                         {
                             Console.WriteLine(this.ToString());
                             CurrentXCoordinate = futureX;
@@ -171,7 +193,11 @@ namespace ConsoleChess
                     {
                         CanMove = true;
                         ReadInPieces.player.Turn(this);
-                        if (CanMove)
+                        if (!CanMove)
+                        {
+
+                        }
+                        else
                         {
                             Console.WriteLine(this.ToString());
                             CurrentXCoordinate = futureX;
@@ -182,7 +208,11 @@ namespace ConsoleChess
                     {
                         CanMove = true;
                         ReadInPieces.player.Turn(this);
-                        if (CanMove)
+                        if (!CanMove)
+                        {
+
+                        }
+                        else
                         {
                             Console.WriteLine(this.ToString());
                             CurrentXCoordinate = futureX;

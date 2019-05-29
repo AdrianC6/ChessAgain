@@ -14,6 +14,7 @@ namespace ConsoleChess
             this.CanMove = false;
             this.HasMoved = false;
         }
+
         public Bishop(ChessPieces pieceType, PieceColors color, char currentXcoordinate, int currentYCoordinate, bool canMove, bool hasMoved)
         {
             this.PieceType = pieceType;
@@ -48,14 +49,17 @@ namespace ConsoleChess
 
             if (Math.Abs(((double)CurrentYCoordinate - futureY) / (CurrentXCoordinate - futureX)) == 1)
             {
-                //CanMove = true;
+                CanMove = true;
                 if (this != null)
                 {
                     if (piece == null)
                     {
                         CanMove = true;
                         ReadInPieces.player.Turn(this);
-                        if (CanMove)
+                        if (!CanMove)
+                        {
+                        }
+                        else
                         {
                             Console.WriteLine($"\n\n{this.ToString()}");
                             CurrentXCoordinate = futureX;
@@ -66,7 +70,10 @@ namespace ConsoleChess
                     {
                         CanMove = true;
                         ReadInPieces.player.Turn(this);
-                        if (CanMove)
+                        if (!CanMove)
+                        {
+                        }
+                        else
                         {
                             Console.WriteLine($"\n\n{this.ToString()}");
                             CurrentXCoordinate = futureX;
@@ -90,27 +97,6 @@ namespace ConsoleChess
             {
                 CanMove = false;
             }
-        }
-        public bool PieceInWay(Piece bishop)
-        {
-            foreach (Piece p in ReadInPieces.AllPieces)
-            {
-                if (p.CurrentXCoordinate < bishop.FutureXCoordinate && p.CurrentXCoordinate > bishop.CurrentXCoordinate)
-                {
-                    CanMove = false;
-                    break;
-                }
-                else if (p.CurrentYCoordinate < bishop.FutureYCoordinate && p.CurrentYCoordinate > bishop.CurrentYCoordinate)
-                {
-                    CanMove = false;
-                    break;
-                }
-                else
-                {
-                    CanMove = true;
-                }
-            }
-            return CanMove;
         }
 
         public void capture(Piece p)

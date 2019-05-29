@@ -51,7 +51,17 @@ namespace ConsoleChess
         //}
         public override void Move(char futureX, int futureY)
         {
-            if ((CurrentYCoordinate == 2 && Color == PieceColors.WHITE) || (CurrentYCoordinate == 7 && Color == PieceColors.BLACK))
+            Piece piece = null;
+
+            foreach (Piece p in ReadInPieces.AllPieces)
+            {
+                if (p.CurrentXCoordinate == futureX && p.CurrentYCoordinate == futureY)
+                {
+                    piece = p;
+                }
+            }
+
+            if ((this.CurrentYCoordinate == 2 && this.Color == PieceColors.WHITE) || (this.CurrentYCoordinate == 7 && this.Color == PieceColors.BLACK))
             {
                 HasMoved = false;
             }
@@ -60,40 +70,121 @@ namespace ConsoleChess
                 HasMoved = true;
                 Console.WriteLine("invalid move");
             }
-            if (HasMoved == true)
+
+
+            if (Color == PieceColors.BLACK)
             {
-                if (Color == PieceColors.BLACK)
+                if (CurrentXCoordinate == futureX && ((CurrentYCoordinate - 1) == futureY))
                 {
-                    if (CurrentXCoordinate == futureX && ((CurrentYCoordinate - 1) == futureY))
+                    if (this != null)
                     {
-                        CanMove = true;
+                        if (piece == null)
+                        {
+                            CanMove = true;
+                            ReadInPieces.player.Turn(this);
+                            if (CanMove)
+                            {
+                                Console.WriteLine($"\n\n{this.ToString()}");
+                                CurrentXCoordinate = futureX;
+                                CurrentYCoordinate = futureY;
+                                HasMoved = true;
+                            }
+                        }
+                        else if (piece.Color != this.Color)
+                        {
+                            CanMove = true;
+                            ReadInPieces.player.Turn(this);
+                            if (CanMove)
+                            {
+                                Console.WriteLine($"\n\n{this.ToString()}");
+                                CurrentXCoordinate = futureX;
+                                CurrentYCoordinate = futureY;
+                                capture(piece);
+                                ReadInPieces.AllPieces.Remove(piece);
+                                HasMoved = true;
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n\nCan't take own pieces");
+                            CanMove = false;
+                        }
                     }
                     else
                     {
-                        CanMove = false;
+                        Console.WriteLine("No piece there");
                     }
                 }
                 else
                 {
-                    if (CurrentXCoordinate == futureX && ((CurrentYCoordinate + 1) == futureY))
-                    {
-                        CanMove = true;
-                    }
-                    else
-                    {
-                        CanMove = false;
-                    }
+                    CanMove = false;
                 }
             }
             else
             {
-                CurrentYCoordinate = Color == PieceColors.WHITE ? CurrentYCoordinate + 2 : CurrentYCoordinate - 2;
+                if (CurrentXCoordinate == futureX && ((CurrentYCoordinate + 1) == futureY))
+                {
+                    if (this != null)
+                    {
+                        if (piece == null)
+                        {
+                            CanMove = true;
+                            ReadInPieces.player.Turn(this);
+                            if (CanMove)
+                            {
+                                Console.WriteLine($"\n\n{this.ToString()}");
+                                CurrentXCoordinate = futureX;
+                                CurrentYCoordinate = futureY;
+                                HasMoved = true;
+                            }
+                        }
+                        else if (piece.Color != this.Color)
+                        {
+                            CanMove = true;
+                            ReadInPieces.player.Turn(this);
+                            if (CanMove)
+                            {
+                                Console.WriteLine($"\n\n{this.ToString()}");
+                                CurrentXCoordinate = futureX;
+                                CurrentYCoordinate = futureY;
+                                capture(piece);
+                                ReadInPieces.AllPieces.Remove(piece);
+                                HasMoved = true;
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n\nCan't take own pieces");
+                            CanMove = false;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No piece there");
+                    }
+                }
+                else
+                {
+                    CanMove = false;
+                }
+            }
+            if (!HasMoved)
+            {
+                SpecialMove(futureX, futureY);
+                //CurrentYCoordinate = Color == PieceColors.WHITE ? CurrentYCoordinate + 2 : CurrentYCoordinate - 2;
             }
         }
 
         public void SpecialMove(char futureX, int futureY)
         {
             CurrentYCoordinate = Color == PieceColors.WHITE ? CurrentYCoordinate + 2 : CurrentYCoordinate - 2;
+            HasMoved = true;
+        }
+
+        public void capture(Piece p)
+        {
+            ReadInPieces.AllPieces.Remove(p);
+            Console.WriteLine("This piece is captured");
         }
 
         public override string ToString()

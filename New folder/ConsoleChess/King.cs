@@ -53,9 +53,13 @@ namespace ConsoleChess
                     {
                         if (piece == null)
                         {
-                            CanMove = true;
+                            //CanMove = true;
                             ReadInPieces.player.Turn(this);
-                            if (CanMove)
+                            if (!CanMove)
+                            {
+
+                            }
+                            else
                             {
                                 Console.WriteLine($"\n\n{this.ToString()}");
                                 CurrentXCoordinate = futureX;
@@ -66,7 +70,11 @@ namespace ConsoleChess
                         {
                             CanMove = true;
                             ReadInPieces.player.Turn(this);
-                            if (CanMove)
+                            if (!CanMove)
+                            {
+
+                            }
+                            else
                             {
                                 Console.WriteLine($"\n\n{this.ToString()}");
                                 CurrentXCoordinate = futureX;

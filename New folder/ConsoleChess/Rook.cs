@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace ConsoleChess
 {
-    class Knight : Piece
+    class Rook : Piece
     {
-        public Knight()
+        Person player = new Person();
+        public Rook()
         {
-            this.CanMove = true;
+            this.CanMove = false;
             this.HasMoved = false;
         }
-        public Knight(ChessPieces pieceType, PieceColors color, char currentXcoordinate, int currentYCoordinate, bool canMove, bool hasMoved)
+
+        public Rook(ChessPieces pieceType, PieceColors color, char currentXcoordinate, int currentYCoordinate, bool canMove, bool hasMoved)
         {
             this.PieceType = pieceType;
             this.Color = color;
@@ -22,7 +24,7 @@ namespace ConsoleChess
             this.CanMove = canMove;
             this.HasMoved = hasMoved;
         }
-        public Knight(ChessPieces pieceType, PieceColors color, char currentXCoordinate, char futureXCoordinate, int currentYCoordinate, int futureYCoordinate, bool canMove, bool hasMoved)
+        public Rook(ChessPieces pieceType, PieceColors color, char currentXCoordinate, char futureXCoordinate, int currentYCoordinate, int futureYCoordinate, bool canMove, bool hasMoved)
         {
             this.PieceType = pieceType;
             this.Color = color;
@@ -36,7 +38,13 @@ namespace ConsoleChess
 
         public override void Move(char futureX, int futureY)
         {
+            AvailableMoves = new string[7];
             Piece piece = null;
+            int Ymax = 9;
+            int Ymin = 0;
+            char Xmax = 'h';
+            char Xmin = 'a';
+
             foreach (Piece p in ReadInPieces.AllPieces)
             {
                 if (p.CurrentXCoordinate == futureX && p.CurrentYCoordinate == futureY)
@@ -44,7 +52,8 @@ namespace ConsoleChess
                     piece = p;
                 }
             }
-            if ((CurrentXCoordinate + 1 == futureX && CurrentYCoordinate + 2 == futureY) || (CurrentXCoordinate - 1 == futureX && CurrentYCoordinate + 2 == futureY))
+
+            if ((futureX >= Xmin && futureX <= Xmax) && CurrentYCoordinate == futureY)
             {
                 if (this != null)
                 {
@@ -52,7 +61,11 @@ namespace ConsoleChess
                     {
                         CanMove = true;
                         ReadInPieces.player.Turn(this);
-                        if (CanMove)
+                        if (!CanMove)
+                        {
+
+                        }
+                        else
                         {
                             Console.WriteLine($"\n\n{this.ToString()}");
                             CurrentXCoordinate = futureX;
@@ -63,7 +76,11 @@ namespace ConsoleChess
                     {
                         CanMove = true;
                         ReadInPieces.player.Turn(this);
-                        if (CanMove)
+                        if (!CanMove)
+                        {
+
+                        }
+                        else
                         {
                             Console.WriteLine($"\n\n{this.ToString()}");
                             CurrentXCoordinate = futureX;
@@ -74,46 +91,7 @@ namespace ConsoleChess
                     }
                     else
                     {
-                        CanMove = false;
-                        ReadInPieces.player.Turn(this);
                         Console.WriteLine("\n\nCan't take own pieces");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("No piece there");
-                }
-            }
-            else if ((CurrentXCoordinate - 1 == futureX && CurrentYCoordinate - 2 == futureY) || (CurrentXCoordinate + 1 == futureX && CurrentYCoordinate - 2 == futureY))
-            {
-                if (this != null)
-                {
-                    if (piece == null)
-                    {
-                        CanMove = true;
-                        ReadInPieces.player.Turn(this);
-                        if (CanMove)
-                        {
-                            Console.WriteLine(this.ToString());
-                            CurrentXCoordinate = futureX;
-                            CurrentYCoordinate = futureY;
-                        }
-                    }
-                    else if (piece.Color != this.Color)
-                    {
-                        CanMove = true;
-                        ReadInPieces.AllPieces.Remove(piece);
-                        if (CanMove)
-                        {
-                            Console.WriteLine(this.ToString());
-                            CurrentXCoordinate = futureX;
-                            CurrentYCoordinate = futureY;
-                            capture(piece);
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("Can't take own pieces");
                         CanMove = false;
                     }
                 }
@@ -121,19 +99,26 @@ namespace ConsoleChess
                 {
                     Console.WriteLine("No piece there");
                 }
+                //for (int j = 'a'; j < Xmax; j++)
+                //{
+                //    this.AvailableMoves[j - 97] = $"{(CurrentXCoordinate + j)-103}{CurrentYCoordinate}";
+                //}
             }
-            else if ((CurrentXCoordinate - 2 == futureX && CurrentYCoordinate - 1 == futureY) || (CurrentXCoordinate - 2 == futureX && CurrentYCoordinate + 1 == futureY))
+            else if ((futureY > Ymin && futureY < Ymax) && CurrentXCoordinate == futureX)
             {
-                CanMove = true;
                 if (this != null)
                 {
                     if (piece == null)
                     {
                         CanMove = true;
                         ReadInPieces.player.Turn(this);
-                        if (CanMove)
+                        if (!CanMove)
                         {
-                            Console.WriteLine(this.ToString());
+
+                        }
+                        else
+                        {
+                            Console.WriteLine($"\n\n{this.ToString()}");
                             CurrentXCoordinate = futureX;
                             CurrentYCoordinate = futureY;
                         }
@@ -142,9 +127,13 @@ namespace ConsoleChess
                     {
                         CanMove = true;
                         ReadInPieces.player.Turn(this);
-                        if (CanMove)
+                        if (!CanMove)
                         {
-                            Console.WriteLine(this.ToString());
+
+                        }
+                        else
+                        {
+                            Console.WriteLine($"\n\n{this.ToString()}");
                             CurrentXCoordinate = futureX;
                             CurrentYCoordinate = futureY;
                             capture(piece);
@@ -153,7 +142,7 @@ namespace ConsoleChess
                     }
                     else
                     {
-                        Console.WriteLine("Can't take own pieces");
+                        Console.WriteLine("\n\nCan't take own pieces");
                         CanMove = false;
                     }
                 }
@@ -161,45 +150,16 @@ namespace ConsoleChess
                 {
                     Console.WriteLine("No piece there");
                 }
-            }
-            else if ((CurrentXCoordinate + 2 == futureX && CurrentYCoordinate - 1 == futureY) || (CurrentXCoordinate + 2 == futureX && CurrentYCoordinate + 1 == futureY))
-            {
-                CanMove = true;
-                if (this != null)
+                for (int i = 1; i < AvailableMoves.Length; i++)
                 {
-                    if (piece == null)
+                    if ((CurrentYCoordinate + i) >= 8)
                     {
-                        CanMove = true;
-                        ReadInPieces.player.Turn(this);
-                        if (CanMove)
-                        {
-                            Console.WriteLine(this.ToString());
-                            CurrentXCoordinate = futureX;
-                            CurrentYCoordinate = futureY;
-                        }
-                    }
-                    else if (piece.Color != this.Color)
-                    {
-                        CanMove = true;
-                        ReadInPieces.player.Turn(this);
-                        if (CanMove)
-                        {
-                            Console.WriteLine(this.ToString());
-                            CurrentXCoordinate = futureX;
-                            CurrentYCoordinate = futureY;
-                            capture(piece);
-                            ReadInPieces.AllPieces.Remove(piece);
-                        }
+                        AvailableMoves[Math.Abs(i - 1)] = $"{CurrentXCoordinate}{(CurrentYCoordinate + i) - 7}";
                     }
                     else
                     {
-                        Console.WriteLine("Can't take own pieces");
-                        CanMove = false;
+                        AvailableMoves[i - 1] = $"{CurrentXCoordinate}{CurrentYCoordinate + i}";
                     }
-                }
-                else
-                {
-                    Console.WriteLine("No piece there");
                 }
             }
             else
@@ -212,6 +172,11 @@ namespace ConsoleChess
         {
             ReadInPieces.AllPieces.Remove(p);
             Console.WriteLine("This piece is captured");
+        }
+
+        public void SpecialMove()
+        {
+
         }
 
         public override string ToString()

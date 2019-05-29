@@ -127,7 +127,7 @@ namespace ConsoleChess
         public void MovePiece(string s)
         {
             Piece piece = null;
-            //Piece piece1 = null;
+            Piece piece1 = null;
             foreach (Piece p in AllPieces)
             {
                 if (p.CurrentXCoordinate == s[0] && p.CurrentYCoordinate == validYCoord(s[1]))
