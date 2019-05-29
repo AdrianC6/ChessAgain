@@ -196,7 +196,7 @@ namespace ConsoleChess
             }
             else
             {
-                Console.WriteLine("\nno piece there");
+                Console.WriteLine("\nThere is no piece there");
             }
         }
 
@@ -204,6 +204,7 @@ namespace ConsoleChess
         {
             MovePiece(s);
             //Console.WriteLine("piece captured");
+            //J2D waz hear
         }
 
         public void MoveTwoPieces(string s)

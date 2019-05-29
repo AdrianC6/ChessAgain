@@ -42,6 +42,7 @@ namespace ConsoleChess
                 if (Math.Abs(CurrentYCoordinate - futureY) == 1 || Math.Abs(CurrentXCoordinate - futureX) == 1)
                 {
                     CanMove = true;
+                    HasMoved = true;
                 }
                 else
                 {
@@ -54,10 +55,15 @@ namespace ConsoleChess
                 CanMove = false;
                 Console.WriteLine("Invalid move u foon");
             }
+
         }
 
         public void SpecialMove()
         {
+            if (!HasMoved)
+            {
+
+            }
         }
         public override string ToString()
         {
