@@ -144,6 +144,7 @@ namespace ConsoleChess
                     break;
                 }
             }
+
             if (piece != null)
             {
                 if (piece1 == null)
