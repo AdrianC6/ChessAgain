@@ -21,8 +21,9 @@ namespace ConsoleChess
         Regex Move = new Regex(movePiece);
         Regex Capture = new Regex(capturePiece);
         Regex MoveTwo = new Regex(moveTwoPieces);
-        ChessGame chessy = new ChessGame();
-        //Person player = new Person();
+        public static ChessGame chessy = new ChessGame();
+        public static Person player = new Person();
+        bool IsInitiallyPrinted = false;
         public void run(string args)
         {
             do
@@ -38,63 +39,63 @@ namespace ConsoleChess
                 }
             } while (!File.Exists(args));
         }
-        //reads the File
         public void ReadFile(string file)
         {
-            do
+            try
             {
-                if (!File.Exists(file))
+                using (StreamReader path = new StreamReader(file))
                 {
-                    Console.WriteLine("Please enter a valid file: ");
-                    file = Console.ReadLine();
-                }
-                try
-                {
-                    using (StreamReader path = new StreamReader(file))
-                    {
-                        string line = path.ReadToEnd();
-                        string[] pieceCoords;
+                    string line = path.ReadToEnd();
+                    string[] pieceCoords;
 
-                        pieceCoords = line.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
-                        foreach (string s in pieceCoords)
+                    pieceCoords = line.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+                    foreach (string s in pieceCoords)
+                    {
+                        if (Place.IsMatch(s))
                         {
-                            if (Place.IsMatch(s))
-                            {
-                                PlacePiece(s);
-                            }
-                            else if (Move.IsMatch(s))
-                            {
-                                MovePiece(s);
-                            }
-                            else if (Capture.IsMatch(s))
-                            {
-                                CapturePiece(s);
-                            }
-                            else if (MoveTwo.IsMatch(s))
-                            {
-                                MoveTwoPieces(s);
-                            }
+                            PlacePiece(s);
+                        }
+                        else if (Move.IsMatch(s))
+                        {
+                            MovePiece(s);
+                            chessy.GenerateBoard();
+                        }
+                        else if (Capture.IsMatch(s))
+                        {
+                            CapturePiece(s);
+                            chessy.GenerateBoard();
+                        }
+                        else if (MoveTwo.IsMatch(s))
+                        {
+                            MoveTwoPieces(s);
+                            chessy.GenerateBoard();
                         }
                     }
-                    chessy.GenerateBoard();
-                    Console.Write("Enter your file (Ctrl+c to exit) :");
-                    string file1 = Console.ReadLine();
-                    this.ReadFile(file1);
                 }
-
-                catch
+                if (!IsInitiallyPrinted)
                 {
-                    if (!File.Exists(file))
-                    {
-                        Console.WriteLine("Please enter a valid file: ");
-                        file = Console.ReadLine();
-                    }
-                    if (File.Exists(file))
-                    {
-
-                    }
+                    chessy.GenerateBoard();
+                    IsInitiallyPrinted = true;
                 }
-            } while (!File.Exists(file));
+                do
+                {
+                    Console.Write("Enter your file(ctrl+c to exit):");
+                  string file1 = Console.ReadLine();
+                    if (!File.Exists(file1))
+                    {
+                        Console.WriteLine("enter valid path");
+                    }
+                    else
+                    {
+                        this.ReadFile(file1);
+                    }
+                } while (!File.Exists(file));
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("The file could not be read:");
+                Console.WriteLine(e.Message);
+            }
         }
 
         public void PlacePiece(string s)
@@ -161,6 +162,7 @@ namespace ConsoleChess
                     break;
                 }
             }
+
             if (piece != null)
             {
                 if (piece1 == null)
@@ -171,8 +173,7 @@ namespace ConsoleChess
                         Console.WriteLine($"\n{piece}");
                         piece.CurrentXCoordinate = piece.FutureXCoordinate;
                         piece.CurrentYCoordinate = piece.FutureYCoordinate;
-                        chessy.GenerateBoard();
-                        //player.Turn(p);
+                        //chessy.GenerateBoard();
                     }
                 }
                 else if (piece1.Color != piece.Color)
@@ -185,18 +186,19 @@ namespace ConsoleChess
                         piece.CurrentYCoordinate = piece.FutureYCoordinate;
                         AllPieces.Remove(piece1);
                         Console.WriteLine("Piece Captured");
-                        chessy.GenerateBoard();
-                        //player.Turn(p);
+                        //chessy.GenerateBoard();
                     }
                 }
                 else
                 {
                     Console.WriteLine("\nCant take own pieces:/");
+                    chessy.GenerateBoard();
                 }
             }
             else
             {
                 Console.WriteLine("\nThere is no piece there");
+                chessy.GenerateBoard();
             }
         }
 
@@ -282,3 +284,4 @@ namespace ConsoleChess
         }
     }
 }
+

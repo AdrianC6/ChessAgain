@@ -37,7 +37,7 @@ namespace ConsoleChess
                     board[p.CurrentYCoordinate, p.CurrentXCoordinate] = $"[{p.stringRep}]";
                 }
             }
-            Console.WriteLine("  A  B  C  D  E  F  G  H");
+            Console.WriteLine("   A  B  C  D  E  F  G  H");
             for (int i = 1; i < 9; i++)
             {
                 Console.Write($"{i} ");
@@ -48,7 +48,7 @@ namespace ConsoleChess
                 Console.WriteLine(" "+i);
                // Console.Write("\n");
             }
-            Console.Write("  A  B  C  D  E  F  G  H");
+            Console.Write("   A  B  C  D  E  F  G  H");
             Console.WriteLine();
         }
     }

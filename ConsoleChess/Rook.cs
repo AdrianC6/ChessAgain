@@ -45,12 +45,19 @@ namespace ConsoleChess
             char Xmax = 'h';
             char Xmin = 'a';
 
-            if((futureX >= Xmin && futureX <= Xmax) && CurrentYCoordinate == futureY)
+            if ((futureX >= Xmin && futureX <= Xmax) && CurrentYCoordinate == futureY)
             {
-                CanMove = true;
-            }else if((futureY > Ymin && futureY < Ymax) && CurrentXCoordinate == futureX)
+                //CanMove = true;
+                PieceInWay(futureX, futureY);
+                //ReadInPieces.chessy.GenerateBoard();
+
+            }
+            else if ((futureY > Ymin && futureY < Ymax) && CurrentXCoordinate == futureX)
             {
-                CanMove = true;
+                //CanMove = true;
+                PieceInWay(futureX, futureY);
+                //ReadInPieces.chessy.GenerateBoard();
+
             }
 
             for (int i = max; i > min; i--)
@@ -59,26 +66,52 @@ namespace ConsoleChess
                 Console.WriteLine("Invalid move u stale end piece of white wonder bread");
             }
 
-            //for (int i = min; i < max; i++)
-            //{
-            //    if (futureY == i)
-            //    {
-            //        CurrentYCoordinate = futureY;
-            //    }
-            //}
-            //for (int i = max; i > min; i--)
-            //{
-            //    if (futureY == i)
-            //    {
-            //        CurrentYCoordinate = futureY;
-            //    }
-            //}
-
         }
 
         public void SpecialMove()
         {
 
+        }
+
+        public bool PieceInWay(char futureX, int futureY)
+        {
+            char currentX;
+            int currentY;
+            foreach (Piece p in ReadInPieces.AllPieces)
+            {
+                currentX = this.CurrentXCoordinate;
+                currentY = this.CurrentYCoordinate;
+
+                if ((p.CurrentXCoordinate > this.CurrentXCoordinate && p.CurrentXCoordinate < this.FutureXCoordinate) && p.CurrentYCoordinate == futureY)
+                {
+                    CanMove = false;
+                    Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType} and cannot move");
+                    break;
+                }
+                else if ((p.CurrentYCoordinate > this.CurrentYCoordinate && p.CurrentYCoordinate < this.FutureYCoordinate) && p.CurrentXCoordinate == futureX)
+                {
+                    CanMove = false;
+                    Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType} and cannot move");
+                    break;
+                }
+                else if ((p.CurrentXCoordinate < this.CurrentXCoordinate && p.CurrentXCoordinate > this.FutureXCoordinate) && p.CurrentYCoordinate == futureY)
+                {
+                    CanMove = false;
+                    Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType} and cannot move");
+                    break;
+                }
+                else if ((p.CurrentYCoordinate < this.CurrentYCoordinate && p.CurrentYCoordinate > this.FutureYCoordinate) && p.CurrentXCoordinate == futureX)
+                {
+                    CanMove = false;
+                    Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType} and cannot move");
+                    break;
+                }
+                else
+                {
+                    CanMove = true;
+                }
+            }
+            return CanMove;
         }
 
         public override string ToString()
