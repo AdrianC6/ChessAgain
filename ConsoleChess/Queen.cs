@@ -39,84 +39,102 @@ namespace ConsoleChess
         }
         public override void Move(char futureX, int futureY)
         {
-            for (int i = min; i < max; i++)
-            { 
-                if (futureX == i)
-                {
-                    CurrentXCoordinate = futureX;
-                }
+            int Ymin = 0;
+            int Ymax = 9;
+            char Xmin = 'a';
+            char Xmax = 'h';
+
+            if (Math.Abs(((double)CurrentYCoordinate - futureY) / (CurrentXCoordinate - futureX)) == 1)
+            {
+                //CanMove = true;
+                PieceInWay(futureX, futureY);
+                ReadInPieces.player.Turn(this);
+            }
+            else if ((futureX >= Xmin && futureX <= Xmax) && CurrentYCoordinate == futureY)
+            {
+                //CanMove = true;
+                PieceInWay(futureX, futureY);
+                ReadInPieces.player.Turn(this);
+            }
+            else if ((futureY > Ymin && futureY < Ymax) && CurrentXCoordinate == futureX)
+            {
+                //CanMove = true;
+                PieceInWay(futureX, futureY);
+                ReadInPieces.player.Turn(this);
+            }
+            else
+            {
+                CanMove = false;
+                Console.WriteLine("bad move m8");
             }
 
-            for (int i = max; i > min; i--)
+        }
+        public bool PieceInWay(char futureX, int futureY)
+        {
+            char currentX;
+            int currentY;
+            foreach (Piece p in ReadInPieces.AllPieces)
             {
-                if (futureX == i)
+                currentX = this.CurrentXCoordinate;
+                currentY = this.CurrentYCoordinate;
+                if ((p.CurrentXCoordinate > this.CurrentXCoordinate && p.CurrentXCoordinate < this.FutureXCoordinate) && p.CurrentYCoordinate == futureY)
                 {
-                    CurrentXCoordinate = futureX;
+                    CanMove = false;
+                    Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType} and cannot move");
+                    break;
                 }
-            }
-
-            for (int i = min; i < max; i++)
-            {
-                if (futureY == i)
+                else if ((p.CurrentYCoordinate > this.CurrentYCoordinate && p.CurrentYCoordinate < this.FutureYCoordinate) && p.CurrentXCoordinate == futureX)
                 {
-                    CurrentYCoordinate = futureY;
+                    CanMove = false;
+                    Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType} and cannot move");
+                    break;
                 }
-            }
-            for (int i = max; i > min; i--)
-            {
-                if (futureY == i)
+                else if ((p.CurrentXCoordinate < this.CurrentXCoordinate && p.CurrentXCoordinate > this.FutureXCoordinate) && p.CurrentYCoordinate == futureY)
                 {
-                    CurrentYCoordinate = futureY;
+                    CanMove = false;
+                    Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType} and cannot move");
+                    break;
                 }
-            }
-
-            for (int i = min; i < max; i++)
-            {
-                for (int j = min; j < max; j++)
+                else if ((p.CurrentYCoordinate < this.CurrentYCoordinate && p.CurrentYCoordinate > this.FutureYCoordinate) && p.CurrentXCoordinate == futureX)
                 {
-                    if (futureX == i && futureY == j)
+                    CanMove = false;
+                    Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType} and cannot move");
+                    break;
+                }
+                else
+                {
+                    CanMove = true;
+                }
+                while (currentX <= 'h' && currentY < 8)
+                {
+                    currentX += (char)1;
+                    currentY += 1;
+                    if ((p.CurrentXCoordinate == currentX && p.CurrentYCoordinate == currentY) && (currentX < this.FutureXCoordinate && currentY < this.FutureYCoordinate))
                     {
-                        CurrentXCoordinate = futureX;
-                        CurrentYCoordinate = futureY;
+                        Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType}");
+                        return CanMove = false;
+                    }
+                    else
+                    {
+                        CanMove = true;
+                    }
+                }
+                while (currentX >= 'a' && currentY >= 1)
+                {
+                    currentX -= (char)1;
+                    currentY -= 1;
+                    if ((p.CurrentXCoordinate == currentX && p.CurrentYCoordinate == currentY) && (currentX > this.FutureXCoordinate && currentY > this.FutureYCoordinate))
+                    {
+                        Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType}");
+                        return CanMove = false;
+                    }
+                    else
+                    {
+                        CanMove = true;
                     }
                 }
             }
-
-            for (int i = max; i > min; i--)
-            {
-                for (int j = max; j > min; j--)
-                {
-                    if (futureX == i && futureY == j)
-                    {
-                        CurrentXCoordinate = futureX;
-                        CurrentYCoordinate = futureY;
-                    }
-                }
-            }
-
-            for (int i = min; i < max; i++)
-            {
-                for (int j = max; j > min; j--)
-                {
-                    if (futureX == i && futureY == j)
-                    {
-                        CurrentXCoordinate = futureX;
-                        CurrentYCoordinate = futureY;
-                    }
-                }
-            }
-
-            for (int i = max; i > min; i--)
-            {
-                for (int j = min; j < max; j++)
-                {
-                    if (futureX == i && futureY == j)
-                    {
-                        CurrentXCoordinate = futureX;
-                        CurrentYCoordinate = futureY;
-                    }
-                }
-            }
+            return CanMove;
         }
 
         public override string ToString()

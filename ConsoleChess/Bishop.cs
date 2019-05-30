@@ -40,81 +40,68 @@ namespace ConsoleChess
 
         public override void Move(char futureX, int futureY)
         {
-            for (int i = min; i < max; i++)
+
+            if (Math.Abs(((double)CurrentYCoordinate - futureY) / (CurrentXCoordinate - futureX)) == 1)
+
             {
-                for (int j = min; j < max; j++)
-                {
-                    if (futureX == i && futureY == j)
-                    {
-                        CurrentXCoordinate = futureX;
-                        CurrentYCoordinate = futureY;
-                    }
-                }
+                //CanMove = true;
+                PieceInWay(futureX, futureY);
+                ReadInPieces.player.Turn(this);
+                //ReadInPieces.chessy.GenerateBoard();
             }
 
             for (int i = max; i > min; i--)
             {
-                for (int j = max; j > min; j--)
-                {
-                    if (futureX == i && futureY == j)
-                    {
-                        CurrentXCoordinate = futureX;
-                        CurrentYCoordinate = futureY;
-                    }
-                }
+                CanMove = false;
+                Console.WriteLine("Invalid move u uncultered swine");
             }
+        }
 
-            for (int i = min; i < max; i++)
+        public bool PieceInWay(char futureX, int futureY)
+        {
+            char currentX;
+            int currentY;
+            foreach (Piece p in ReadInPieces.AllPieces)
             {
-                for (int j = max; j > min; j--)
+                currentX = this.CurrentXCoordinate;
+                currentY = this.CurrentYCoordinate;
+                while (currentX <= 'h' && currentY < 8)
                 {
-                    if (futureX == i && futureY == j)
+                    currentX += (char)1;
+                    currentY += 1;
+                    if ((p.CurrentXCoordinate == currentX && p.CurrentYCoordinate == currentY) && (currentX < this.FutureXCoordinate && currentY < this.FutureYCoordinate))
                     {
-                        CurrentXCoordinate = futureX;
-                        CurrentYCoordinate = futureY;
+                        Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType}");
+                        return CanMove = false;
+                    }
+
+                    else
+                    {
+                        CanMove = true;
                     }
                 }
-            }
-
-            for (int i = max; i > min; i--)
-            {
-                for (int j = min; j < max; j++)
+                while (currentX >= 'a' && currentY >= 1)
                 {
-                    if (futureX == i && futureY == j)
+                    currentX -= (char)1;
+                    currentY -= 1;
+                    if ((p.CurrentXCoordinate == currentX && p.CurrentYCoordinate == currentY) && (currentX > this.FutureXCoordinate && currentY > this.FutureYCoordinate))
                     {
-                        CurrentXCoordinate = futureX;
-                        CurrentYCoordinate = futureY;
+                        Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType}");
+                        return CanMove = false;
+                    }
+                    else
+                    {
+                        CanMove = true;
                     }
                 }
+                //else if (p.CurrentYCoordinate > this.CurrentYCoordinate && p.CurrentYCoordinate < this.FutureYCoordinate)
+                //{
+                //    CanMove = false;
+                //    Console.WriteLine("no can do");
+                //break;
+                //}
             }
-
-
-
-
-
-
-
-
-            //if ((CurrentXCoordinate + 1 == futureX && CurrentYCoordinate + 1 == futureY))
-            //{
-            //    CanMove = true;
-            //}
-            //else if ((CurrentXCoordinate - 1 == futureX && CurrentYCoordinate - 1 == futureY))
-            //{
-            //    CanMove = true;
-            //}
-            //else if ((CurrentXCoordinate - 1 == futureX && CurrentYCoordinate + 1 == futureY))
-            //{
-            //    CanMove = true;
-            //}
-            //else if ((CurrentXCoordinate + 1 == futureX && CurrentYCoordinate - 1 == futureY))
-            //{
-            //    CanMove = true;
-            //}
-            //else
-            //{
-            //    CanMove = false;
-            //}
+            return CanMove;
         }
 
         public override string ToString()

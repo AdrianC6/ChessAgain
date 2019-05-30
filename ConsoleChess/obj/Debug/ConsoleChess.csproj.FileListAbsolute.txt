@@ -5,3 +5,10 @@ C:\Users\ACastellon\source\repos\ConsoleChess\ConsoleChess\obj\Debug\ConsoleChes
 C:\Users\ACastellon\source\repos\ConsoleChess\ConsoleChess\obj\Debug\ConsoleChess.csproj.CoreCompileInputs.cache
 C:\Users\ACastellon\source\repos\ConsoleChess\ConsoleChess\obj\Debug\ConsoleChess.exe
 C:\Users\ACastellon\source\repos\ConsoleChess\ConsoleChess\obj\Debug\ConsoleChess.pdb
+C:\Users\Amush\Documents\GitHub\ChessAgain\ConsoleChess\bin\Debug\ConsoleChess.exe.config
+C:\Users\Amush\Documents\GitHub\ChessAgain\ConsoleChess\bin\Debug\ConsoleChess.exe
+C:\Users\Amush\Documents\GitHub\ChessAgain\ConsoleChess\bin\Debug\ConsoleChess.pdb
+C:\Users\Amush\Documents\GitHub\ChessAgain\ConsoleChess\obj\Debug\ConsoleChess.csprojAssemblyReference.cache
+C:\Users\Amush\Documents\GitHub\ChessAgain\ConsoleChess\obj\Debug\ConsoleChess.csproj.CoreCompileInputs.cache
+C:\Users\Amush\Documents\GitHub\ChessAgain\ConsoleChess\obj\Debug\ConsoleChess.exe
+C:\Users\Amush\Documents\GitHub\ChessAgain\ConsoleChess\obj\Debug\ConsoleChess.pdb
