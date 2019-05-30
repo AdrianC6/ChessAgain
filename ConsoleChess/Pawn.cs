@@ -32,18 +32,6 @@ namespace ConsoleChess
             this.CanMove = canMove;
             this.HasMoved = hasMoved;
         }
-
-        //public void determineMove()
-        //{
-        //    if (HasMoved)
-        //    {
-        //        Move();
-        //    }
-        //    else
-        //    {
-        //        SpecialMove();
-        //    }
-        //}
         public override void Move(char futureX, int futureY)
         {
             if (Color == PieceColors.BLACK)
@@ -54,8 +42,9 @@ namespace ConsoleChess
                 }
                 else
                 {
-                    CurrentYCoordinate = CurrentYCoordinate;
+                   this.CurrentYCoordinate = CurrentYCoordinate;
                     CanMove = false;
+                    Console.WriteLine("I don't move tthat way, hoe");
                 }
 
             }
@@ -67,8 +56,9 @@ namespace ConsoleChess
                 }
                 else
                 {
-                    CurrentYCoordinate = CurrentYCoordinate;
+                    this.CurrentYCoordinate = CurrentYCoordinate;
                     CanMove = false;
+                    Console.WriteLine("I don't move tthat way, hoe");
                 }
             }
         }

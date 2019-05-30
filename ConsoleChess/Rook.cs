@@ -59,21 +59,6 @@ namespace ConsoleChess
                 Console.WriteLine("Invalid move u stale end piece of white wonder bread");
             }
 
-            //for (int i = min; i < max; i++)
-            //{
-            //    if (futureY == i)
-            //    {
-            //        CurrentYCoordinate = futureY;
-            //    }
-            //}
-            //for (int i = max; i > min; i--)
-            //{
-            //    if (futureY == i)
-            //    {
-            //        CurrentYCoordinate = futureY;
-            //    }
-            //}
-
         }
 
         public void SpecialMove()

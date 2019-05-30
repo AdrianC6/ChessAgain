@@ -40,11 +40,7 @@ namespace ConsoleChess
 
         public override void Move(char futureX, int futureY)
         {
-            //int Ymin = 0;
-            //int Ymax = 9;
-            //char Xmin = 'a';
-            //char Xmax = 'h';
-            
+                    
             if (Math.Abs(((double)CurrentYCoordinate - futureY)/(CurrentXCoordinate - futureX)) == 1)
             {
                 CanMove = true;
@@ -55,34 +51,6 @@ namespace ConsoleChess
                 CanMove = false;
                 Console.WriteLine("Invalid move u uncultered swine");
             }
-
-
-
-
-
-
-
-
-            //if ((CurrentXCoordinate + 1 == futureX && CurrentYCoordinate + 1 == futureY))
-            //{
-            //    CanMove = true;
-            //}
-            //else if ((CurrentXCoordinate - 1 == futureX && CurrentYCoordinate - 1 == futureY))
-            //{
-            //    CanMove = true;
-            //}
-            //else if ((CurrentXCoordinate - 1 == futureX && CurrentYCoordinate + 1 == futureY))
-            //{
-            //    CanMove = true;
-            //}
-            //else if ((CurrentXCoordinate + 1 == futureX && CurrentYCoordinate - 1 == futureY))
-            //{
-            //    CanMove = true;
-            //}
-            //else
-            //{
-            //    CanMove = false;
-            //}
         }
 
         public override string ToString()

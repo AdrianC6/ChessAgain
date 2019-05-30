@@ -62,23 +62,6 @@ namespace ConsoleChess
                 Console.WriteLine("bad move m8");
             }
 
-            //for (int i = min; i < max; i++)
-            //{
-            //    for (int j = max; j > min; j--)
-            //    {
-            //        if (futureX == i && futureY == j)
-            //        {
-            //            CurrentXCoordinate = futureX;
-            //            CurrentYCoordinate = futureY;
-            //        }
-            //    }
-            //}
-
-            //for (int i = max; i > min; i--)
-            //{
-            //    CanMove = false;
-            //    Console.WriteLine("Invalid move u spork");
-            //}
         }
 
         public override string ToString()
