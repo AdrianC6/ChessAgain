@@ -48,6 +48,7 @@
     <Compile Include="King.cs" />
     <Compile Include="Knight.cs" />
     <Compile Include="Pawn.cs" />
+    <Compile Include="Person.cs" />
     <Compile Include="Piece.cs" />
     <Compile Include="Movement.cs" />
     <Compile Include="Program.cs" />

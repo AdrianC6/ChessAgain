@@ -10,13 +10,10 @@ namespace ConsoleChess
     {
         static void Main(string[] args)
         {
-            string file = "C:\\Users\\ACastellon\\source\\repos\\ConsoleChess\\ConsoleChess\\bin\\Debug\\2.0.txt";
+            //string file = "C:\\Users\\ACastellon\\source\\repos\\ConsoleChess\\ConsoleChess\\bin\\Debug\\NoPawns.txt";
             ReadInPieces pieced = new ReadInPieces();
-            pieced.run(file);
-            //pieced.run(args[0]);
-            ChessGame chessy = new ChessGame();
-            chessy.GenerateBoard();
-            //Console.ReadLine();
+            //pieced.run(file);
+            pieced.run(args[0]);
         }
     }
 }
