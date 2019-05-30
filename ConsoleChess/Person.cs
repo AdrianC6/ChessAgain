@@ -22,17 +22,20 @@ namespace ConsoleChess
 
         public void Turn(Piece p)
         {
-            p.CanMove = true;
             if (p.Color == Piece.PieceColors.WHITE)
             {
                 //turn logic
                 if (p.CanMove == true && turn == 1)
                 {
-                    turn += 1;
+                    turn = 2;
                 }
-                else
+                else if (p.CanMove == true && turn !=1)
                 {
-                    turn = 1;
+                    Console.WriteLine("\nNot Your turn Light Team");
+                    p.CanMove = false;
+                }
+                else 
+                {
                     p.CanMove = false;
                 }
             }
@@ -41,11 +44,15 @@ namespace ConsoleChess
                 //turn logic
                 if (p.CanMove == true && turn == 2)
                 {
-                    turn -= 1;
+                    turn = 1;
+                }
+                else if (p.CanMove == true && turn != 2)
+                {
+                    Console.WriteLine("\nNot Your turn Dark Team");
+                    p.CanMove = false;
                 }
                 else
                 {
-                    turn = 2;
                     p.CanMove = false;
                 }
             }
