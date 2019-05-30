@@ -6,7 +6,7 @@ h8 h4*
 d8 e7
 f8 d5
 f1 d3
-d3 d2
+d3 d2 - Hi
 c1 a3
 a1 a4*
 b7 b6

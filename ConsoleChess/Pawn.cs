@@ -8,7 +8,8 @@ namespace ConsoleChess
 {
     class Pawn : Piece
     {
-        public Pawn() {
+        public Pawn()
+        {
             this.CanMove = true;
             this.HasMoved = false;
         }
@@ -34,38 +35,82 @@ namespace ConsoleChess
         }
         public override void Move(char futureX, int futureY)
         {
+            if ((CurrentYCoordinate == 2 && this.Color == PieceColors.WHITE) || (CurrentYCoordinate == 7 && this.Color == PieceColors.BLACK))
+            {
+                HasMoved = false;
+            }
+            else
+            {
+                HasMoved = true;
+            }
+
             if (Color == PieceColors.BLACK)
             {
-                if (CurrentXCoordinate == futureX && ((CurrentYCoordinate - 1) == FutureYCoordinate))
+
+                if (CurrentXCoordinate == futureX && ((CurrentYCoordinate - 1) == futureY))
                 {
                     CanMove = true;
+                    ReadInPieces.player.Turn(this);
+                }
+                else if (HasMoved == false)
+                {
+                    SpecialMove(futureX,futureY);
                 }
                 else
                 {
                    this.CurrentYCoordinate = CurrentYCoordinate;
                     CanMove = false;
-                    Console.WriteLine("I don't move tthat way, hoe");
+                    Console.WriteLine("I don't move that way, hoe");
                 }
 
             }
             else
             {
-                if (CurrentXCoordinate == futureX && ((CurrentYCoordinate + 1) == FutureYCoordinate))
+                if (CurrentXCoordinate == futureX && ((CurrentYCoordinate + 1) == futureY))
                 {
                     CanMove = true;
+                    ReadInPieces.player.Turn(this);
+                }
+                else if (HasMoved == false)
+                {
+                    SpecialMove(futureX, futureY);
                 }
                 else
                 {
                     this.CurrentYCoordinate = CurrentYCoordinate;
                     CanMove = false;
-                    Console.WriteLine("I don't move tthat way, hoe");
+                    Console.WriteLine("I don't move that way, hoe");
                 }
             }
         }
 
-        public void SpecialMove()
+        public void SpecialMove(char futureX, int futureY)
         {
-            CurrentYCoordinate = Color == PieceColors.WHITE? CurrentYCoordinate + 2 : CurrentYCoordinate - 2;
+            if (this.Color == PieceColors.BLACK)
+            {
+
+                if (CurrentXCoordinate == futureX && ((CurrentYCoordinate - 2) == futureY))
+                {
+                    CanMove = true;
+                    ReadInPieces.player.Turn(this);
+                }
+                else
+                {
+                    CanMove = false;
+                }
+            }
+            else
+            {
+                if (CurrentXCoordinate == futureX && ((CurrentYCoordinate + 2) == futureY))
+                {
+                    CanMove = true;
+                    ReadInPieces.player.Turn(this);
+                }
+                else
+                {
+                    CanMove = false;
+                }
+            }
         }
 
         public override string ToString()

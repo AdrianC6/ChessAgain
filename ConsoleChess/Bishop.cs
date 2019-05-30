@@ -40,10 +40,14 @@ namespace ConsoleChess
 
         public override void Move(char futureX, int futureY)
         {
-                    
-            if (Math.Abs(((double)CurrentYCoordinate - futureY)/(CurrentXCoordinate - futureX)) == 1)
+
+            if (Math.Abs(((double)CurrentYCoordinate - futureY) / (CurrentXCoordinate - futureX)) == 1)
+
             {
-                CanMove = true;
+                //CanMove = true;
+                PieceInWay(futureX, futureY);
+                ReadInPieces.player.Turn(this);
+                //ReadInPieces.chessy.GenerateBoard();
             }
 
             for (int i = max; i > min; i--)
@@ -51,6 +55,53 @@ namespace ConsoleChess
                 CanMove = false;
                 Console.WriteLine("Invalid move u uncultered swine");
             }
+        }
+
+        public bool PieceInWay(char futureX, int futureY)
+        {
+            char currentX;
+            int currentY;
+            foreach (Piece p in ReadInPieces.AllPieces)
+            {
+                currentX = this.CurrentXCoordinate;
+                currentY = this.CurrentYCoordinate;
+                while (currentX <= 'h' && currentY < 8)
+                {
+                    currentX += (char)1;
+                    currentY += 1;
+                    if ((p.CurrentXCoordinate == currentX && p.CurrentYCoordinate == currentY) && (currentX < this.FutureXCoordinate && currentY < this.FutureYCoordinate))
+                    {
+                        Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType}");
+                        return CanMove = false;
+                    }
+
+                    else
+                    {
+                        CanMove = true;
+                    }
+                }
+                while (currentX >= 'a' && currentY >= 1)
+                {
+                    currentX -= (char)1;
+                    currentY -= 1;
+                    if ((p.CurrentXCoordinate == currentX && p.CurrentYCoordinate == currentY) && (currentX > this.FutureXCoordinate && currentY > this.FutureYCoordinate))
+                    {
+                        Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType}");
+                        return CanMove = false;
+                    }
+                    else
+                    {
+                        CanMove = true;
+                    }
+                }
+                //else if (p.CurrentYCoordinate > this.CurrentYCoordinate && p.CurrentYCoordinate < this.FutureYCoordinate)
+                //{
+                //    CanMove = false;
+                //    Console.WriteLine("no can do");
+                //break;
+                //}
+            }
+            return CanMove;
         }
 
         public override string ToString()
