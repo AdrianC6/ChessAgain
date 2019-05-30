@@ -91,7 +91,36 @@ namespace ConsoleChess
                     }
                     if (File.Exists(file))
                     {
+                        using (StreamReader path = new StreamReader(file))
+                        {
+                            string line = path.ReadToEnd();
+                            string[] pieceCoords;
 
+                            pieceCoords = line.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+                            foreach (string s in pieceCoords)
+                            {
+                                if (Place.IsMatch(s))
+                                {
+                                    PlacePiece(s);
+                                }
+                                else if (Move.IsMatch(s))
+                                {
+                                    MovePiece(s);
+                                }
+                                else if (Capture.IsMatch(s))
+                                {
+                                    CapturePiece(s);
+                                }
+                                else if (MoveTwo.IsMatch(s))
+                                {
+                                    MoveTwoPieces(s);
+                                }
+                            }
+                        }
+                        chessy.GenerateBoard();
+                        Console.Write("Enter your file (Ctrl+c to exit) :");
+                        string file1 = Console.ReadLine();
+                        this.ReadFile(file1);
                     }
                 }
             } while (!File.Exists(file));
