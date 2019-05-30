@@ -24,6 +24,7 @@ namespace ConsoleChess
         public static ChessGame chessy = new ChessGame();
         public static Person player = new Person();
         bool IsInitiallyPrinted = false;
+        string file1;
         public void run(string args)
         {
             do
@@ -77,10 +78,19 @@ namespace ConsoleChess
                     chessy.GenerateBoard();
                     IsInitiallyPrinted = true;
                 }
-
-                Console.Write("Enter your file(ctrl+c to exit):");
-                string file1 = Console.ReadLine();
-                this.ReadFile(file1);
+                do
+                {
+                    Console.Write("Enter your file(ctrl+c to exit):");
+                    file1 = Console.ReadLine();
+                    if (!File.Exists(file1))
+                    {
+                        Console.WriteLine("enter valid path");
+                    }
+                    else
+                    {
+                        this.ReadFile(file1);
+                    }
+                } while (!File.Exists(file1));
             }
             catch (IOException e)
             {
