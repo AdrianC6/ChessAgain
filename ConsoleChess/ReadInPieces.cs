@@ -33,7 +33,7 @@ namespace ConsoleChess
                     Console.WriteLine("Please enter a valid file: ");
                     args = Console.ReadLine();
                 }
-                else
+                if(File.Exists(args))
                 {
                     ReadFile(args);
                 }
@@ -79,22 +79,32 @@ namespace ConsoleChess
                 }
                 do
                 {
-                    Console.Write("Enter your file(ctrl+c to exit):");
-                  string file1 = Console.ReadLine();
-                    if (!File.Exists(file1))
+                    Console.Write("Enter your file (ctrl+c to exit):");
+                   file = Console.ReadLine();
+                    if (!File.Exists(file))
                     {
                         Console.WriteLine("enter valid path");
                     }
-                    else
+                    if(File.Exists(file))
                     {
-                        this.ReadFile(file1);
+                        run(file);
+                        chessy.GenerateBoard();
                     }
                 } while (!File.Exists(file));
             }
             catch (IOException e)
             {
-                Console.WriteLine("The file could not be read:");
-                Console.WriteLine(e.Message);
+                if (!File.Exists(file))
+                {
+                    Console.WriteLine(e);
+                    Console.WriteLine("Please enter a valid file: ");
+                    file = Console.ReadLine();
+                }
+                if(File.Exists(file))
+                {
+                    run(file);
+                    chessy.GenerateBoard();
+                }
             }
         }
 
@@ -173,7 +183,7 @@ namespace ConsoleChess
                         Console.WriteLine($"\n{piece}");
                         piece.CurrentXCoordinate = piece.FutureXCoordinate;
                         piece.CurrentYCoordinate = piece.FutureYCoordinate;
-                        //chessy.GenerateBoard();
+                        chessy.GenerateBoard();
                     }
                 }
                 else if (piece1.Color != piece.Color)
@@ -186,7 +196,7 @@ namespace ConsoleChess
                         piece.CurrentYCoordinate = piece.FutureYCoordinate;
                         AllPieces.Remove(piece1);
                         Console.WriteLine("Piece Captured");
-                        //chessy.GenerateBoard();
+                        chessy.GenerateBoard();
                     }
                 }
                 else
@@ -205,8 +215,6 @@ namespace ConsoleChess
         public void CapturePiece(string s)
         {
             MovePiece(s);
-            //Console.WriteLine("piece captured");
-            //J2D waz hear
         }
 
         public void MoveTwoPieces(string s)
