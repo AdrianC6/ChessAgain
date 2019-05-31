@@ -44,19 +44,19 @@ namespace ConsoleChess
             if (Math.Abs(((double)CurrentYCoordinate - futureY) / (CurrentXCoordinate - futureX)) == 1)
             {
                 //CanMove = true;
-                PieceInWay(futureX, futureY);
+                PieceInWayDiagonal(futureX, futureY);
                 ReadInPieces.player.Turn(this);
             }
             else if ((futureX >= Xmin && futureX <= Xmax) && CurrentYCoordinate == futureY)
             {
                 //CanMove = true;
-                PieceInWay(futureX, futureY);
+                PieceInWayHorizontal(futureX, futureY);
                 ReadInPieces.player.Turn(this);
             }
             else if ((futureY > Ymin && futureY < Ymax) && CurrentXCoordinate == futureX)
             {
                 //CanMove = true;
-                PieceInWay(futureX, futureY);
+                PieceInWayHorizontal(futureX, futureY);
                 ReadInPieces.player.Turn(this);
             }
             else
@@ -64,7 +64,7 @@ namespace ConsoleChess
                 CanMove = false;
             }
         }
-        public bool PieceInWay(char futureX, int futureY)
+        public bool PieceInWayHorizontal(char futureX, int futureY)
         {
             char currentX;
             int currentY;
@@ -90,7 +90,7 @@ namespace ConsoleChess
                     Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType} and cannot move");
                     break;
                 }
-                else if ((p.CurrentYCoordinate < this.CurrentYCoordinate && p.CurrentYCoordinate > this.FutureYCoordinate) && p.CurrentXCoordinate == futureX)
+                else if ((p.CurrentYCoordinate > this.CurrentYCoordinate && p.CurrentYCoordinate < this.FutureYCoordinate) && p.CurrentXCoordinate == futureX)
                 {
                     CanMove = false;
                     Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType} and cannot move");
@@ -100,6 +100,18 @@ namespace ConsoleChess
                 {
                     CanMove = true;
                 }
+            }
+            return CanMove;
+        }
+
+        public bool PieceInWayDiagonal(char futureX, int futureY)
+        {
+            char currentX;
+            int currentY;
+            foreach (Piece p in ReadInPieces.AllPieces)
+            {
+                currentX = this.CurrentXCoordinate;
+                currentY = this.CurrentYCoordinate;
                 while (currentX <= 'h' && currentY < 8)
                 {
                     currentX += (char)1;
@@ -114,13 +126,18 @@ namespace ConsoleChess
                         CanMove = true;
                     }
                 }
+            }
+            foreach (Piece p in ReadInPieces.AllPieces)
+            {
+                currentX = this.CurrentXCoordinate;
+                currentY = this.CurrentYCoordinate;
                 while (currentX >= 'a' && currentY >= 1)
                 {
                     currentX -= (char)1;
                     currentY -= 1;
                     if ((p.CurrentXCoordinate == currentX && p.CurrentYCoordinate == currentY) && (currentX > this.FutureXCoordinate && currentY > this.FutureYCoordinate))
                     {
-                        Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType}");
+                        Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType} at {p.CurrentXCoordinate}{p.CurrentYCoordinate}");
                         return CanMove = false;
                     }
                     else
@@ -131,10 +148,11 @@ namespace ConsoleChess
             }
             return CanMove;
         }
+    
 
-        public override string ToString()
-        {
-            return FutureXCoordinate == 0 && FutureYCoordinate == 0 ? $"{Color} {PieceType} at {CurrentXCoordinate}{CurrentYCoordinate}" : $"{Color} {PieceType} at {CurrentXCoordinate}{CurrentYCoordinate} now at {FutureXCoordinate}{FutureYCoordinate}";
-        }
+    public override string ToString()
+    {
+        return FutureXCoordinate == 0 && FutureYCoordinate == 0 ? $"{Color} {PieceType} at {CurrentXCoordinate}{CurrentYCoordinate}" : $"{Color} {PieceType} at {CurrentXCoordinate}{CurrentYCoordinate} now at {FutureXCoordinate}{FutureYCoordinate}";
     }
+}
 }

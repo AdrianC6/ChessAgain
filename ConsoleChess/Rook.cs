@@ -46,6 +46,7 @@ namespace ConsoleChess
             {
                 //CanMove = true;
                 PieceInWay(futureX, futureY);
+                ReadInPieces.player.Turn(this);
                 //ReadInPieces.chessy.GenerateBoard();
 
             }
@@ -53,6 +54,7 @@ namespace ConsoleChess
             {
                 //CanMove = true;
                 PieceInWay(futureX, futureY);
+                ReadInPieces.player.Turn(this);
                 //ReadInPieces.chessy.GenerateBoard();
 
             }

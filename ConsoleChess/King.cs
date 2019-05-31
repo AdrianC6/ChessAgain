@@ -42,6 +42,7 @@ namespace ConsoleChess
                 if (Math.Abs(CurrentYCoordinate - futureY) == 1 || Math.Abs(CurrentXCoordinate - futureX) == 1)
                 {
                     CanMove = true;
+                    ReadInPieces.player.Turn(this);
                 }
                 else
                 {
