@@ -49,6 +49,7 @@ namespace ConsoleChess
             {
                 //CanMove = true;
                 PieceInWay(futureX, futureY);
+                ReadInPieces.player.Turn(this);
                 //ReadInPieces.chessy.GenerateBoard();
 
             }
@@ -56,15 +57,20 @@ namespace ConsoleChess
             {
                 //CanMove = true;
                 PieceInWay(futureX, futureY);
+                ReadInPieces.player.Turn(this);
                 //ReadInPieces.chessy.GenerateBoard();
 
             }
-
-            for (int i = max; i > min; i--)
+            else
             {
-                CanMove = false;
-                Console.WriteLine("Invalid move u stale end piece of white wonder bread");
+                onsole.WriteLine("Invalid move u stale end piece of white wonder bread");
             }
+
+            //for (int i = max; i > min; i--)
+            //{
+            //    CanMove = false;
+            //    C
+            //}
 
         }
 
