@@ -1,6 +1,11 @@
-a2 a4
-d7 d5
-e2 e3
-c8 e6
-h2 h4
-e8 g6
+a1 a2
+h8 h4
+e1 h4
+g8 h6
+h4 d8
+e8 c6
+d1 d2
+c8 b7
+c1 e3
+b1 a3
+c6 h1
