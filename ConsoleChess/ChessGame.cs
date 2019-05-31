@@ -51,6 +51,36 @@ namespace ConsoleChess
             Console.Write("  A  B  C  D  E  F  G  H");
             Console.WriteLine();
         }
+        
+
+        public bool isInCheck(Piece p)
+        {
+            bool check = false;
+            char x = p.CurrentXCoordinate;
+            int y = p.CurrentYCoordinate;
+
+
+            if (p.Color == Piece.PieceColors.WHITE)
+            {
+                foreach (Piece piece in ReadInPieces.AllPieces)
+                {
+                    if (piece.Color != p.Color)
+                    {
+                        
+                    }
+                }
+            }
+            else
+            {
+
+            }
+        
+
+
+
+
+            return check;
+        }
     }
 }
 
