@@ -63,13 +63,13 @@ namespace ConsoleChess
             }
             else
             {
-                onsole.WriteLine("Invalid move u stale end piece of white wonder bread");
+              Console.WriteLine("Invalid move u stale end piece of white wonder bread");
             }
 
             //for (int i = max; i > min; i--)
             //{
             //    CanMove = false;
-            //    C
+            //    
             //}
 
         }

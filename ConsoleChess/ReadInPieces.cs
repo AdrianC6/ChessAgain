@@ -58,17 +58,17 @@ namespace ConsoleChess
                         else if (Move.IsMatch(s))
                         {
                             MovePiece(s);
-                            chessy.GenerateBoard();
+                         //   chessy.GenerateBoard();
                         }
                         else if (Capture.IsMatch(s))
                         {
                             CapturePiece(s);
-                            chessy.GenerateBoard();
+                           // chessy.GenerateBoard();
                         }
                         else if (MoveTwo.IsMatch(s))
                         {
                             MoveTwoPieces(s);
-                            chessy.GenerateBoard();
+                           // chessy.GenerateBoard();
                         }
                     }
                 }
