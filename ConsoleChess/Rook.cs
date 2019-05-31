@@ -14,9 +14,6 @@ namespace ConsoleChess
             this.HasMoved = false;
         }
 
-        private int min = 1;
-        private int max = 8;
-
         public Rook(ChessPieces pieceType, PieceColors color, char currentXcoordinate, int currentYCoordinate, bool canMove, bool hasMoved)
         {
             this.PieceType = pieceType;
@@ -63,15 +60,8 @@ namespace ConsoleChess
             }
             else
             {
-                onsole.WriteLine("Invalid move u stale end piece of white wonder bread");
+                CanMove = false;
             }
-
-            //for (int i = max; i > min; i--)
-            //{
-            //    CanMove = false;
-            //    C
-            //}
-
         }
 
         public void SpecialMove()
