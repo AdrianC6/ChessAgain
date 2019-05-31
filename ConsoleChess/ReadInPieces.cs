@@ -174,6 +174,23 @@ namespace ConsoleChess
                         piece.CurrentXCoordinate = piece.FutureXCoordinate;
                         piece.CurrentYCoordinate = piece.FutureYCoordinate;
                         //chessy.GenerateBoard();
+
+                        foreach (Piece p in AllPieces)
+                        {
+                            if (p.GetType().Equals(Piece.ChessPieces.K))
+                            {
+                                if (chessy.isInCheck(p))
+                                {
+                                    if (chessy.isInCheckmate(p))
+                                    {
+                                        Console.WriteLine("YOUR KING IS IN CHECKMATE");
+                                        break;
+                                    }
+                                    Console.WriteLine("YOUR KING IS IN CHECK");
+                                }
+                            }
+                        }
+
                     }
                 }
                 else if (piece1.Color != piece.Color)
@@ -187,11 +204,29 @@ namespace ConsoleChess
                         AllPieces.Remove(piece1);
                         Console.WriteLine("Piece Captured");
                         //chessy.GenerateBoard();
+
+
+                        foreach (Piece p in AllPieces)
+                        {
+                            if (p.GetType().Equals(Piece.ChessPieces.K))
+                            {
+                                if (chessy.isInCheck(p))
+                                {
+                                    if (chessy.isInCheckmate(p))
+                                    {
+                                        Console.WriteLine("YOUR KING IS IN CHECKMATE");
+                                        break;
+                                    }
+                                    Console.WriteLine("YOUR KING IS IN CHECK");
+                                }
+                            }
+                        }
+
                     }
                 }
                 else
                 {
-                    Console.WriteLine("\nCant take own pieces:/");
+                    Console.WriteLine("\nCant take own pieces ¯\\_(ツ)_/¯");
                     chessy.GenerateBoard();
                 }
             }
@@ -200,6 +235,7 @@ namespace ConsoleChess
                 Console.WriteLine("\nThere is no piece there");
                 chessy.GenerateBoard();
             }
+
         }
 
         public void CapturePiece(string s)

@@ -51,7 +51,7 @@ namespace ConsoleChess
             Console.Write("  A  B  C  D  E  F  G  H");
             Console.WriteLine();
         }
-        
+
 
         public bool isInCheck(Piece p)
         {
@@ -63,10 +63,16 @@ namespace ConsoleChess
             if (p.Color == Piece.PieceColors.WHITE)
             {
                 foreach (Piece piece in ReadInPieces.AllPieces)
+
                 {
                     if (piece.Color != p.Color)
                     {
                         check = piece.PieceInWay(x, y);
+
+                        if (check)
+                        {
+                            break;
+                        }
                     }
                 }
             }
@@ -77,11 +83,102 @@ namespace ConsoleChess
                     if (piece.Color != p.Color)
                     {
                         check = piece.PieceInWay(x, y);
+
+                        if (check)
+                        {
+                            break;
+                        }
                     }
                 }
             }
 
             return check;
+        }
+
+        public bool isInCheck(char x, int y , Piece p)
+        {
+            bool check = false;
+
+            if (p.Color == Piece.PieceColors.WHITE)
+            {
+                foreach (Piece piece in ReadInPieces.AllPieces)
+
+                {
+                    if (piece.Color != p.Color)
+                    {
+                        check = piece.PieceInWay(x, y);
+
+                        if (check)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                foreach (Piece piece in ReadInPieces.AllPieces)
+                {
+                    if (piece.Color != p.Color)
+                    {
+                        check = piece.PieceInWay(x, y);
+
+                        if (check)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return check;
+        }
+
+        public bool isInCheckmate(Piece p)
+        {
+            bool checkmate = false;
+            char x = p.CurrentXCoordinate;
+            int y = p.CurrentYCoordinate;
+
+            while(!checkmate)
+            {
+                if (!isInCheck((x += (char)1), (y + 1), p))
+                {
+                    break;
+                }
+                if (!isInCheck((x += (char)1), (y - 1), p))
+                {
+                    break;
+                }
+                if (!isInCheck((x += (char)1), (y), p))
+                {
+                    break;
+                }
+                if (!isInCheck((x), (y + 1), p))
+                {
+                    break;
+                }
+                if (!isInCheck((x), (y - 1), p))
+                {
+                    break;
+                }
+                if (!isInCheck((x -= (char)1), (y + 1), p))
+                {
+                    break;
+                }
+                if (!isInCheck((x -= (char)1), (y), p))
+                {
+                    break;
+                }
+                if (!isInCheck((x -= (char)1), (y - 1), p))
+                {
+                    break;
+                }
+
+                checkmate = true;
+            }
+
+            return checkmate;
         }
     }
 }
