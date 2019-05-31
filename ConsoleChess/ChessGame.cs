@@ -66,18 +66,20 @@ namespace ConsoleChess
                 {
                     if (piece.Color != p.Color)
                     {
-                        
+                        check = piece.PieceInWay(x, y);
                     }
                 }
             }
             else
             {
-
+                foreach (Piece piece in ReadInPieces.AllPieces)
+                {
+                    if (piece.Color != p.Color)
+                    {
+                        check = piece.PieceInWay(x, y);
+                    }
+                }
             }
-        
-
-
-
 
             return check;
         }
