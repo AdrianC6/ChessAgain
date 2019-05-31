@@ -35,8 +35,8 @@ namespace ConsoleChess
             this.HasMoved = hasMoved;
         }
 
-        private int min = 1;
-        private int max = 8;
+        //private int min = 1;
+        //private int max = 8;
 
         public override void Move(char futureX, int futureY)
         {

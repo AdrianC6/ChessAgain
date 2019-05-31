@@ -10,7 +10,7 @@ Bdc8
 Bdf8
 Blc1
 Blf1
-Kdd8
-Kld1
-Qde8
-Qle1
+Kde8
+Kle1
+Qdd8
+Qld1
