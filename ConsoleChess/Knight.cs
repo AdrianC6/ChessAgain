@@ -59,7 +59,7 @@ namespace ConsoleChess
             else
             {
                 CanMove = false;
-                //ReadInPieces.player.Turn(this);
+                Console.WriteLine("Invalid move pls don't");
             }
         }
 

@@ -24,6 +24,8 @@ namespace ConsoleChess
         public static ChessGame chessy = new ChessGame();
         public static Person player = new Person();
         bool IsInitiallyPrinted = false;
+
+        //Makes the whole program run
         public void run(string args)
         {
             do
@@ -31,12 +33,14 @@ namespace ConsoleChess
                 if (!File.Exists(args))
                 {
                     Console.WriteLine("Enter a valid file path");
+                    args = Console.ReadLine();
                 }
-                else
-                {
-                    ReadFile(args);
-                }
+                //else
+                //{
+                //    ReadFile(args);
+                //}
             } while (!File.Exists(args));
+            ReadFile(args);
         }
         //reads the File
         public void ReadFile(string file)
@@ -88,7 +92,7 @@ namespace ConsoleChess
                 Console.WriteLine(e.Message);
             }
         }
-
+        //Method for placing the pieces on the board
         public void PlacePiece(string s)
         {
             Piece piece = CreateSaidPiece(s);
@@ -99,7 +103,7 @@ namespace ConsoleChess
             AllPieces.Add(piece);
             Console.WriteLine(piece);
         }
-
+        //Checks the file to know what piece to make
         public Piece CreateSaidPiece(string s)
         {
             if (s[0] == 'K')
@@ -132,7 +136,7 @@ namespace ConsoleChess
                 return null;
             }
         }
-
+        //method to make pieces move
         public void MovePiece(string s)
         {
             Piece piece = null;
@@ -164,7 +168,6 @@ namespace ConsoleChess
                         Console.WriteLine($"\n{piece}");
                         piece.CurrentXCoordinate = piece.FutureXCoordinate;
                         piece.CurrentYCoordinate = piece.FutureYCoordinate;
-                        //chessy.GenerateBoard();
                     }
                 }
                 else if (piece1.Color != piece.Color)
@@ -177,28 +180,25 @@ namespace ConsoleChess
                         piece.CurrentYCoordinate = piece.FutureYCoordinate;
                         AllPieces.Remove(piece1);
                         Console.WriteLine("Piece Captured");
-                        //chessy.GenerateBoard();
                     }
                 }
                 else
                 {
                     Console.WriteLine("\nCant take own pieces:/");
-                    chessy.GenerateBoard();
                 }
             }
             else
             {
                 Console.WriteLine("\nno piece there");
-                chessy.GenerateBoard();
             }
         }
-
+        //method to make pieces capture one another
         public void CapturePiece(string s)
         {
             MovePiece(s);
             //Console.WriteLine("piece captured");
         }
-
+        //method that moves two pieces at once
         public void MoveTwoPieces(string s)
         {
             foreach (Piece p in AllPieces)

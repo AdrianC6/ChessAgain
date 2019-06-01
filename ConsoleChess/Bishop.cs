@@ -52,6 +52,7 @@ namespace ConsoleChess
             else
             {
                 CanMove = false;
+                Console.WriteLine("\nInvalid move pls don't");
             }
         }
 

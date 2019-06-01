@@ -71,6 +71,7 @@ namespace ConsoleChess
                 else
                 {
                     CanMove = false;
+                    Console.WriteLine("Invalid move pls don't");
                 }
 
             }
@@ -88,6 +89,7 @@ namespace ConsoleChess
                 else
                 {
                     CanMove = false;
+                    Console.WriteLine("Invalid move pls don't");
                 }
             }
         }
@@ -105,6 +107,7 @@ namespace ConsoleChess
                 else
                 {
                     CanMove = false;
+                    Console.WriteLine("Invalid move pls don't");
                 }
             }
             else
@@ -117,6 +120,7 @@ namespace ConsoleChess
                 else
                 {
                     CanMove = false;
+                    Console.WriteLine("Invalid move pls don't");
                 }
             }
         }

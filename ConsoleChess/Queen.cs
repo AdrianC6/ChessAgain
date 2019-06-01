@@ -8,12 +8,13 @@ namespace ConsoleChess
 {
     class Queen : Piece
     {
+        //og constructor 
         public Queen()
         {
             this.CanMove = false;
             this.HasMoved = false;
         }
-
+        //over loaded constructor 1
         public Queen(ChessPieces pieceType, PieceColors color, char currentXcoordinate, int currentYCoordinate, bool canMove, bool hasMoved)
         {
             this.PieceType = pieceType;
@@ -23,6 +24,7 @@ namespace ConsoleChess
             this.CanMove = canMove;
             this.HasMoved = hasMoved;
         }
+        //over loaded constructor 2
         public Queen(ChessPieces pieceType, PieceColors color, char currentXCoordinate, char futureXCoordinate, int currentYCoordinate, int futureYCoordinate, bool canMove, bool hasMoved)
         {
             this.PieceType = pieceType;
@@ -34,6 +36,7 @@ namespace ConsoleChess
             this.CanMove = canMove;
             this.HasMoved = hasMoved;
         }
+        //makes the queen move
         public override void Move(char futureX, int futureY)
         {
             int Ymin = 0;
@@ -62,8 +65,10 @@ namespace ConsoleChess
             else
             {
                 CanMove = false;
+                Console.WriteLine("Invalid move pls don't");
             }
         }
+        //checks to see if a piece is in the way horizontally
         public bool PieceInWayHorizontal(char futureX, int futureY)
         {
             char currentX;
@@ -103,7 +108,7 @@ namespace ConsoleChess
             }
             return CanMove;
         }
-
+        //checks if a piece is in the way diagonally
         public bool PieceInWayDiagonal(char futureX, int futureY)
         {
             char currentX;

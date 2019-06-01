@@ -8,12 +8,13 @@ namespace ConsoleChess
 {
     class Rook : Piece
     {
+        //og constructor
         public Rook()
         {
             this.CanMove = false;
             this.HasMoved = false;
         }
-
+        //overloaded constructor
         public Rook(ChessPieces pieceType, PieceColors color, char currentXcoordinate, int currentYCoordinate, bool canMove, bool hasMoved)
         {
             this.PieceType = pieceType;
@@ -23,6 +24,7 @@ namespace ConsoleChess
             this.CanMove = canMove;
             this.HasMoved = hasMoved;
         }
+        //overloaded constructor 2 og
         public Rook(ChessPieces pieceType, PieceColors color, char currentXCoordinate, char futureXCoordinate, int currentYCoordinate, int futureYCoordinate, bool canMove, bool hasMoved)
         {
             this.PieceType = pieceType;
@@ -35,6 +37,7 @@ namespace ConsoleChess
             this.HasMoved = hasMoved;
         }
 
+        //allows rook to actually move
         public override void Move(char futureX, int futureY)
         {
             int Ymax = 9;
@@ -61,14 +64,15 @@ namespace ConsoleChess
             else
             {
                 CanMove = false;
+                Console.WriteLine("Invalid move pls don't");
             }
         }
-
+        //not implemented but required: thanks Abstract piece
         public void SpecialMove()
         {
 
         }
-
+        //checks to see if a piece is in the way
         public bool PieceInWay(char futureX, int futureY)
         {
             char currentX;
