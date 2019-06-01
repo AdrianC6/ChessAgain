@@ -141,6 +141,22 @@ namespace ConsoleChess
             return CanMove;
         }
 
+        public override bool PieceInWay(char futureX, int futureY)
+        {
+            if (!CanMove)
+            {
+                PieceInWayDiagonal(futureX, futureX);
+            }
+
+            if (!CanMove)
+            {
+                PieceInWayHorizontal(futureX, futureX);
+            }
+
+            return CanMove;
+            
+        }
+
 
 
         public override string ToString()

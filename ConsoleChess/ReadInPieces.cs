@@ -175,21 +175,21 @@ namespace ConsoleChess
                         piece.CurrentYCoordinate = piece.FutureYCoordinate;
                         //chessy.GenerateBoard();
 
-                        foreach (Piece p in AllPieces)
-                        {
-                            if (p.GetType().Equals(Piece.ChessPieces.K))
-                            {
-                                if (chessy.isInCheck(p))
-                                {
-                                    if (chessy.isInCheckmate(p))
-                                    {
-                                        Console.WriteLine("YOUR KING IS IN CHECKMATE");
-                                        break;
-                                    }
-                                    Console.WriteLine("YOUR KING IS IN CHECK");
-                                }
-                            }
-                        }
+                        //foreach (Piece p in AllPieces)
+                        //{
+                        //    if (p.GetType().Equals(Piece.ChessPieces.K))
+                        //    {
+                        //        if (chessy.isInCheck(p))
+                        //        {
+                        //            if (chessy.isInCheckmate(p))
+                        //            {
+                        //                Console.WriteLine($"The { p.Color} KING IS IN CHECKMATE");
+                        //                break;
+                        //            }
+                        //            Console.WriteLine($"The {p.Color} KING IS IN CHECK");
+                        //        }
+                        //    }
+                        //}
 
                     }
                 }
@@ -206,21 +206,21 @@ namespace ConsoleChess
                         //chessy.GenerateBoard();
 
 
-                        foreach (Piece p in AllPieces)
-                        {
-                            if (p.GetType().Equals(Piece.ChessPieces.K))
-                            {
-                                if (chessy.isInCheck(p))
-                                {
-                                    if (chessy.isInCheckmate(p))
-                                    {
-                                        Console.WriteLine("YOUR KING IS IN CHECKMATE");
-                                        break;
-                                    }
-                                    Console.WriteLine("YOUR KING IS IN CHECK");
-                                }
-                            }
-                        }
+                        //foreach (Piece p in AllPieces)
+                        //{
+                        //    if (p.GetType().Equals(Piece.ChessPieces.K))
+                        //    {
+                        //        if (chessy.isInCheck(p))
+                        //        {
+                        //            if (chessy.isInCheckmate(p))
+                        //            {
+                        //                Console.WriteLine($"The {p.Color} KING IS IN CHECKMATE");
+                        //                break;
+                        //            }
+                        //            Console.WriteLine($"The {p.Color} KING IS IN CHECK");
+                        //        }
+                        //    }
+                        //}
 
                     }
                 }
