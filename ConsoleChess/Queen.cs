@@ -14,6 +14,9 @@ namespace ConsoleChess
             this.HasMoved = false;
         }
 
+        private int min = 1;
+        private int max = 8;
+
         public Queen(ChessPieces pieceType, PieceColors color, char currentXcoordinate, int currentYCoordinate, bool canMove, bool hasMoved)
         {
             this.PieceType = pieceType;
@@ -62,7 +65,9 @@ namespace ConsoleChess
             else
             {
                 CanMove = false;
+                Console.WriteLine("bad move m8");
             }
+
         }
         public bool PieceInWayHorizontal(char futureX, int futureY)
         {

@@ -47,17 +47,48 @@ namespace ConsoleChess
                 else
                 {
                     CanMove = false;
+                    Console.WriteLine("Invalid move u foon");
+                }
+            }
+            else
+            {
+                CanMove = false;
+                Console.WriteLine("Invalid move u foon");
+            }
+        }
+
+        public void SpecialMove()
+        {
+            if (!HasMoved)
+            {
+
+            }
+        }
+
+        public override bool PieceInWay(char futureX, int futureY)
+        {
+            if (Math.Abs(CurrentYCoordinate - futureY) <= 1 && Math.Abs(CurrentXCoordinate - futureX) <= 1)
+            {
+                if (Math.Abs(CurrentYCoordinate - futureY) == 1 || Math.Abs(CurrentXCoordinate - futureX) == 1)
+                {
+                    CanMove = true;
+                }
+                else
+                {
+                    CanMove = false;
                 }
             }
             else
             {
                 CanMove = false;
             }
+
+            return CanMove;
         }
 
-        public void SpecialMove()
-        {
-        }
+
+
+
         public override string ToString()
         {
             return FutureXCoordinate == 0 && FutureYCoordinate == 0 ? $"{Color} {PieceType} at {CurrentXCoordinate}{CurrentYCoordinate}" : $"{Color} {PieceType} at {CurrentXCoordinate}{CurrentYCoordinate} now at {FutureXCoordinate}{FutureYCoordinate}";

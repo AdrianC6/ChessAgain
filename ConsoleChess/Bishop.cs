@@ -35,23 +35,25 @@ namespace ConsoleChess
             this.HasMoved = hasMoved;
         }
 
+        private int min = 1;
+        private int max = 8;
+
         public override void Move(char futureX, int futureY)
         {
-            //int Ymin = 0;
-            //int Ymax = 9;
-            //char Xmin = 'a';
-            //char Xmax = 'h';
 
             if (Math.Abs(((double)CurrentYCoordinate - futureY) / (CurrentXCoordinate - futureX)) == 1)
+
             {
                 //CanMove = true;
                 PieceInWay(futureX, futureY);
                 ReadInPieces.player.Turn(this);
                 //ReadInPieces.chessy.GenerateBoard();
             }
-            else
+
+            for (int i = max; i > min; i--)
             {
                 CanMove = false;
+                Console.WriteLine("Invalid move u uncultered swine");
             }
         }
 
@@ -77,11 +79,7 @@ namespace ConsoleChess
                         CanMove = true;
                     }
                 }
-            }
-            foreach (Piece p in ReadInPieces.AllPieces)
-            {
-                currentX = this.CurrentXCoordinate;
-                currentY = this.CurrentYCoordinate;
+
                 while (currentX >= 'a' && currentY >= 1)
                 {
                     currentX -= (char)1;

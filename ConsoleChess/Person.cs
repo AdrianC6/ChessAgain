@@ -8,7 +8,7 @@ namespace ConsoleChess
 {
     class Person
     {
-        int turn = 1;
+        public static int turn = 1;
         Piece.PieceColors Color;
         public Person()
         {
