@@ -108,6 +108,7 @@ namespace ConsoleChess
             }
         }
 
+//places the pieces on the board
         public void PlacePiece(string s)
         {
             Piece piece = CreateSaidPiece(s);
@@ -152,6 +153,7 @@ namespace ConsoleChess
             }
         }
 
+//moves pieces
         public void MovePiece(string s)
         {
             Piece piece = null;
@@ -183,7 +185,24 @@ namespace ConsoleChess
                         Console.WriteLine($"\n{piece}");
                         piece.CurrentXCoordinate = piece.FutureXCoordinate;
                         piece.CurrentYCoordinate = piece.FutureYCoordinate;
-                        chessy.GenerateBoard();
+                      //  chessy.GenerateBoard();
+                       
+                        foreach (Piece p in AllPieces)
+                        {
+                            if (p.GetType().Equals(Piece.ChessPieces.K))
+                            {
+                                if (chessy.isInCheck(p))
+                                {
+                                    if (chessy.isInCheckmate(p))
+                                    {
+                                        Console.WriteLine("YOUR KING IS IN CHECKMATE");
+                                        break;
+                                    }
+                                    Console.WriteLine("YOUR KING IS IN CHECK");
+                                }
+                            }
+                        }
+
                     }
                 }
                 else if (piece1.Color != piece.Color)
@@ -196,12 +215,29 @@ namespace ConsoleChess
                         piece.CurrentYCoordinate = piece.FutureYCoordinate;
                         AllPieces.Remove(piece1);
                         Console.WriteLine("Piece Captured");
-                        chessy.GenerateBoard();
+                        //chessy.GenerateBoard();
+
+                        foreach (Piece p in AllPieces)
+                        {
+                            if (p.GetType().Equals(Piece.ChessPieces.K))
+                            {
+                                if (chessy.isInCheck(p))
+                                {
+                                    if (chessy.isInCheckmate(p))
+                                    {
+                                        Console.WriteLine("YOUR KING IS IN CHECKMATE");
+                                        break;
+                                    }
+                                    Console.WriteLine("YOUR KING IS IN CHECK");
+                                }
+                            }
+                        }
+
                     }
                 }
                 else
                 {
-                    Console.WriteLine("\nCant take own pieces:/");
+                    Console.WriteLine("\nCant take own pieces ¯\\_(ツ)_/¯");
                     chessy.GenerateBoard();
                 }
             }
@@ -217,6 +253,7 @@ namespace ConsoleChess
             MovePiece(s);
         }
 
+//castling
         public void MoveTwoPieces(string s)
         {
             foreach (Piece p in AllPieces)
@@ -240,6 +277,7 @@ namespace ConsoleChess
             }
         }
 
+//determins colour for the piece
         public Piece.PieceColors ColorDeterminer(char color)
         {
             Piece.PieceColors DeterminedColor = Piece.PieceColors.WHITE;
@@ -254,6 +292,7 @@ namespace ConsoleChess
             return DeterminedColor;
         }
 
+//determins the piece
         public Piece.ChessPieces PieceDeterminer(char piece)
         {
             Piece.ChessPieces DeterminedPiece = Piece.ChessPieces.K;
