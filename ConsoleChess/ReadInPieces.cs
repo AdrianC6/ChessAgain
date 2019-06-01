@@ -183,10 +183,10 @@ namespace ConsoleChess
                                 {
                                     if (chessy.isInCheckmate(p))
                                     {
-                                        Console.WriteLine("YOUR KING IS IN CHECKMATE");
+                                        Console.WriteLine($"THE {p.Color} IS IN CHECKMATE");
                                         break;
                                     }
-                                    Console.WriteLine("YOUR KING IS IN CHECK");
+                                    Console.WriteLine($"THE {p.Color} IS IN CHECK");
                                 }
                             }
                         }
@@ -214,10 +214,10 @@ namespace ConsoleChess
                                 {
                                     if (chessy.isInCheckmate(p))
                                     {
-                                        Console.WriteLine("YOUR KING IS IN CHECKMATE");
+                                        Console.WriteLine($"THE {p.Color} IS IN CHECKMATE");
                                         break;
                                     }
-                                    Console.WriteLine("YOUR KING IS IN CHECK");
+                                    Console.WriteLine($"THE {p.Color} IS IN CHECK");
                                 }
                             }
                         }

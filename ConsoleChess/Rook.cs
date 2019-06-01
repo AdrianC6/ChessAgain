@@ -75,7 +75,7 @@ namespace ConsoleChess
 
         }
 
-        public bool PieceInWay(char futureX, int futureY)
+        public override bool PieceInWay(char futureX, int futureY)
         {
             char currentX;
             int currentY;
