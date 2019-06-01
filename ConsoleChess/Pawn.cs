@@ -121,6 +121,86 @@ namespace ConsoleChess
             }
         }
 
+        public override bool PieceInWay(char futureX, int futureY)
+        {
+            if ((CurrentYCoordinate == 2 && this.Color == PieceColors.WHITE) || (CurrentYCoordinate == 7 && this.Color == PieceColors.BLACK))
+            {
+                HasMoved = false;
+            }
+            else
+            {
+                HasMoved = true;
+            }
+
+            if (Color == PieceColors.BLACK)
+            {
+
+                if (CurrentXCoordinate == futureX && ((CurrentYCoordinate - 1) == futureY))
+                {
+                    CanMove = true;
+                    ReadInPieces.player.Turn(this);
+                }
+                else if (HasMoved == false)
+                {
+                    SpecialMove(futureX, futureY);
+                }
+                else
+                {
+                    this.CurrentYCoordinate = CurrentYCoordinate;
+                    CanMove = false;
+                    Console.WriteLine("I don't move that way, hoe");
+                }
+
+            }
+            else
+            {
+                if (CurrentXCoordinate == futureX && ((CurrentYCoordinate + 1) == futureY))
+                {
+                    CanMove = true;
+                    ReadInPieces.player.Turn(this);
+                }
+                else if (HasMoved == false)
+                {
+                    SpecialMove(futureX, futureY);
+                }
+                else
+                {
+                    this.CurrentYCoordinate = CurrentYCoordinate;
+                    CanMove = false;
+                    Console.WriteLine("I don't move that way, hoe");
+                }
+
+            }
+
+            if (this.Color == PieceColors.BLACK)
+            {
+
+                if (CurrentXCoordinate == futureX && ((CurrentYCoordinate - 2) == futureY))
+                {
+                    CanMove = true;
+                    ReadInPieces.player.Turn(this);
+                }
+                else
+                {
+                    CanMove = false;
+                }
+            }
+            else
+            {
+                if (CurrentXCoordinate == futureX && ((CurrentYCoordinate + 2) == futureY))
+                {
+                    CanMove = true;
+                    ReadInPieces.player.Turn(this);
+                }
+                else
+                {
+                    CanMove = false;
+                }
+            }
+
+            return CanMove;
+        }
+
         public override string ToString()
         {
             return FutureXCoordinate == 0 && FutureYCoordinate == 0 ? $"{Color} {PieceType} at {CurrentXCoordinate}{CurrentYCoordinate}" : $"{Color} {PieceType} at {CurrentXCoordinate}{CurrentYCoordinate} now at {FutureXCoordinate}{FutureYCoordinate}";
