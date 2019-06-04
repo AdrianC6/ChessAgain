@@ -115,6 +115,8 @@ namespace ConsoleChess
 
         public override bool PieceInWay(char futureX, int futureY)
         {
+            CanMove = false;
+
             if ((CurrentYCoordinate == 2 && this.Color == PieceColors.WHITE) || (CurrentYCoordinate == 7 && this.Color == PieceColors.BLACK))
             {
                 HasMoved = false;
@@ -130,7 +132,6 @@ namespace ConsoleChess
                 if (CurrentXCoordinate == futureX && ((CurrentYCoordinate - 1) == futureY))
                 {
                     CanMove = true;
-                    ReadInPieces.player.Turn(this);
                 }
                 else if (HasMoved == false)
                 {
@@ -149,7 +150,6 @@ namespace ConsoleChess
                 if (CurrentXCoordinate == futureX && ((CurrentYCoordinate + 1) == futureY))
                 {
                     CanMove = true;
-                    ReadInPieces.player.Turn(this);
                 }
                 else if (HasMoved == false)
                 {
@@ -170,7 +170,6 @@ namespace ConsoleChess
                 if (CurrentXCoordinate == futureX && ((CurrentYCoordinate - 2) == futureY))
                 {
                     CanMove = true;
-                    ReadInPieces.player.Turn(this);
                 }
                 else
                 {
@@ -182,7 +181,6 @@ namespace ConsoleChess
                 if (CurrentXCoordinate == futureX && ((CurrentYCoordinate + 2) == futureY))
                 {
                     CanMove = true;
-                    ReadInPieces.player.Turn(this);
                 }
                 else
                 {

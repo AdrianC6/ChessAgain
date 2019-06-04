@@ -66,6 +66,8 @@ namespace ConsoleChess
 
         public override bool PieceInWay(char futureX, int futureY)
         {
+            CanMove = false;
+
             if ((CurrentXCoordinate + 1 == futureX && CurrentYCoordinate + 2 == futureY) || (CurrentXCoordinate - 1 == futureX && CurrentYCoordinate + 2 == futureY))
             {
                 CanMove = true;

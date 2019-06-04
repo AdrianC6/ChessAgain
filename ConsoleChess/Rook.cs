@@ -79,6 +79,8 @@ namespace ConsoleChess
         {
             char currentX;
             int currentY;
+            CanMove = false;
+
             foreach (Piece p in ReadInPieces.AllPieces)
             {
                 currentX = this.CurrentXCoordinate;
@@ -87,25 +89,21 @@ namespace ConsoleChess
                 if ((p.CurrentXCoordinate > this.CurrentXCoordinate && p.CurrentXCoordinate < this.FutureXCoordinate) && p.CurrentYCoordinate == futureY)
                 {
                     CanMove = false;
-                    Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType} and cannot move");
                     break;
                 }
                 else if ((p.CurrentYCoordinate > this.CurrentYCoordinate && p.CurrentYCoordinate < this.FutureYCoordinate) && p.CurrentXCoordinate == futureX)
                 {
                     CanMove = false;
-                    Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType} and cannot move");
                     break;
                 }
                 else if ((p.CurrentXCoordinate < this.CurrentXCoordinate && p.CurrentXCoordinate > this.FutureXCoordinate) && p.CurrentYCoordinate == futureY)
                 {
                     CanMove = false;
-                    Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType} and cannot move");
                     break;
                 }
                 else if ((p.CurrentYCoordinate < this.CurrentYCoordinate && p.CurrentYCoordinate > this.FutureYCoordinate) && p.CurrentXCoordinate == futureX)
                 {
                     CanMove = false;
-                    Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType} and cannot move");
                     break;
                 }
                 else

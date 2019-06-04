@@ -63,9 +63,8 @@ namespace ConsoleChess
             if (p.Color == Piece.PieceColors.WHITE)
             {
                 foreach (Piece piece in ReadInPieces.AllPieces)
-
                 {
-                    if (piece.Color != p.Color)
+                    if (piece.Color == Piece.PieceColors.BLACK)
                     {
                         check = piece.PieceInWay(x, y);
 
@@ -80,7 +79,7 @@ namespace ConsoleChess
             {
                 foreach (Piece piece in ReadInPieces.AllPieces)
                 {
-                    if (piece.Color != p.Color)
+                    if (piece.Color == Piece.PieceColors.WHITE)
                     {
                         check = piece.PieceInWay(x, y);
 
@@ -102,9 +101,8 @@ namespace ConsoleChess
             if (p.Color == Piece.PieceColors.WHITE)
             {
                 foreach (Piece piece in ReadInPieces.AllPieces)
-
                 {
-                    if (piece.Color != p.Color)
+                    if (piece.Color == Piece.PieceColors.BLACK)
                     {
                         check = piece.PieceInWay(x, y);
 
@@ -119,7 +117,7 @@ namespace ConsoleChess
             {
                 foreach (Piece piece in ReadInPieces.AllPieces)
                 {
-                    if (piece.Color != p.Color)
+                    if (piece.Color == Piece.PieceColors.WHITE)
                     {
                         check = piece.PieceInWay(x, y);
 
@@ -142,40 +140,43 @@ namespace ConsoleChess
 
             while(!checkmate)
             {
-                if (!isInCheck((x += (char)1), (y + 1), p))
+                if (isInCheck((x += (char)1), (y + 1), p))
                 {
                     break;
                 }
-                if (!isInCheck((x += (char)1), (y - 1), p))
+                if (isInCheck((x += (char)1), (y - 1), p))
                 {
                     break;
                 }
-                if (!isInCheck((x += (char)1), (y), p))
+                if (isInCheck((x += (char)1), (y), p))
                 {
                     break;
                 }
-                if (!isInCheck((x), (y + 1), p))
+                if (isInCheck((x), (y + 1), p))
                 {
                     break;
                 }
-                if (!isInCheck((x), (y - 1), p))
+                if (isInCheck((x), (y - 1), p))
                 {
                     break;
                 }
-                if (!isInCheck((x -= (char)1), (y + 1), p))
+                if (isInCheck((x -= (char)1), (y + 1), p))
                 {
                     break;
                 }
-                if (!isInCheck((x -= (char)1), (y), p))
+                if (isInCheck((x -= (char)1), (y), p))
                 {
                     break;
                 }
-                if (!isInCheck((x -= (char)1), (y - 1), p))
+                if (isInCheck((x -= (char)1), (y - 1), p))
                 {
                     break;
+                }
+                else
+                {
+                    checkmate = true;
                 }
 
-                checkmate = true;
             }
 
             return checkmate;

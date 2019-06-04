@@ -80,25 +80,21 @@ namespace ConsoleChess
                 if ((p.CurrentXCoordinate > this.CurrentXCoordinate && p.CurrentXCoordinate < this.FutureXCoordinate) && p.CurrentYCoordinate == futureY)
                 {
                     CanMove = false;
-                    Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType} and cannot move");
                     break;
                 }
                 else if ((p.CurrentYCoordinate > this.CurrentYCoordinate && p.CurrentYCoordinate < this.FutureYCoordinate) && p.CurrentXCoordinate == futureX)
                 {
                     CanMove = false;
-                    Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType} and cannot move");
                     break;
                 }
                 else if ((p.CurrentXCoordinate < this.CurrentXCoordinate && p.CurrentXCoordinate > this.FutureXCoordinate) && p.CurrentYCoordinate == futureY)
                 {
                     CanMove = false;
-                    Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType} and cannot move");
                     break;
                 }
                 else if ((p.CurrentYCoordinate > this.CurrentYCoordinate && p.CurrentYCoordinate < this.FutureYCoordinate) && p.CurrentXCoordinate == futureX)
                 {
                     CanMove = false;
-                    Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType} and cannot move");
                     break;
                 }
                 else
@@ -123,7 +119,6 @@ namespace ConsoleChess
                     currentY += 1;
                     if ((p.CurrentXCoordinate == currentX && p.CurrentYCoordinate == currentY) && (currentX < this.FutureXCoordinate && currentY < this.FutureYCoordinate))
                     {
-                        Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType}");
                         return CanMove = false;
                     }
                     else
@@ -142,7 +137,6 @@ namespace ConsoleChess
                     currentY -= 1;
                     if ((p.CurrentXCoordinate == currentX && p.CurrentYCoordinate == currentY) && (currentX > this.FutureXCoordinate && currentY > this.FutureYCoordinate))
                     {
-                        Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType} at {p.CurrentXCoordinate}{p.CurrentYCoordinate}");
                         return CanMove = false;
                     }
                     else
@@ -156,13 +150,15 @@ namespace ConsoleChess
 
         public override bool PieceInWay(char futureX, int futureY)
         {
+            CanMove = false;
+
             if (!CanMove)
             {
-                PieceInWayDiagonal(futureX, futureY);
+                CanMove = PieceInWayDiagonal(futureX, futureY);
             }
             if (!CanMove)
             {
-                PieceInWayHorizontal(futureX, futureY);
+                CanMove = PieceInWayHorizontal(futureX, futureY);
             }
 
             return CanMove;

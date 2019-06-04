@@ -67,6 +67,8 @@ namespace ConsoleChess
 
         public override bool PieceInWay(char futureX, int futureY)
         {
+            CanMove = false;
+
             if (Math.Abs(CurrentYCoordinate - futureY) <= 1 && Math.Abs(CurrentXCoordinate - futureX) <= 1)
             {
                 if (Math.Abs(CurrentYCoordinate - futureY) == 1 || Math.Abs(CurrentXCoordinate - futureX) == 1)
