@@ -39,6 +39,35 @@ namespace ConsoleChess
             if ((CurrentXCoordinate + 1 == futureX && CurrentYCoordinate + 2 == futureY) || (CurrentXCoordinate - 1 == futureX && CurrentYCoordinate + 2 == futureY))
             {
                 CanMove = true;
+                ReadInPieces.player.Turn(this);
+            }
+            else if ((CurrentXCoordinate - 1 == futureX && CurrentYCoordinate - 2 == futureY) || (CurrentXCoordinate + 1 == futureX && CurrentYCoordinate - 2 == futureY))
+            {
+                CanMove = true;
+                ReadInPieces.player.Turn(this);
+            }
+            else if ((CurrentXCoordinate - 2 == futureX && CurrentYCoordinate - 1 == futureY) || (CurrentXCoordinate - 2 == futureX && CurrentYCoordinate + 1 == futureY))
+            {
+                CanMove = true;
+                ReadInPieces.player.Turn(this);
+            }
+            else if ((CurrentXCoordinate + 2 == futureX && CurrentYCoordinate - 1 == futureY) || (CurrentXCoordinate + 2 == futureX && CurrentYCoordinate + 1 == futureY))
+            {
+                CanMove = true;
+                ReadInPieces.player.Turn(this);
+            }
+            else
+            {
+                CanMove = false;
+                Console.WriteLine("Bad move u spineless seasponge");
+            }
+        }
+
+        public override bool PieceInWay(char futureX, int futureY)
+        {
+            if ((CurrentXCoordinate + 1 == futureX && CurrentYCoordinate + 2 == futureY) || (CurrentXCoordinate - 1 == futureX && CurrentYCoordinate + 2 == futureY))
+            {
+                CanMove = true;
             }
             else if ((CurrentXCoordinate - 1 == futureX && CurrentYCoordinate - 2 == futureY) || (CurrentXCoordinate + 1 == futureX && CurrentYCoordinate - 2 == futureY))
             {
@@ -56,6 +85,7 @@ namespace ConsoleChess
             {
                 CanMove = false;
             }
+            return CanMove;
         }
 
         public override string ToString()

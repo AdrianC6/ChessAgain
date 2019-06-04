@@ -12,11 +12,6 @@ namespace ConsoleChess
     {
 
         public static List<Piece> AllPieces = new List<Piece>();
-        //Pawn pawn = new Pawn();
-        //Knight knight = new Knight();
-        //Bishop bishop = new Bishop();
-        //Rook rook = new Rook();
-        //Queen queen = new Queen();
 
         public static string placePiece = @"(^[PNBRQK][ld][a-h][1-8]$)";
         public static string movePiece = @"(^[a-h][1-8] [a-h][1-8]$)";
@@ -26,18 +21,24 @@ namespace ConsoleChess
         Regex Move = new Regex(movePiece);
         Regex Capture = new Regex(capturePiece);
         Regex MoveTwo = new Regex(moveTwoPieces);
+        public static ChessGame chessy = new ChessGame();
+        public static Person player = new Person();
+        bool IsInitiallyPrinted = false;
         public void run(string args)
         {
-            if (!File.Exists(args))
+            do
             {
-                Console.WriteLine("Enter a valid file path");
-            }
-            else
-            {
-                ReadFile(args);
-            }
+                if (!File.Exists(args))
+                {
+                    Console.WriteLine("Please enter a valid file: ");
+                    args = Console.ReadLine();
+                }
+                if (File.Exists(args))
+                {
+                    ReadFile(args);
+                }
+            } while (!File.Exists(args));
         }
-        //reads the File
         public void ReadFile(string file)
         {
             try
@@ -57,25 +58,57 @@ namespace ConsoleChess
                         else if (Move.IsMatch(s))
                         {
                             MovePiece(s);
+                            //   chessy.GenerateBoard();
                         }
                         else if (Capture.IsMatch(s))
                         {
                             CapturePiece(s);
+                            // chessy.GenerateBoard();
                         }
                         else if (MoveTwo.IsMatch(s))
                         {
                             MoveTwoPieces(s);
+                            // chessy.GenerateBoard();
                         }
                     }
                 }
+                if (!IsInitiallyPrinted)
+                {
+                    chessy.GenerateBoard();
+                    IsInitiallyPrinted = true;
+                }
+                do
+                {
+                    Console.Write("Enter your file (ctrl+c to exit):");
+                    file = Console.ReadLine();
+                    if (!File.Exists(file))
+                    {
+                        Console.WriteLine("enter valid path");
+                    }
+                    if (File.Exists(file))
+                    {
+                        run(file);
+                        chessy.GenerateBoard();
+                    }
+                } while (!File.Exists(file));
             }
             catch (IOException e)
             {
-                Console.WriteLine("The file could not be read:");
-                Console.WriteLine(e.Message);
+                if (!File.Exists(file))
+                {
+                    Console.WriteLine(e);
+                    Console.WriteLine("Please enter a valid file: ");
+                    file = Console.ReadLine();
+                }
+                if (File.Exists(file))
+                {
+                    run(file);
+                    chessy.GenerateBoard();
+                }
             }
         }
 
+        //places the pieces on the board
         public void PlacePiece(string s)
         {
             Piece piece = CreateSaidPiece(s);
@@ -120,40 +153,104 @@ namespace ConsoleChess
             }
         }
 
+        //moves pieces
         public void MovePiece(string s)
         {
             Piece piece = null;
+            Piece piece1 = null;
+            foreach (Piece p in AllPieces)
+            {
+                if (p.CurrentXCoordinate == s[0] && p.CurrentYCoordinate == validYCoord(s[1]))
+                {
+                    piece = p;
+                    break;
+                }
+            }
             foreach (Piece p in AllPieces)
             {
                 if (p.CurrentXCoordinate == s[3] && p.CurrentYCoordinate == validYCoord(s[4]))
                 {
-                    piece = p;
-                }
-                else if (p.CurrentXCoordinate == s[0] && p.CurrentYCoordinate == validYCoord(s[1]))
-                {
-                    //p.FutureXCoordinate = (char)s[3];
-                    //p.FutureYCoordinate = validYCoord(s[4]);
-                    p.Move(p.FutureXCoordinate = (char)s[3], p.FutureYCoordinate = validYCoord(s[4]));
-                    if (p.CanMove == true)
-                    {
-                        Console.WriteLine(p);
-                        p.CurrentXCoordinate = p.FutureXCoordinate;
-                        p.CurrentYCoordinate = p.FutureYCoordinate;
-                    }else
-                    {
-                        Console.WriteLine("not a valid move");
-                    }
+                    piece1 = p;
+                    break;
                 }
             }
-            AllPieces.Remove(piece);
+
+            if (piece != null)
+            {
+                if (piece1 == null)
+                {
+                    piece.Move(piece.FutureXCoordinate = (char)s[3], piece.FutureYCoordinate = validYCoord(s[4]));
+                    if (piece.CanMove == true)
+                    {
+                        Console.WriteLine($"\n{piece}");
+                        piece.CurrentXCoordinate = piece.FutureXCoordinate;
+                        piece.CurrentYCoordinate = piece.FutureYCoordinate;
+               
+                        foreach (Piece p in AllPieces)
+                        {
+                            if (p.GetType().Equals(Piece.ChessPieces.K))
+                            {
+                                if (chessy.isInCheck(p))
+                                {
+                                    if (chessy.isInCheckmate(p))
+                                    {
+                                        Console.WriteLine("YOUR KING IS IN CHECKMATE");
+                                        break;
+                                    }
+                                    Console.WriteLine("YOUR KING IS IN CHECK");
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (piece1.Color != piece.Color)
+                {
+                    piece.Move(piece.FutureXCoordinate = (char)s[3], piece.FutureYCoordinate = validYCoord(s[4]));
+                    if (piece.CanMove == true)
+                    {
+                        Console.WriteLine($"\n{piece}");
+                        piece.CurrentXCoordinate = piece.FutureXCoordinate;
+                        piece.CurrentYCoordinate = piece.FutureYCoordinate;
+                        AllPieces.Remove(piece1);
+                        Console.WriteLine("Piece Captured");
+ 
+                        foreach (Piece p in AllPieces)
+                        {
+                            if (p.GetType().Equals(Piece.ChessPieces.K))
+                            {
+                                if (chessy.isInCheck(p))
+                                {
+                                    if (chessy.isInCheckmate(p))
+                                    {
+                                        Console.WriteLine("YOUR KING IS IN CHECKMATE");
+                                        break;
+                                    }
+                                    Console.WriteLine("YOUR KING IS IN CHECK");
+                                }
+                            }
+                        }
+
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("\nCant take own pieces ¯\\_(ツ)_/¯");
+                    chessy.GenerateBoard();
+                }
+            }
+            else
+            {
+                Console.WriteLine("\nThere is no piece there to move");
+                chessy.GenerateBoard();
+            }
         }
 
         public void CapturePiece(string s)
         {
             MovePiece(s);
-            Console.WriteLine("piece captured");
         }
 
+        //castling
         public void MoveTwoPieces(string s)
         {
             foreach (Piece p in AllPieces)
@@ -177,6 +274,7 @@ namespace ConsoleChess
             }
         }
 
+        //determins colour for the piece
         public Piece.PieceColors ColorDeterminer(char color)
         {
             Piece.PieceColors DeterminedColor = Piece.PieceColors.WHITE;
@@ -191,6 +289,7 @@ namespace ConsoleChess
             return DeterminedColor;
         }
 
+        //determins the piece
         public Piece.ChessPieces PieceDeterminer(char piece)
         {
             Piece.ChessPieces DeterminedPiece = Piece.ChessPieces.K;
@@ -229,3 +328,4 @@ namespace ConsoleChess
         }
     }
 }
+
