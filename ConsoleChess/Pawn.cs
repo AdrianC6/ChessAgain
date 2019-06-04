@@ -136,7 +136,6 @@ namespace ConsoleChess
                 }
                 else
                 {
-                    this.CurrentYCoordinate = CurrentYCoordinate;
                     CanMove = false;
                     Console.WriteLine("I don't move that way, hoe");
                 }
@@ -155,7 +154,6 @@ namespace ConsoleChess
                 }
                 else
                 {
-                    this.CurrentYCoordinate = CurrentYCoordinate;
                     CanMove = false;
                     Console.WriteLine("I don't move that way, hoe");
                 }

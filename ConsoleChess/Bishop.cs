@@ -59,8 +59,8 @@ namespace ConsoleChess
             //    Console.WriteLine("Invalid move u uncultered swine");
             //}
         }
-
-        public bool PieceInWay(char futureX, int futureY)
+        
+        public override bool PieceInWay(char futureX, int futureY)
         {
             char currentX;
             int currentY;
@@ -109,5 +109,6 @@ namespace ConsoleChess
         {
             return FutureXCoordinate == 0 && FutureYCoordinate == 0 ? $"{Color} {PieceType} at {CurrentXCoordinate}{CurrentYCoordinate}" : $"{Color} {PieceType} at {CurrentXCoordinate}{CurrentYCoordinate} now at {FutureXCoordinate}{FutureYCoordinate}";
         }
+
     }
 }
