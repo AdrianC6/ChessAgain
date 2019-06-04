@@ -37,19 +37,17 @@ namespace ConsoleChess
                     board[p.CurrentYCoordinate, p.CurrentXCoordinate] = $"[{p.stringRep}]";
                 }
             }
-            Console.WriteLine("   A  B  C  D  E  F  G  H");
+            Console.WriteLine("  A  B  C  D  E  F  G  H");
             for (int i = 1; i < 9; i++)
             {
-                Console.Write($"{i} ");
+                Console.Write($"{i}");
                 for (char j = 'a'; j < 'i'; j++)
                 {
                     Console.Write(board[i, j], "-");
                 }
-                Console.WriteLine(" "+i);
-               // Console.Write("\n");
+                Console.Write("\n");
             }
-            Console.Write("   A  B  C  D  E  F  G  H");
-            Console.WriteLine();
+
         }
 
         public bool isInCheck(Piece p)

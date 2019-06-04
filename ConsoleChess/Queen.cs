@@ -14,9 +14,6 @@ namespace ConsoleChess
             this.HasMoved = false;
         }
 
-        private int min = 1;
-        private int max = 8;
-
         public Queen(ChessPieces pieceType, PieceColors color, char currentXcoordinate, int currentYCoordinate, bool canMove, bool hasMoved)
         {
             this.PieceType = pieceType;
@@ -46,28 +43,18 @@ namespace ConsoleChess
 
             if (Math.Abs(((double)CurrentYCoordinate - futureY) / (CurrentXCoordinate - futureX)) == 1)
             {
-                //CanMove = true;
                 PieceInWayDiagonal(futureX, futureY);
                 ReadInPieces.player.Turn(this);
             }
             else if ((futureX >= Xmin && futureX <= Xmax) && CurrentYCoordinate == futureY)
             {
-                //CanMove = true;
                 PieceInWayHorizontal(futureX, futureY);
                 ReadInPieces.player.Turn(this);
             }
             else if ((futureY > Ymin && futureY < Ymax) && CurrentXCoordinate == futureX)
             {
-                //CanMove = true;
-                PieceInWayHorizontal(futureX, futureY);
-                ReadInPieces.player.Turn(this);
-            }
-            else
-            {
                 CanMove = false;
-                Console.WriteLine("bad move m8");
             }
-
         }
         public bool PieceInWayHorizontal(char futureX, int futureY)
         {
@@ -154,15 +141,10 @@ namespace ConsoleChess
             return CanMove;
         }
 
-        public override bool PieceInWay(char futureX, int futureY)
-        {
-            throw new NotImplementedException();
-        }
 
         public override string ToString()
         {
             return FutureXCoordinate == 0 && FutureYCoordinate == 0 ? $"{Color} {PieceType} at {CurrentXCoordinate}{CurrentYCoordinate}" : $"{Color} {PieceType} at {CurrentXCoordinate}{CurrentYCoordinate} now at {FutureXCoordinate}{FutureYCoordinate}";
         }
-
     }
 }
