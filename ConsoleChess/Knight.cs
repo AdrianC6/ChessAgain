@@ -60,7 +60,6 @@ namespace ConsoleChess
             {
                 CanMove = false;
                 Console.WriteLine("Bad move u spineless seasponge");
-                //ReadInPieces.player.Turn(this);
             }
         }
 
@@ -86,7 +85,6 @@ namespace ConsoleChess
             {
                 CanMove = false;
             }
-
             return CanMove;
         }
 

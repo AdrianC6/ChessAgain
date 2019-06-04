@@ -31,7 +31,7 @@ namespace ConsoleChess
                 }
                 else if (p.CanMove == true && turn !=1)
                 {
-                    Console.WriteLine("\nNot Your turn Light Team");
+                    Console.WriteLine("\nNot Your Turn Light Team");
                     p.CanMove = false;
                 }
                 else 
@@ -48,7 +48,7 @@ namespace ConsoleChess
                 }
                 else if (p.CanMove == true && turn != 2)
                 {
-                    Console.WriteLine("\nNot Your turn Dark Team");
+                    Console.WriteLine("\nNot Your Turn Dark Team");
                     p.CanMove = false;
                 }
                 else

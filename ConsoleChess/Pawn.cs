@@ -185,7 +185,6 @@ namespace ConsoleChess
                     CanMove = false;
                 }
             }
-
             return CanMove;
         }
 

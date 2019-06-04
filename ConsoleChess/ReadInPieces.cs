@@ -185,8 +185,7 @@ namespace ConsoleChess
                         Console.WriteLine($"\n{piece}");
                         piece.CurrentXCoordinate = piece.FutureXCoordinate;
                         piece.CurrentYCoordinate = piece.FutureYCoordinate;
-                        //  chessy.GenerateBoard();
-
+               
                         foreach (Piece p in AllPieces)
                         {
                             if (p.GetType().Equals(Piece.ChessPieces.K))
@@ -202,7 +201,6 @@ namespace ConsoleChess
                                 }
                             }
                         }
-
                     }
                 }
                 else if (piece1.Color != piece.Color)
@@ -215,8 +213,7 @@ namespace ConsoleChess
                         piece.CurrentYCoordinate = piece.FutureYCoordinate;
                         AllPieces.Remove(piece1);
                         Console.WriteLine("Piece Captured");
-                        //chessy.GenerateBoard();
-
+ 
                         foreach (Piece p in AllPieces)
                         {
                             if (p.GetType().Equals(Piece.ChessPieces.K))
@@ -243,7 +240,7 @@ namespace ConsoleChess
             }
             else
             {
-                Console.WriteLine("\nThere is no piece there");
+                Console.WriteLine("\nThere is no piece there to move");
                 chessy.GenerateBoard();
             }
         }

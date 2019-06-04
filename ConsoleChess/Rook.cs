@@ -74,10 +74,10 @@ namespace ConsoleChess
 
         }
 
-        public void SpecialMove()
-        {
+        //public void SpecialMove()
+        //{
 
-        }
+        //}
 
         public override bool PieceInWay(char futureX, int futureY)
         {
