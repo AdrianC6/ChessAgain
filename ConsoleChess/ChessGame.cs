@@ -52,13 +52,11 @@ namespace ConsoleChess
             Console.WriteLine();
         }
 
-
         public bool isInCheck(Piece p)
         {
             bool check = false;
             char x = p.CurrentXCoordinate;
             int y = p.CurrentYCoordinate;
-
 
             if (p.Color == Piece.PieceColors.WHITE)
             {
@@ -130,7 +128,6 @@ namespace ConsoleChess
                     }
                 }
             }
-
             return check;
         }
 

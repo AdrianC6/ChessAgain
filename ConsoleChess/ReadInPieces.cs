@@ -33,7 +33,7 @@ namespace ConsoleChess
                     Console.WriteLine("Please enter a valid file: ");
                     args = Console.ReadLine();
                 }
-                if(File.Exists(args))
+                if (File.Exists(args))
                 {
                     ReadFile(args);
                 }
@@ -58,17 +58,17 @@ namespace ConsoleChess
                         else if (Move.IsMatch(s))
                         {
                             MovePiece(s);
-                         //   chessy.GenerateBoard();
+                            //   chessy.GenerateBoard();
                         }
                         else if (Capture.IsMatch(s))
                         {
                             CapturePiece(s);
-                           // chessy.GenerateBoard();
+                            // chessy.GenerateBoard();
                         }
                         else if (MoveTwo.IsMatch(s))
                         {
                             MoveTwoPieces(s);
-                           // chessy.GenerateBoard();
+                            // chessy.GenerateBoard();
                         }
                     }
                 }
@@ -80,12 +80,12 @@ namespace ConsoleChess
                 do
                 {
                     Console.Write("Enter your file (ctrl+c to exit):");
-                   file = Console.ReadLine();
+                    file = Console.ReadLine();
                     if (!File.Exists(file))
                     {
                         Console.WriteLine("enter valid path");
                     }
-                    if(File.Exists(file))
+                    if (File.Exists(file))
                     {
                         run(file);
                         chessy.GenerateBoard();
@@ -100,7 +100,7 @@ namespace ConsoleChess
                     Console.WriteLine("Please enter a valid file: ");
                     file = Console.ReadLine();
                 }
-                if(File.Exists(file))
+                if (File.Exists(file))
                 {
                     run(file);
                     chessy.GenerateBoard();
@@ -108,7 +108,7 @@ namespace ConsoleChess
             }
         }
 
-//places the pieces on the board
+        //places the pieces on the board
         public void PlacePiece(string s)
         {
             Piece piece = CreateSaidPiece(s);
@@ -153,7 +153,7 @@ namespace ConsoleChess
             }
         }
 
-//moves pieces
+        //moves pieces
         public void MovePiece(string s)
         {
             Piece piece = null;
@@ -185,8 +185,8 @@ namespace ConsoleChess
                         Console.WriteLine($"\n{piece}");
                         piece.CurrentXCoordinate = piece.FutureXCoordinate;
                         piece.CurrentYCoordinate = piece.FutureYCoordinate;
-                      //  chessy.GenerateBoard();
-                       
+                        //  chessy.GenerateBoard();
+
                         foreach (Piece p in AllPieces)
                         {
                             if (p.GetType().Equals(Piece.ChessPieces.K))
@@ -253,7 +253,7 @@ namespace ConsoleChess
             MovePiece(s);
         }
 
-//castling
+        //castling
         public void MoveTwoPieces(string s)
         {
             foreach (Piece p in AllPieces)
@@ -277,7 +277,7 @@ namespace ConsoleChess
             }
         }
 
-//determins colour for the piece
+        //determins colour for the piece
         public Piece.PieceColors ColorDeterminer(char color)
         {
             Piece.PieceColors DeterminedColor = Piece.PieceColors.WHITE;
@@ -292,7 +292,7 @@ namespace ConsoleChess
             return DeterminedColor;
         }
 
-//determins the piece
+        //determins the piece
         public Piece.ChessPieces PieceDeterminer(char piece)
         {
             Piece.ChessPieces DeterminedPiece = Piece.ChessPieces.K;
