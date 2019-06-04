@@ -52,44 +52,61 @@ namespace ConsoleChess
             Console.WriteLine();
         }
 
-
         public bool isInCheck(Piece p)
         {
             bool check = false;
             char x = p.CurrentXCoordinate;
             int y = p.CurrentYCoordinate;
+            Console.WriteLine(p);
 
-
-            if (p.Color == Piece.PieceColors.WHITE)
+            foreach (Piece piece in ReadInPieces.AllPieces)
             {
-                foreach (Piece piece in ReadInPieces.AllPieces)
+                if (piece.Color != p.Color)
                 {
-                    if (piece.Color == Piece.PieceColors.BLACK)
-                    {
-                        check = piece.PieceInWay(x, y);
+                    check = piece.MoveToSpace(x, y);
 
-                        if (check)
-                        {
-                            break;
-                        }
+                    if (check)
+                    {
+                        Console.WriteLine(piece + $" is putting {p.Color} king in check");
+                        break;
                     }
                 }
             }
-            else
-            {
-                foreach (Piece piece in ReadInPieces.AllPieces)
-                {
-                    if (piece.Color == Piece.PieceColors.WHITE)
-                    {
-                        check = piece.PieceInWay(x, y);
 
-                        if (check)
-                        {
-                            break;
-                        }
-                    }
-                }
-            }
+
+
+            //if (p.Color == Piece.PieceColors.WHITE)
+            //{
+            //    foreach (Piece piece in ReadInPieces.AllPieces)
+            //    {
+            //        if (piece.Color == Piece.PieceColors.BLACK)
+            //        {
+            //            check = piece.MoveToSpace(x, y);
+
+            //            if (check)
+            //            {
+            //                Console.WriteLine(piece + " is putting White king in check");
+            //                break;
+            //            }
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    foreach (Piece piece in ReadInPieces.AllPieces)
+            //    {
+            //        if (piece.Color == Piece.PieceColors.WHITE)
+            //        {
+            //            check = piece.PieceInWay(x, y);
+
+            //            if (check)
+            //            {
+            //                Console.WriteLine(piece + " is putting Black king in check");
+            //                break;
+            //            }
+            //        }
+            //    }
+            //}
 
             return check;
         }

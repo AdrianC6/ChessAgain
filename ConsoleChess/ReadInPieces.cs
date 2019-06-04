@@ -172,25 +172,6 @@ namespace ConsoleChess
                         Console.WriteLine($"\n{piece}");
                         piece.CurrentXCoordinate = piece.FutureXCoordinate;
                         piece.CurrentYCoordinate = piece.FutureYCoordinate;
-                        //chessy.GenerateBoard();
-
-                        //foreach (Piece p in AllPieces)
-                        //{
-                        //    if (p.PieceType == Piece.ChessPieces.K)
-                        //    {
-                        //        if (chessy.isInCheck(p))
-                        //        {
-                        //            if (chessy.isInCheckmate(p))
-                        //            {
-                        //                Console.WriteLine($"THE {p.Color} KING IS IN CHECKMATE");
-                        //                break;
-                        //            }
-                        //            Console.WriteLine($"THE {p.Color} KING IS IN CHECK");
-                        //            break;
-                        //        }
-                        //    }
-                        //}
-
                     }
                 }
                 else if (piece1.Color != piece.Color)
@@ -203,26 +184,6 @@ namespace ConsoleChess
                         piece.CurrentYCoordinate = piece.FutureYCoordinate;
                         AllPieces.Remove(piece1);
                         Console.WriteLine("Piece Captured");
-                        //chessy.GenerateBoard();
-
-
-                        //foreach (Piece p in AllPieces)
-                        //{
-                        //    if (p.PieceType == Piece.ChessPieces.K)
-                        //    {
-                        //        if (chessy.isInCheck(p))
-                        //        {
-                        //            if (chessy.isInCheckmate(p))
-                        //            {
-                        //                Console.WriteLine($"THE {p.Color} KING IS IN CHECKMATE");
-                        //                break;
-                        //            }
-                        //            Console.WriteLine($"THE {p.Color} KING IS IN CHECK");
-                        //            break;
-                        //        }
-                        //    }
-                        //}
-
                     }
                 }
                 else
@@ -247,31 +208,15 @@ namespace ConsoleChess
             {
                 if (p.PieceType == Piece.ChessPieces.K)
                 {
-                    if (p.Color == Piece.PieceColors.WHITE)
+                    if (chessy.isInCheck(p))
                     {
-                        if (chessy.isInCheck(p))
+                        if (chessy.isInCheckmate(p))
                         {
-                            if (chessy.isInCheckmate(p))
-                            {
-                                Console.WriteLine($"THE {p.Color} KING IS IN CHECKMATE");
-                                break;
-                            }
-                            Console.WriteLine($"THE {p.Color} KING IS IN CHECK");
+                            Console.WriteLine($"THE {p.Color} KING IS IN CHECKMATE");
                             break;
                         }
-                    }
-                    else
-                    {
-                        if (chessy.isInCheck(p))
-                        {
-                            if (chessy.isInCheckmate(p))
-                            {
-                                Console.WriteLine($"THE {p.Color} KING IS IN CHECKMATE");
-                                break;
-                            }
-                            Console.WriteLine($"THE {p.Color} KING IS IN CHECK");
-                            break;
-                        }
+                        Console.WriteLine($"THE {p.Color} KING IS IN CHECK");
+                        break;
                     }
                 }
             }

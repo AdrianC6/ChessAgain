@@ -84,6 +84,55 @@ namespace ConsoleChess
             }
         }
 
+        public override bool MoveToSpace(char futureX, int futureY)
+        {
+            if ((CurrentYCoordinate == 2 && this.Color == PieceColors.WHITE) || (CurrentYCoordinate == 7 && this.Color == PieceColors.BLACK))
+            {
+                HasMoved = false;
+            }
+            else
+            {
+                HasMoved = true;
+            }
+
+            if (Color == PieceColors.BLACK)
+            {
+
+                if (CurrentXCoordinate == futureX && ((CurrentYCoordinate - 1) == futureY))
+                {
+                    CanMove = true;
+                }
+                else if (HasMoved == false)
+                {
+                    SpecialMove(futureX, futureY);
+                }
+                else
+                {
+                    this.CurrentYCoordinate = CurrentYCoordinate;
+                    CanMove = false;
+                }
+
+            }
+            else
+            {
+                if (CurrentXCoordinate == futureX && ((CurrentYCoordinate + 1) == futureY))
+                {
+                    CanMove = true;
+                }
+                else if (HasMoved == false)
+                {
+                    SpecialMove(futureX, futureY);
+                }
+                else
+                {
+                    this.CurrentYCoordinate = CurrentYCoordinate;
+                    CanMove = false;
+                }
+            }
+
+            return CanMove;
+        }
+
         public void SpecialMove(char futureX, int futureY)
         {
             if (this.Color == PieceColors.BLACK)

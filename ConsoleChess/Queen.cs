@@ -69,6 +69,37 @@ namespace ConsoleChess
             }
 
         }
+
+        public override bool MoveToSpace(char futureX, int futureY)
+        {
+            int Ymin = 0;
+            int Ymax = 9;
+            char Xmin = 'a';
+            char Xmax = 'h';
+
+            if (Math.Abs(((double)CurrentYCoordinate - futureY) / (CurrentXCoordinate - futureX)) == 1)
+            {
+                CanMove = true;
+                PieceInWayDiagonal(futureX, futureY);
+            }
+            else if ((futureX >= Xmin && futureX <= Xmax) && CurrentYCoordinate == futureY)
+            {
+                CanMove = true;
+                PieceInWayHorizontal(futureX, futureY);
+            }
+            else if ((futureY > Ymin && futureY < Ymax) && CurrentXCoordinate == futureX)
+            {
+                CanMove = true;
+                PieceInWayHorizontal(futureX, futureY);
+            }
+            else
+            {
+                CanMove = false;
+            }
+
+            return CanMove;
+        }
+
         public bool PieceInWayHorizontal(char futureX, int futureY)
         {
             char currentX;
@@ -117,7 +148,7 @@ namespace ConsoleChess
                 {
                     currentX += (char)1;
                     currentY += 1;
-                    if ((p.CurrentXCoordinate == currentX && p.CurrentYCoordinate == currentY) && (currentX < this.FutureXCoordinate && currentY < this.FutureYCoordinate))
+                    if ((p.CurrentXCoordinate == currentX && p.CurrentYCoordinate == currentY) && (currentX < futureX && currentY < futureY))
                     {
                         return CanMove = false;
                     }
@@ -135,7 +166,7 @@ namespace ConsoleChess
                 {
                     currentX -= (char)1;
                     currentY -= 1;
-                    if ((p.CurrentXCoordinate == currentX && p.CurrentYCoordinate == currentY) && (currentX > this.FutureXCoordinate && currentY > this.FutureYCoordinate))
+                    if ((p.CurrentXCoordinate == currentX && p.CurrentYCoordinate == currentY) && (currentX > futureX && currentY > futureY))
                     {
                         return CanMove = false;
                     }

@@ -61,6 +61,8 @@ namespace ConsoleChess
 
         public abstract bool PieceInWay(char futureX, int futureY);
 
+        public abstract bool MoveToSpace(char futureX, int futureY);
+
         //    public static List<ChessPiece> AllPieces = new List<ChessPiece>();
         //    public static string placePiece = @"(^[PNBRQK][ld][a-h][1-8]$)";
         //    public static string movePiece = @"(^[a-h][1-8] [a-h][1-8]$)";

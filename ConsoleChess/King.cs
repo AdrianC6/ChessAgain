@@ -57,6 +57,28 @@ namespace ConsoleChess
             }
         }
 
+        public override bool MoveToSpace(char futureX, int futureY)
+        {
+            if (Math.Abs(CurrentYCoordinate - futureY) <= 1 && Math.Abs(CurrentXCoordinate - futureX) <= 1)
+            {
+                if (Math.Abs(CurrentYCoordinate - futureY) == 1 || Math.Abs(CurrentXCoordinate - futureX) == 1)
+                {
+                    CanMove = true;
+                }
+                else
+                {
+                    CanMove = false;
+                }
+            }
+            else
+            {
+                CanMove = false;
+            }
+
+            return CanMove;
+        }
+
+
         public void SpecialMove()
         {
             if (!HasMoved)

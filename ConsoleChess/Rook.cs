@@ -67,8 +67,33 @@ namespace ConsoleChess
                 CanMove = false;
                 Console.WriteLine("Invalid move u stale end piece of white wonder bread");
             }
-
         }
+
+        public override bool MoveToSpace(char futureX, int futureY)
+        {
+            int Ymax = 9;
+            int Ymin = 0;
+            char Xmax = 'h';
+            char Xmin = 'a';
+
+            if ((futureX >= Xmin && futureX <= Xmax) && CurrentYCoordinate == futureY)
+            {
+                CanMove = true;
+                PieceInWay(futureX, futureY);
+            }
+            else if ((futureY > Ymin && futureY < Ymax) && CurrentXCoordinate == futureX)
+            {
+                CanMove = true;
+                PieceInWay(futureX, futureY);
+            }
+            else
+            {
+                CanMove = false;
+            }
+
+            return CanMove;
+        }
+
 
         public void SpecialMove()
         {
