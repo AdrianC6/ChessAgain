@@ -1,6 +1,5 @@
 Kld1
 Qle1
-Bdb1
 Bld3
 Ple2
 Bdd2
