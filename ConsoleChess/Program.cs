@@ -10,10 +10,14 @@ namespace ConsoleChess
     {
         static void Main(string[] args)
         {
-            string file = "KingCheck.txt";
-            ReadInPieces pieced = new ReadInPieces();
-           // pieced.run(file);
-          pieced.run(args[0]);
+            //string file = "C:\\Users\\ACastellon\\source\\repos\\ConsoleChess\\ConsoleChess\\bin\\Debug\\NoPawns.txt";
+
+            GameMenu g = new GameMenu();
+            g.GameStart();
+
+            //ReadInPieces pieced = new ReadInPieces();
+            //    pieced.run(args[0]);
+
         }
     }
 }
