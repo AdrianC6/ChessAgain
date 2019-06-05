@@ -12,8 +12,8 @@ namespace ConsoleChess
         {
             string file = "KingCheck.txt";
             ReadInPieces pieced = new ReadInPieces();
-            pieced.run(file);
-            //pieced.run(args[0]);
+           // pieced.run(file);
+          pieced.run(args[0]);
         }
     }
 }
