@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ConsolIO">
+      <HintPath>..\..\..\..\..\..\DLL's\ConsolIO.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Bishop.cs" />
     <Compile Include="ChessGame.cs" />
+    <Compile Include="GameMenu.cs" />
     <Compile Include="King.cs" />
     <Compile Include="Knight.cs" />
     <Compile Include="Pawn.cs" />

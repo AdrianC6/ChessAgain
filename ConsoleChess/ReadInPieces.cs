@@ -12,6 +12,8 @@ namespace ConsoleChess
     {
 
         public static List<Piece> AllPieces = new List<Piece>();
+        public static List<string> moveablePieces = new List<string>();
+        public static List<string> moveableSpots = new List<string>();
 
         public static string placePiece = @"(^[PNBRQK][ld][a-h][1-8]$)";
         public static string movePiece = @"(^[a-h][1-8] [a-h][1-8]$)";
@@ -77,20 +79,20 @@ namespace ConsoleChess
                     chessy.GenerateBoard();
                     IsInitiallyPrinted = true;
                 }
-                do
-                {
-                    Console.Write("Enter your file (ctrl+c to exit):");
-                    file = Console.ReadLine();
-                    if (!File.Exists(file))
-                    {
-                        Console.WriteLine("enter valid path");
-                    }
-                    if (File.Exists(file))
-                    {
-                        run(file);
-                        chessy.GenerateBoard();
-                    }
-                } while (!File.Exists(file));
+                //do
+                //{
+                //    Console.Write("Enter your file (ctrl+c to exit):");
+                //    file = Console.ReadLine();
+                //    if (!File.Exists(file))
+                //    {
+                //        Console.WriteLine("enter valid path");
+                //    }
+                //    if (File.Exists(file))
+                //    {
+                //        run(file);
+                //        chessy.GenerateBoard();
+                //    }
+                //} while (!File.Exists(file));
             }
             catch (IOException e)
             {
@@ -117,7 +119,7 @@ namespace ConsoleChess
             piece.CurrentXCoordinate = (char)s[2];
             piece.CurrentYCoordinate = validYCoord(s[3]);
             AllPieces.Add(piece);
-            Console.WriteLine(piece);
+            //Console.WriteLine(piece);
         }
 
         public Piece CreateSaidPiece(string s)
@@ -185,7 +187,7 @@ namespace ConsoleChess
                         Console.WriteLine($"\n{piece}");
                         piece.CurrentXCoordinate = piece.FutureXCoordinate;
                         piece.CurrentYCoordinate = piece.FutureYCoordinate;
-               
+
                         foreach (Piece p in AllPieces)
                         {
                             if (p.GetType().Equals(Piece.ChessPieces.K))
@@ -213,7 +215,7 @@ namespace ConsoleChess
                         piece.CurrentYCoordinate = piece.FutureYCoordinate;
                         AllPieces.Remove(piece1);
                         Console.WriteLine("Piece Captured");
- 
+
                         foreach (Piece p in AllPieces)
                         {
                             if (p.GetType().Equals(Piece.ChessPieces.K))
@@ -326,6 +328,27 @@ namespace ConsoleChess
             int.TryParse(yCoord.ToString(), out int result);
             return result;
         }
+
+        public void canPieceMove()
+        {
+
+            foreach (Piece p in AllPieces)
+            {
+
+
+
+            }
+
+            //Piece piece = null;
+            //if (piece.CanMove == true)
+            //{
+
+            //    moveablePieces.Add();
+
+            //}
+
+        }
+    
     }
 }
 

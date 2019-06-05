@@ -12,3 +12,12 @@ C:\Users\Amush\Documents\GitHub\ChessAgain\ConsoleChess\obj\Debug\ConsoleChess.c
 C:\Users\Amush\Documents\GitHub\ChessAgain\ConsoleChess\obj\Debug\ConsoleChess.csproj.CoreCompileInputs.cache
 C:\Users\Amush\Documents\GitHub\ChessAgain\ConsoleChess\obj\Debug\ConsoleChess.exe
 C:\Users\Amush\Documents\GitHub\ChessAgain\ConsoleChess\obj\Debug\ConsoleChess.pdb
+C:\Users\Matthew\Desktop\Part7\ChessAgain\ConsoleChess\obj\Debug\ConsoleChess.csprojAssemblyReference.cache
+C:\Users\Matthew\Desktop\Part7\ChessAgain\ConsoleChess\obj\Debug\ConsoleChess.csproj.CoreCompileInputs.cache
+C:\Users\Matthew\Desktop\Part7\ChessAgain\ConsoleChess\obj\Debug\ConsoleChess.exe
+C:\Users\Matthew\Desktop\Part7\ChessAgain\ConsoleChess\obj\Debug\ConsoleChess.pdb
+C:\Users\Matthew\Desktop\Part7\ChessAgain\ConsoleChess\bin\Debug\ConsoleChess.exe.config
+C:\Users\Matthew\Desktop\Part7\ChessAgain\ConsoleChess\bin\Debug\ConsoleChess.exe
+C:\Users\Matthew\Desktop\Part7\ChessAgain\ConsoleChess\bin\Debug\ConsoleChess.pdb
+C:\Users\Matthew\Desktop\Part7\ChessAgain\ConsoleChess\bin\Debug\ConsolIO.dll
+C:\Users\Matthew\Desktop\Part7\ChessAgain\ConsoleChess\obj\Debug\ConsoleChess.csproj.CopyComplete
