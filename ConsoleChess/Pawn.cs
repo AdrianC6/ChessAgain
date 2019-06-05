@@ -34,17 +34,6 @@ namespace ConsoleChess
             this.HasMoved = hasMoved;
         }
 
-        //public void determineMove()
-        //{
-        //    if (HasMoved)
-        //    {
-        //        Move();
-        //    }
-        //    else
-        //    {
-        //        SpecialMove();
-        //    }
-        //}
         public override void Move(char futureX, int futureY)
         {
             if ((CurrentYCoordinate == 2 && this.Color == PieceColors.WHITE) || (CurrentYCoordinate == 7 && this.Color == PieceColors.BLACK))

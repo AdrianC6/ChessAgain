@@ -35,29 +35,21 @@ namespace ConsoleChess
             this.HasMoved = hasMoved;
         }
 
-        //private int min = 1;
-        //private int max = 8;
 
         public override void Move(char futureX, int futureY)
         {
 
             if (Math.Abs(((double)CurrentYCoordinate - futureY) / (CurrentXCoordinate - futureX)) == 1)
 
-            {
-                //CanMove = true;
+            { 
                 PieceInWay(futureX, futureY);
                 ReadInPieces.player.Turn(this);
-                //ReadInPieces.chessy.GenerateBoard();
             }
             else
             {
                 Console.WriteLine("Invalid move u uncultered swine");
             }
-            //for (int i = max; i > min; i--)
-            //{
-            //    CanMove = false;
-            //    Console.WriteLine("Invalid move u uncultered swine");
-            //}
+           
         }
 
         public bool PieceInWay(char futureX, int futureY)

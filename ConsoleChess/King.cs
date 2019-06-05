@@ -55,7 +55,6 @@ namespace ConsoleChess
                 CanMove = false;
                 Console.WriteLine("Invalid move u foon");
             }
-
         }
 
         public void SpecialMove()

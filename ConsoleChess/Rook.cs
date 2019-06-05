@@ -44,29 +44,18 @@ namespace ConsoleChess
 
             if ((futureX >= Xmin && futureX <= Xmax) && CurrentYCoordinate == futureY)
             {
-                //CanMove = true;
                 PieceInWay(futureX, futureY);
                 ReadInPieces.player.Turn(this);
-                //ReadInPieces.chessy.GenerateBoard();
-
             }
             else if ((futureY > Ymin && futureY < Ymax) && CurrentXCoordinate == futureX)
             {
-                //CanMove = true;
                 PieceInWay(futureX, futureY);
                 ReadInPieces.player.Turn(this);
-                //ReadInPieces.chessy.GenerateBoard();
-
             }
             else
             {
                 CanMove = false;
             }
-        }
-
-        public void SpecialMove()
-        {
-
         }
 
         public bool PieceInWay(char futureX, int futureY)
