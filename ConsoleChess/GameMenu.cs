@@ -17,6 +17,7 @@ namespace ConsoleChess
             bool play = true;
             bool replay = false;
             int selection = 0;
+            bool kingCheck = false;
 
             while (play)
             {
@@ -64,7 +65,6 @@ namespace ConsoleChess
 
                 }
 
-                bool kingCheck = false;
 
                 while (GamePlay)
                 {
@@ -80,10 +80,23 @@ namespace ConsoleChess
                         chessy.GenerateBoard();
 
                         //turn Check
+                        if(Person.turn == 1)
+                        {
+
+                            Console.WriteLine("It is The Light Players Turn");
+
+                        }
+                        else if (Person.turn == 2)
+                        {
+
+                            Console.WriteLine("It is The Dark Players Turn");
+
+                        }
 
                         //Piece Selection Menu
                         ReadInPieces r = new ReadInPieces();
                         //r.canPieceMove();
+                        r.canPieceMove();
                         IEnumerable<string> pieceList = (IEnumerable<string>)ReadInPieces.moveablePieces; 
                         int PieceSelect = CIO.PromptForMenuSelection(pieceList, true);
                         Console.Clear();

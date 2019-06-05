@@ -26,6 +26,7 @@ namespace ConsoleChess
         public static ChessGame chessy = new ChessGame();
         public static Person player = new Person();
         bool IsInitiallyPrinted = false;
+
         public void run(string args)
         {
             do
@@ -334,8 +335,28 @@ namespace ConsoleChess
 
             foreach (Piece p in AllPieces)
             {
+                if (Person.turn == 1)
+                {
 
+                    if (p.Color.Equals("l"))
+                    { 
 
+                        moveablePieces.Add(p.ToString());
+                        
+                    }
+
+                }
+                else if (Person.turn == 2)
+                {
+
+                    if (p.Color.Equals("d"))
+                    {
+
+                        moveablePieces.Add(p.ToString());
+
+                    }
+                   
+                }
 
             }
 
