@@ -34,26 +34,26 @@ namespace ConsoleChess
             this.HasMoved = hasMoved;
         }
 
-        public override void Move(char futureX, int futureY)
+        public override void Move(char futureX, int futureY, string[,] board)
         {
             if ((CurrentXCoordinate + 1 == futureX && CurrentYCoordinate + 2 == futureY) || (CurrentXCoordinate - 1 == futureX && CurrentYCoordinate + 2 == futureY))
             {
-                CanMove = true;
+                PieceInWay(futureX, futureY, board);
                 ReadInPieces.player.Turn(this);
             }
             else if ((CurrentXCoordinate - 1 == futureX && CurrentYCoordinate - 2 == futureY) || (CurrentXCoordinate + 1 == futureX && CurrentYCoordinate - 2 == futureY))
             {
-                CanMove = true;
+                PieceInWay(futureX, futureY, board);
                 ReadInPieces.player.Turn(this);
             }
             else if ((CurrentXCoordinate - 2 == futureX && CurrentYCoordinate - 1 == futureY) || (CurrentXCoordinate - 2 == futureX && CurrentYCoordinate + 1 == futureY))
             {
-                CanMove = true;
+                PieceInWay(futureX, futureY, board);
                 ReadInPieces.player.Turn(this);
             }
             else if ((CurrentXCoordinate + 2 == futureX && CurrentYCoordinate - 1 == futureY) || (CurrentXCoordinate + 2 == futureX && CurrentYCoordinate + 1 == futureY))
             {
-                CanMove = true;
+                PieceInWay(futureX, futureY, board);
                 ReadInPieces.player.Turn(this);
             }
             else
@@ -64,23 +64,152 @@ namespace ConsoleChess
             }
         }
 
-        public override bool MoveToSpace(char futureX, int futureY)
+        public override bool MoveToSpace(char futureX, int futureY, string[,] board)
         {
             if ((CurrentXCoordinate + 1 == futureX && CurrentYCoordinate + 2 == futureY) || (CurrentXCoordinate - 1 == futureX && CurrentYCoordinate + 2 == futureY))
             {
                 CanMove = true;
+                CanMove = PieceInWay(futureX, futureY, board);
             }
             else if ((CurrentXCoordinate - 1 == futureX && CurrentYCoordinate - 2 == futureY) || (CurrentXCoordinate + 1 == futureX && CurrentYCoordinate - 2 == futureY))
             {
                 CanMove = true;
+                CanMove = PieceInWay(futureX, futureY, board);
             }
             else if ((CurrentXCoordinate - 2 == futureX && CurrentYCoordinate - 1 == futureY) || (CurrentXCoordinate - 2 == futureX && CurrentYCoordinate + 1 == futureY))
             {
                 CanMove = true;
+                CanMove = PieceInWay(futureX, futureY, board);
             }
             else if ((CurrentXCoordinate + 2 == futureX && CurrentYCoordinate - 1 == futureY) || (CurrentXCoordinate + 2 == futureX && CurrentYCoordinate + 1 == futureY))
             {
                 CanMove = true;
+                CanMove = PieceInWay(futureX, futureY, board);
+            }
+            else
+            {
+                CanMove = false;
+            }
+
+            return CanMove;
+        }
+
+        public override bool PieceInWay(char futureX, int futureY, string[,] board)
+        {
+            CanMove = false;
+
+            if ((CurrentXCoordinate + 1 == futureX && CurrentYCoordinate + 2 == futureY) || (CurrentXCoordinate - 1 == futureX && CurrentYCoordinate + 2 == futureY))
+            {
+                if (board[futureX, futureY] == "[-]")
+                {
+                    CanMove = true;
+                }
+                else
+                {
+                    if (Color == PieceColors.WHITE)
+                    {
+                        if (board[futureX, futureY][1] > (char)96 || board[futureX, futureY][1] < (char)123)
+                        {
+                            CanMove = true;
+                        }
+                    }
+                    else
+                    {
+                        if (board[futureX, futureY][1] > (char)64 || board[futureX, futureY][1] < (char)91)
+                        {
+                            CanMove = true;
+                        }
+                        else
+                        {
+                            CanMove = false;
+                        }
+                    }
+                }
+
+            }
+            else if ((CurrentXCoordinate - 1 == futureX && CurrentYCoordinate - 2 == futureY) || (CurrentXCoordinate + 1 == futureX && CurrentYCoordinate - 2 == futureY))
+            {
+                if (board[futureX, futureY] == "[-]")
+                {
+                    CanMove = true;
+                }
+                else
+                {
+                    if (Color == PieceColors.WHITE)
+                    {
+                        if (board[futureX, futureY][1] > (char)96 || board[futureX, futureY][1] < (char)123)
+                        {
+                            CanMove = true;
+                        }
+                    }
+                    else
+                    {
+                        if (board[futureX, futureY][1] > (char)64 || board[futureX, futureY][1] < (char)91)
+                        {
+                            CanMove = true;
+                        }
+                        else
+                        {
+                            CanMove = false;
+                        }
+                    }
+                }
+            }
+            else if ((CurrentXCoordinate - 2 == futureX && CurrentYCoordinate - 1 == futureY) || (CurrentXCoordinate - 2 == futureX && CurrentYCoordinate + 1 == futureY))
+            {
+                if (board[futureX, futureY] == "[-]")
+                {
+                    CanMove = true;
+                }
+                else
+                {
+                    if (Color == PieceColors.WHITE)
+                    {
+                        if (board[futureX, futureY][1] > (char)96 || board[futureX, futureY][1] < (char)123)
+                        {
+                            CanMove = true;
+                        }
+                    }
+                    else
+                    {
+                        if (board[futureX, futureY][1] > (char)64 || board[futureX, futureY][1] < (char)91)
+                        {
+                            CanMove = true;
+                        }
+                        else
+                        {
+                            CanMove = false;
+                        }
+                    }
+                }
+            }
+            else if ((CurrentXCoordinate + 2 == futureX && CurrentYCoordinate - 1 == futureY) || (CurrentXCoordinate + 2 == futureX && CurrentYCoordinate + 1 == futureY))
+            {
+                if (board[futureX, futureY] == "[-]")
+                {
+                    CanMove = true;
+                }
+                else
+                {
+                    if (Color == PieceColors.WHITE)
+                    {
+                        if (board[futureX, futureY][1] > (char)96 || board[futureX, futureY][1] < (char)123)
+                        {
+                            CanMove = true;
+                        }
+                    }
+                    else
+                    {
+                        if (board[futureX, futureY][1] > (char)64 || board[futureX, futureY][1] < (char)91)
+                        {
+                            CanMove = true;
+                        }
+                        else
+                        {
+                            CanMove = false;
+                        }
+                    }
+                }
             }
             else
             {

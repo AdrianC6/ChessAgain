@@ -166,8 +166,8 @@ namespace ConsoleChess
             {
                 if (piece1 == null)
                 {
-                    piece.Move(piece.FutureXCoordinate = (char)s[3], piece.FutureYCoordinate = validYCoord(s[4]));
-                    if (piece.CanMove == true)
+                    piece.Move(piece.FutureXCoordinate = (char)s[3], piece.FutureYCoordinate = validYCoord(s[4]), chessy.board);
+                    if (piece.CanMove)
                     {
                         Console.WriteLine($"\n{piece}");
                         piece.CurrentXCoordinate = piece.FutureXCoordinate;
@@ -176,8 +176,8 @@ namespace ConsoleChess
                 }
                 else if (piece1.Color != piece.Color)
                 {
-                    piece.Move(piece.FutureXCoordinate = (char)s[3], piece.FutureYCoordinate = validYCoord(s[4]));
-                    if (piece.CanMove == true)
+                    piece.Move(piece.FutureXCoordinate = (char)s[3], piece.FutureYCoordinate = validYCoord(s[4]), chessy.board);
+                    if (piece.CanMove)
                     {
                         Console.WriteLine($"\n{piece}");
                         piece.CurrentXCoordinate = piece.FutureXCoordinate;
@@ -208,9 +208,9 @@ namespace ConsoleChess
             {
                 if (p.PieceType == Piece.ChessPieces.K)
                 {
-                    if (chessy.isInCheck(p))
+                    if (chessy.isInCheck(p, chessy.board))
                     {
-                        if (chessy.isInCheckmate(p))
+                        if (chessy.isInCheckmate(p, chessy.board))
                         {
                             Console.WriteLine($"THE {p.Color} KING IS IN CHECKMATE");
                             break;

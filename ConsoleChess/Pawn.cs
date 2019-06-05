@@ -33,7 +33,7 @@ namespace ConsoleChess
             this.CanMove = canMove;
             this.HasMoved = hasMoved;
         }
-        public override void Move(char futureX, int futureY)
+        public override void Move(char futureX, int futureY, string[,] board)
         {
             if ((CurrentYCoordinate == 2 && this.Color == PieceColors.WHITE) || (CurrentYCoordinate == 7 && this.Color == PieceColors.BLACK))
             {
@@ -84,7 +84,7 @@ namespace ConsoleChess
             }
         }
 
-        public override bool MoveToSpace(char futureX, int futureY)
+        public override bool MoveToSpace(char futureX, int futureY, string[,] board)
         {
             if ((CurrentYCoordinate == 2 && this.Color == PieceColors.WHITE) || (CurrentYCoordinate == 7 && this.Color == PieceColors.BLACK))
             {
@@ -131,6 +131,11 @@ namespace ConsoleChess
             }
 
             return CanMove;
+        }
+
+        public override bool PieceInWay(char futureX, int futureY, string[,] board)
+        {
+            throw new NotImplementedException();
         }
 
         public void SpecialMove(char futureX, int futureY)

@@ -52,7 +52,7 @@ namespace ConsoleChess
             Console.WriteLine();
         }
 
-        public bool isInCheck(Piece p)
+        public bool isInCheck(Piece p, string[,] board)
         {
             bool check = false;
             char x = p.CurrentXCoordinate;
@@ -63,7 +63,7 @@ namespace ConsoleChess
             {
                 if (piece.Color != p.Color)
                 {
-                    check = piece.MoveToSpace(x, y);
+                    check = piece.MoveToSpace(x, y, board);
 
                     if (check)
                     {
@@ -73,75 +73,22 @@ namespace ConsoleChess
                 }
             }
 
-
-
-            //if (p.Color == Piece.PieceColors.WHITE)
-            //{
-            //    foreach (Piece piece in ReadInPieces.AllPieces)
-            //    {
-            //        if (piece.Color == Piece.PieceColors.BLACK)
-            //        {
-            //            check = piece.MoveToSpace(x, y);
-
-            //            if (check)
-            //            {
-            //                Console.WriteLine(piece + " is putting White king in check");
-            //                break;
-            //            }
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    foreach (Piece piece in ReadInPieces.AllPieces)
-            //    {
-            //        if (piece.Color == Piece.PieceColors.WHITE)
-            //        {
-            //            check = piece.PieceInWay(x, y);
-
-            //            if (check)
-            //            {
-            //                Console.WriteLine(piece + " is putting Black king in check");
-            //                break;
-            //            }
-            //        }
-            //    }
-            //}
-
             return check;
         }
 
-        public bool isInCheck(char x, int y , Piece p)
+        public bool isInCheck(char x, int y , Piece p, string[,] board)
         {
             bool check = false;
 
-            if (p.Color == Piece.PieceColors.WHITE)
+            foreach (Piece piece in ReadInPieces.AllPieces)
             {
-                foreach (Piece piece in ReadInPieces.AllPieces)
+                if (piece.Color != p.Color)
                 {
-                    if (piece.Color == Piece.PieceColors.BLACK)
-                    {
-                        check = piece.PieceInWay(x, y);
+                    check = piece.MoveToSpace(x, y, board);
 
-                        if (check)
-                        {
-                            break;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                foreach (Piece piece in ReadInPieces.AllPieces)
-                {
-                    if (piece.Color == Piece.PieceColors.WHITE)
+                    if (check)
                     {
-                        check = piece.PieceInWay(x, y);
-
-                        if (check)
-                        {
-                            break;
-                        }
+                        break;
                     }
                 }
             }
@@ -149,7 +96,7 @@ namespace ConsoleChess
             return check;
         }
 
-        public bool isInCheckmate(Piece p)
+        public bool isInCheckmate(Piece p, string[,] board)
         {
             bool checkmate = false;
             char x = p.CurrentXCoordinate;
@@ -157,35 +104,35 @@ namespace ConsoleChess
 
             while(!checkmate)
             {
-                if (isInCheck((x += (char)1), (y + 1), p))
+                if (isInCheck((x += (char)1), (y + 1), p, board))
                 {
                     break;
                 }
-                if (isInCheck((x += (char)1), (y - 1), p))
+                if (isInCheck((x += (char)1), (y - 1), p, board))
                 {
                     break;
                 }
-                if (isInCheck((x += (char)1), (y), p))
+                if (isInCheck((x += (char)1), (y), p, board))
                 {
                     break;
                 }
-                if (isInCheck((x), (y + 1), p))
+                if (isInCheck((x), (y + 1), p, board))
                 {
                     break;
                 }
-                if (isInCheck((x), (y - 1), p))
+                if (isInCheck((x), (y - 1), p, board))
                 {
                     break;
                 }
-                if (isInCheck((x -= (char)1), (y + 1), p))
+                if (isInCheck((x -= (char)1), (y + 1), p, board))
                 {
                     break;
                 }
-                if (isInCheck((x -= (char)1), (y), p))
+                if (isInCheck((x -= (char)1), (y), p, board))
                 {
                     break;
                 }
-                if (isInCheck((x -= (char)1), (y - 1), p))
+                if (isInCheck((x -= (char)1), (y - 1), p, board))
                 {
                     break;
                 }
