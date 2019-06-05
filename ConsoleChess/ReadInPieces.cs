@@ -12,6 +12,8 @@ namespace ConsoleChess
     {
 
         public static List<Piece> AllPieces = new List<Piece>();
+        public static List<Piece> sidePieces = new List<Piece>();
+        public static List<Piece> moveablePieceList = new List<Piece>();
         public static List<string> moveablePieces = new List<string>();
         public static List<string> moveableSpots = new List<string>();
 
@@ -26,6 +28,7 @@ namespace ConsoleChess
         public static ChessGame chessy = new ChessGame();
         public static Person player = new Person();
         bool IsInitiallyPrinted = false;
+
         public void run(string args)
         {
             do
@@ -334,21 +337,60 @@ namespace ConsoleChess
 
             foreach (Piece p in AllPieces)
             {
+                if (Person.turn == 1)
+                {
+
+                    if (p.Color == Piece.PieceColors.WHITE)
+                    {
+                        if (p.CanMove)
+                        {
+
+                            sidePieces.Add(p);
+
+                        }
+                       
 
 
+                    }
+
+
+                }
+                //else if (Person.turn == 2)
+                //{
+
+                //    if (p.Color == Piece.PieceColors.BLACK)
+                //    {
+
+                //        moveablePieces.Add(n.to);
+
+                //    }
+
+                //}
 
             }
 
-            //Piece piece = null;
-            //if (piece.CanMove == true)
-            //{
+            foreach (Piece n in sidePieces)
+            {
+                //    char x = n.CurrentXCoordinate;
+                //    int y = n.CurrentYCoordinate;
+                //    n.PieceInWay(x += (char)1, y += 1);
+                //    if (n.CanMove)
+                //    {
 
-            //    moveablePieces.Add();
+                moveablePieces.Add(n.ToString());
+                moveablePieceList.Add(n);
 
-            //}
+            }
 
         }
-    
+
+        public void whereCanPieceMove(int selection)
+        {
+
+
+
+        }
+
     }
 }
 

@@ -17,6 +17,8 @@ namespace ConsoleChess
             bool play = true;
             bool replay = false;
             int selection = 0;
+            bool kingCheck = false;
+            int turn = 2;
 
             while (play)
             {
@@ -64,7 +66,6 @@ namespace ConsoleChess
 
                 }
 
-                bool kingCheck = false;
 
                 while (GamePlay)
                 {
@@ -80,10 +81,23 @@ namespace ConsoleChess
                         chessy.GenerateBoard();
 
                         //turn Check
+                        if(Person.turn == 1)
+                        {
+
+                            Console.WriteLine("It is The Light Players Turn");
+
+                        }
+                        else if (Person.turn == 2)
+                        {
+
+                            Console.WriteLine("It is The Dark Players Turn");
+
+                        }
 
                         //Piece Selection Menu
                         ReadInPieces r = new ReadInPieces();
                         //r.canPieceMove();
+                        r.canPieceMove();
                         IEnumerable<string> pieceList = (IEnumerable<string>)ReadInPieces.moveablePieces; 
                         int PieceSelect = CIO.PromptForMenuSelection(pieceList, true);
                         Console.Clear();
@@ -100,14 +114,14 @@ namespace ConsoleChess
                         {
 
                             //menu starts at one lists start at 0
-                            PieceSelect = PieceSelect - 1;
                             //grab piece
-                            string piece;
+                            PieceSelect = PieceSelect - 1;
+
 
                             Console.Clear();
 
                             //generate list of possible movements for selected piece
-                            //r.whereCanPieceMove(piece);
+                            r.whereCanPieceMove(PieceSelect);
                             //Piece Movement Menu
                             IEnumerable<string> MoveableSpots = (IEnumerable<string>)ReadInPieces.moveableSpots;
                             int PieceMovement = CIO.PromptForMenuSelection(MoveableSpots, true);
