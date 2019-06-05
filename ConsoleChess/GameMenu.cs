@@ -18,6 +18,7 @@ namespace ConsoleChess
             bool replay = false;
             int selection = 0;
             bool kingCheck = false;
+            int turn = 2;
 
             while (play)
             {
@@ -113,14 +114,14 @@ namespace ConsoleChess
                         {
 
                             //menu starts at one lists start at 0
-                            PieceSelect = PieceSelect - 1;
                             //grab piece
-                            string piece;
+                            PieceSelect = PieceSelect - 1;
+
 
                             Console.Clear();
 
                             //generate list of possible movements for selected piece
-                            //r.whereCanPieceMove(piece);
+                            r.whereCanPieceMove(PieceSelect);
                             //Piece Movement Menu
                             IEnumerable<string> MoveableSpots = (IEnumerable<string>)ReadInPieces.moveableSpots;
                             int PieceMovement = CIO.PromptForMenuSelection(MoveableSpots, true);

@@ -11,17 +11,13 @@ namespace ConsoleChess
         static void Main(string[] args)
         {
             //string file = "C:\\Users\\ACastellon\\source\\repos\\ConsoleChess\\ConsoleChess\\bin\\Debug\\NoPawns.txt";
-<<<<<<< HEAD
-            //ReadInPieces pieced = new ReadInPieces();
-            // pieced.run(file);
-            //pieced.run(args[0]);
+
             GameMenu g = new GameMenu();
             g.GameStart();
-=======
-            ReadInPieces pieced = new ReadInPieces();
-           // pieced.run(file);
-          pieced.run(args[0]);
->>>>>>> parent of 2eda1e2... 6/5
+
+            //ReadInPieces pieced = new ReadInPieces();
+            //    pieced.run(args[0]);
+
         }
     }
 }

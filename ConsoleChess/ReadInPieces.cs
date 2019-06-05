@@ -12,6 +12,8 @@ namespace ConsoleChess
     {
 
         public static List<Piece> AllPieces = new List<Piece>();
+        public static List<Piece> sidePieces = new List<Piece>();
+        public static List<Piece> moveablePieceList = new List<Piece>();
         public static List<string> moveablePieces = new List<string>();
         public static List<string> moveableSpots = new List<string>();
 
@@ -338,38 +340,57 @@ namespace ConsoleChess
                 if (Person.turn == 1)
                 {
 
-                    if (p.Color.Equals("l"))
-                    { 
-
-                        moveablePieces.Add(p.ToString());
-                        
-                    }
-
-                }
-                else if (Person.turn == 2)
-                {
-
-                    if (p.Color.Equals("d"))
+                    if (p.Color == Piece.PieceColors.WHITE)
                     {
+                        if (p.CanMove)
+                        {
 
-                        moveablePieces.Add(p.ToString());
+                            sidePieces.Add(p);
+
+                        }
+                       
+
 
                     }
-                   
+
+
                 }
+                //else if (Person.turn == 2)
+                //{
+
+                //    if (p.Color == Piece.PieceColors.BLACK)
+                //    {
+
+                //        moveablePieces.Add(n.to);
+
+                //    }
+
+                //}
 
             }
 
-            //Piece piece = null;
-            //if (piece.CanMove == true)
-            //{
+            foreach (Piece n in sidePieces)
+            {
+                //    char x = n.CurrentXCoordinate;
+                //    int y = n.CurrentYCoordinate;
+                //    n.PieceInWay(x += (char)1, y += 1);
+                //    if (n.CanMove)
+                //    {
 
-            //    moveablePieces.Add();
+                moveablePieces.Add(n.ToString());
+                moveablePieceList.Add(n);
 
-            //}
+            }
 
         }
-    
+
+        public void whereCanPieceMove(int selection)
+        {
+
+
+
+        }
+
     }
 }
 

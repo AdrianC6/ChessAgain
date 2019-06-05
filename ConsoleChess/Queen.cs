@@ -149,7 +149,8 @@ namespace ConsoleChess
 
         public override bool PieceInWay(char futureX, int futureY)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            return CanMove;
         }
     }
 }
