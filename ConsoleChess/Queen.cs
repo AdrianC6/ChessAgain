@@ -47,19 +47,19 @@ namespace ConsoleChess
             if (Math.Abs(((double)CurrentYCoordinate - futureY) / (CurrentXCoordinate - futureX)) == 1)
             {
                 //CanMove = true;
-                PieceInWayDiagonal(futureX, futureY);
+                NoPieceInWayDiagonal(futureX, futureY);
                 ReadInPieces.player.Turn(this);
             }
             else if ((futureX >= Xmin && futureX <= Xmax) && CurrentYCoordinate == futureY)
             {
                 //CanMove = true;
-                PieceInWayHorizontal(futureX, futureY);
+                NoPieceInWayHorizontal(futureX, futureY);
                 ReadInPieces.player.Turn(this);
             }
             else if ((futureY > Ymin && futureY < Ymax) && CurrentXCoordinate == futureX)
             {
                 //CanMove = true;
-                PieceInWayHorizontal(futureX, futureY);
+                NoPieceInWayHorizontal(futureX, futureY);
                 ReadInPieces.player.Turn(this);
             }
             else
@@ -69,7 +69,7 @@ namespace ConsoleChess
             }
         }
         //checks to see if a piece is in the way horizontally
-        public bool PieceInWayHorizontal(char futureX, int futureY)
+        public bool NoPieceInWayHorizontal(char futureX, int futureY)
         {
             char currentX;
             int currentY;
@@ -109,7 +109,7 @@ namespace ConsoleChess
             return CanMove;
         }
         //checks if a piece is in the way diagonally
-        public bool PieceInWayDiagonal(char futureX, int futureY)
+        public bool NoPieceInWayDiagonal(char futureX, int futureY)
         {
             char currentX;
             int currentY;
@@ -121,7 +121,7 @@ namespace ConsoleChess
                 {
                     currentX += (char)1;
                     currentY += 1;
-                    if ((p.CurrentXCoordinate == currentX && p.CurrentYCoordinate == currentY) && (currentX < this.FutureXCoordinate && currentY < this.FutureYCoordinate))
+                    if ((p.CurrentXCoordinate == currentX && p.CurrentYCoordinate == currentY) && (currentX < futureX && currentY < futureY))
                     {
                         Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType}");
                         return CanMove = false;
@@ -140,7 +140,7 @@ namespace ConsoleChess
                 {
                     currentX -= (char)1;
                     currentY -= 1;
-                    if ((p.CurrentXCoordinate == currentX && p.CurrentYCoordinate == currentY) && (currentX > this.FutureXCoordinate && currentY > this.FutureYCoordinate))
+                    if ((p.CurrentXCoordinate == currentX && p.CurrentYCoordinate == currentY) && (currentX > futureX && currentY > futureY))
                     {
                         Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType} at {p.CurrentXCoordinate}{p.CurrentYCoordinate}");
                         return CanMove = false;
@@ -153,11 +153,11 @@ namespace ConsoleChess
             }
             return CanMove;
         }
-    
 
-    public override string ToString()
-    {
-        return FutureXCoordinate == 0 && FutureYCoordinate == 0 ? $"{Color} {PieceType} at {CurrentXCoordinate}{CurrentYCoordinate}" : $"{Color} {PieceType} at {CurrentXCoordinate}{CurrentYCoordinate} now at {FutureXCoordinate}{FutureYCoordinate}";
+
+        public override string ToString()
+        {
+            return FutureXCoordinate == 0 && FutureYCoordinate == 0 ? $"{Color} {PieceType} at {CurrentXCoordinate}{CurrentYCoordinate}" : $"{Color} {PieceType} at {CurrentXCoordinate}{CurrentYCoordinate} now at {FutureXCoordinate}{FutureYCoordinate}";
+        }
     }
-}
 }

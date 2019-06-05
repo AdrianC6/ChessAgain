@@ -8,6 +8,8 @@ namespace ConsoleChess
 {
     class Bishop : Piece
     {
+        List<string> possibleMoves = new List<string>();
+        //ReadInPieces r = new ReadInPieces();
         public Bishop()
         {
             this.CanMove = false;
@@ -37,17 +39,11 @@ namespace ConsoleChess
 
         public override void Move(char futureX, int futureY)
         {
-            //int Ymin = 0;
-            //int Ymax = 9;
-            //char Xmin = 'a';
-            //char Xmax = 'h';
-
             if (Math.Abs(((double)CurrentYCoordinate - futureY) / (CurrentXCoordinate - futureX)) == 1)
             {
-                //CanMove = true;
                 PieceInWay(futureX, futureY);
+                //r.canPiecesMove(this);
                 ReadInPieces.player.Turn(this);
-                //ReadInPieces.chessy.GenerateBoard();
             }
             else
             {
@@ -68,9 +64,10 @@ namespace ConsoleChess
                 {
                     currentX += (char)1;
                     currentY += 1;
-                    if ((p.CurrentXCoordinate == currentX && p.CurrentYCoordinate == currentY) && (currentX < this.FutureXCoordinate && currentY < this.FutureYCoordinate))
+                    if ((p.CurrentXCoordinate == currentX && p.CurrentYCoordinate == currentY) && (currentX < futureX && currentY < futureY))
                     {
                         Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType}");
+                        possibleMoves.Add($"{currentX}{currentY}");
                         return CanMove = false;
                     }
                     else
@@ -87,16 +84,21 @@ namespace ConsoleChess
                 {
                     currentX -= (char)1;
                     currentY -= 1;
-                    if ((p.CurrentXCoordinate == currentX && p.CurrentYCoordinate == currentY) && (currentX > this.FutureXCoordinate && currentY > this.FutureYCoordinate))
+                    if ((p.CurrentXCoordinate == currentX && p.CurrentYCoordinate == currentY) && (currentX > futureX && currentY > futureY))
                     {
                         Console.WriteLine($"\n{this.Color} {this.PieceType} is blocked by {p.Color} {p.PieceType} at {p.CurrentXCoordinate}{p.CurrentYCoordinate}");
                         return CanMove = false;
                     }
                     else
                     {
+                        //possibleMoves.Add($"{currentX}{currentY}");
                         CanMove = true;
                     }
                 }
+            }
+            foreach (string s in possibleMoves)
+            {
+                Console.WriteLine(s);
             }
             return CanMove;
         }

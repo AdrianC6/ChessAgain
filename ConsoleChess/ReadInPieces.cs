@@ -35,10 +35,6 @@ namespace ConsoleChess
                     Console.WriteLine("Enter a valid file path");
                     args = Console.ReadLine();
                 }
-                //else
-                //{
-                //    ReadFile(args);
-                //}
             } while (!File.Exists(args));
             ReadFile(args);
         }

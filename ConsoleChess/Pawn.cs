@@ -61,7 +61,7 @@ namespace ConsoleChess
 
                 if (CurrentXCoordinate == futureX && ((CurrentYCoordinate - 1) == futureY))
                 {
-                    CanMove = true;
+                    PieceInWay(futureX, futureY);
                     ReadInPieces.player.Turn(this);
                 }
                 else if (HasMoved == false)
@@ -79,7 +79,7 @@ namespace ConsoleChess
             {
                 if (CurrentXCoordinate == futureX && ((CurrentYCoordinate + 1) == futureY))
                 {
-                    CanMove = true;
+                    PieceInWay(futureX, futureY);
                     ReadInPieces.player.Turn(this);
                 }
                 else if (HasMoved == false)
@@ -94,6 +94,22 @@ namespace ConsoleChess
             }
         }
 
+        public bool PieceInWay(char futureX, int futureY)
+        {
+            foreach(Piece p in ReadInPieces.AllPieces)
+            {
+                if(p.CurrentXCoordinate == futureX && p.CurrentYCoordinate == futureY)
+                {
+                    CanMove = false;
+                }
+                else
+                {
+                    CanMove = true;
+                }
+            }
+            return CanMove;
+        }
+
         public void SpecialMove(char futureX, int futureY)
         {
             if (this.Color == PieceColors.BLACK)
@@ -101,7 +117,7 @@ namespace ConsoleChess
 
                 if (CurrentXCoordinate == futureX && ((CurrentYCoordinate - 2) == futureY))
                 {
-                    CanMove = true;
+                    PieceInWay(futureX, futureY);
                     ReadInPieces.player.Turn(this);
                 }
                 else
@@ -114,7 +130,7 @@ namespace ConsoleChess
             {
                 if (CurrentXCoordinate == futureX && ((CurrentYCoordinate + 2) == futureY))
                 {
-                    CanMove = true;
+                    PieceInWay(futureX, futureY);
                     ReadInPieces.player.Turn(this);
                 }
                 else

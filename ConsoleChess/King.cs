@@ -56,6 +56,75 @@ namespace ConsoleChess
             }
         }
 
+        public bool PieceInWay(char futureX, int futureY)
+        {
+            bool check = false;
+            if (Math.Abs(CurrentYCoordinate - futureY) <= 1 && Math.Abs(CurrentXCoordinate - futureX) <= 1)
+            {
+                if (Math.Abs(CurrentYCoordinate - futureY) == 1 || Math.Abs(CurrentXCoordinate - futureX) == 1)
+                {
+                    CanMove = true;
+                }
+                else
+                {
+                    CanMove = false;
+                }
+            }
+            else
+            {
+                CanMove = false;
+            }
+            return check;
+        }
+
+        public bool IsInCheck()
+        {
+            bool inCheck = false;
+            for (int i = 1; i < 9; i++)
+            {
+                char x = this.CurrentXCoordinate;
+                int y = this.CurrentYCoordinate;
+                x += (char)1;
+                if (x >= 'a' && x <= 'h')
+                {
+                    foreach (Piece p in ReadInPieces.AllPieces)
+                    {
+                        if (p.CurrentXCoordinate == x && p.Color != this.Color)
+                        {
+                            inCheck = true;
+                            break;
+                        }
+                        else
+                        {
+                            inCheck = false;
+                        }
+                    }
+                }
+            }
+            for (int i = 0; i < 9; i++)
+            {
+                int x = this.CurrentXCoordinate;
+                int y = this.CurrentYCoordinate;
+                y += 1;
+                if (y >= 1 || y <= 8)
+                {
+                    foreach (Piece p in ReadInPieces.AllPieces)
+                    {
+                        if (p.CurrentYCoordinate == y && p.Color != this.Color)
+                        {
+                            inCheck = true;
+                            break;
+                        }
+                        else
+                        {
+                            inCheck = false;
+                        }
+                    }
+                }
+            }
+            return inCheck;
+        }
+
         public void SpecialMove()
         {
         }

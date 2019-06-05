@@ -72,6 +72,7 @@ namespace ConsoleChess
         {
 
         }
+
         //checks to see if a piece is in the way
         public bool PieceInWay(char futureX, int futureY)
         {
