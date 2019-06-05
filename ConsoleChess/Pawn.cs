@@ -33,19 +33,7 @@ namespace ConsoleChess
             this.CanMove = canMove;
             this.HasMoved = hasMoved;
         }
-
-        //public void determineMove()
-        //{
-        //    if (HasMoved)
-        //    {
-        //        Move();
-        //    }
-        //    else
-        //    {
-        //        SpecialMove();
-        //    }
-        //}
-        public override void Move(char futureX, int futureY)
+        public override void Move(char futureX, int futureY, string[,] board)
         {
             if ((CurrentYCoordinate == 2 && this.Color == PieceColors.WHITE) || (CurrentYCoordinate == 7 && this.Color == PieceColors.BLACK))
             {
@@ -90,6 +78,60 @@ namespace ConsoleChess
                     CanMove = false;
                 }
             }
+        }
+
+        public override bool MoveToSpace(char futureX, int futureY, string[,] board)
+        {
+            if ((CurrentYCoordinate == 2 && this.Color == PieceColors.WHITE) || (CurrentYCoordinate == 7 && this.Color == PieceColors.BLACK))
+            {
+                HasMoved = false;
+            }
+            else
+            {
+                HasMoved = true;
+            }
+
+            if (Color == PieceColors.BLACK)
+            {
+
+                if (CurrentXCoordinate == futureX && ((CurrentYCoordinate - 1) == futureY))
+                {
+                    CanMove = true;
+                }
+                else if (HasMoved == false)
+                {
+                    SpecialMove(futureX, futureY);
+                }
+                else
+                {
+                    this.CurrentYCoordinate = CurrentYCoordinate;
+                    CanMove = false;
+                }
+
+            }
+            else
+            {
+                if (CurrentXCoordinate == futureX && ((CurrentYCoordinate + 1) == futureY))
+                {
+                    CanMove = true;
+                }
+                else if (HasMoved == false)
+                {
+                    SpecialMove(futureX, futureY);
+                }
+                else
+                {
+                    this.CurrentYCoordinate = CurrentYCoordinate;
+                    CanMove = false;
+                }
+            }
+
+            return CanMove;
+        }
+
+        public override bool PieceInWay(char futureX, int futureY, string[,] board)
+        {
+            throw new NotImplementedException();
         }
 
         public void SpecialMove(char futureX, int futureY)
@@ -123,6 +165,8 @@ namespace ConsoleChess
 
         public override bool PieceInWay(char futureX, int futureY)
         {
+            CanMove = false;
+
             if ((CurrentYCoordinate == 2 && this.Color == PieceColors.WHITE) || (CurrentYCoordinate == 7 && this.Color == PieceColors.BLACK))
             {
                 HasMoved = false;
@@ -138,7 +182,6 @@ namespace ConsoleChess
                 if (CurrentXCoordinate == futureX && ((CurrentYCoordinate - 1) == futureY))
                 {
                     CanMove = true;
-                    ReadInPieces.player.Turn(this);
                 }
                 else if (HasMoved == false)
                 {
@@ -156,7 +199,6 @@ namespace ConsoleChess
                 if (CurrentXCoordinate == futureX && ((CurrentYCoordinate + 1) == futureY))
                 {
                     CanMove = true;
-                    ReadInPieces.player.Turn(this);
                 }
                 else if (HasMoved == false)
                 {
@@ -176,7 +218,6 @@ namespace ConsoleChess
                 if (CurrentXCoordinate == futureX && ((CurrentYCoordinate - 2) == futureY))
                 {
                     CanMove = true;
-                    ReadInPieces.player.Turn(this);
                 }
                 else
                 {
@@ -188,7 +229,6 @@ namespace ConsoleChess
                 if (CurrentXCoordinate == futureX && ((CurrentYCoordinate + 2) == futureY))
                 {
                     CanMove = true;
-                    ReadInPieces.player.Turn(this);
                 }
                 else
                 {

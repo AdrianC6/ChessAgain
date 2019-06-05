@@ -35,14 +35,13 @@ namespace ConsoleChess
             this.HasMoved = hasMoved;
         }
 
-        public override void Move(char futureX, int futureY)
+        public override void Move(char futureX, int futureY, string[,] board)
         {
             if (Math.Abs(CurrentYCoordinate - futureY) <= 1 && Math.Abs(CurrentXCoordinate - futureX) <= 1)
             {
                 if (Math.Abs(CurrentYCoordinate - futureY) == 1 || Math.Abs(CurrentXCoordinate - futureX) == 1)
                 {
-                    CanMove = true;
-                    HasMoved = true;
+                    PieceInWay(futureX, futureY, board);
                     ReadInPieces.player.Turn(this);
                 }
                 else
@@ -58,8 +57,106 @@ namespace ConsoleChess
             }
         }
 
+        public override bool MoveToSpace(char futureX, int futureY, string[,] board)
+        {
+            if (Math.Abs(CurrentYCoordinate - futureY) <= 1 && Math.Abs(CurrentXCoordinate - futureX) <= 1)
+            {
+                if (Math.Abs(CurrentYCoordinate - futureY) == 1 || Math.Abs(CurrentXCoordinate - futureX) == 1)
+                {
+                    CanMove = true;
+                    CanMove = PieceInWay(futureX, futureY, board);
+                }
+                else
+                {
+                    CanMove = false;
+                }
+            }
+            else
+            {
+                CanMove = false;
+            }
+
+            return CanMove;
+        }
+
+        public override bool PieceInWay(char futureX, int futureY, string[,] board)
+        {
+            CanMove = false;
+
+            if (Math.Abs(CurrentYCoordinate - futureY) <= 1 && Math.Abs(CurrentXCoordinate - futureX) <= 1)
+            {
+                if (Math.Abs(CurrentYCoordinate - futureY) == 1 || Math.Abs(CurrentXCoordinate - futureX) == 1)
+                {
+                    if (board[futureY, futureX] == "[-]")
+                    {
+                        CanMove = true;
+                    }
+                    else
+                    {
+                        if (Color == PieceColors.WHITE)
+                        {
+                            if (board[futureY, futureX] == null)
+                            {
+
+                            }
+                            else
+                            {
+                                if (board[futureY, futureX][1] > (char)96 || board[futureY, futureX][1] < (char)123)
+                                {
+                                    CanMove = true;
+                                }
+                            }
+
+                        }
+                        else
+                        {
+                            if (board[futureY, futureX][1] > (char)64 || board[futureY, futureX][1] < (char)91)
+                            {
+                                if (board[futureY, futureX] == null)
+                                {
+
+                                }
+                                else
+                                {
+                                    if (board[futureY, futureX][1] > (char)96 || board[futureY, futureX][1] < (char)123)
+                                    {
+                                        CanMove = true;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                CanMove = false;
+                            }
+                        }
+                    }
+
+                }
+                else
+                {
+                    CanMove = false;
+                }
+            }
+            else
+            {
+                CanMove = false;
+            }
+
+            return CanMove;
+        }
+
+        public void SpecialMove()
+        {
+            if (!HasMoved)
+            {
+
+            }
+        }
+
         public override bool PieceInWay(char futureX, int futureY)
         {
+            CanMove = false;
+
             if (Math.Abs(CurrentYCoordinate - futureY) <= 1 && Math.Abs(CurrentXCoordinate - futureX) <= 1)
             {
                 if (Math.Abs(CurrentYCoordinate - futureY) == 1 || Math.Abs(CurrentXCoordinate - futureX) == 1)
@@ -78,8 +175,6 @@ namespace ConsoleChess
 
             return CanMove;
         }
-        
-    
         public override string ToString()
         {
             return FutureXCoordinate == 0 && FutureYCoordinate == 0 ? $"{Color} {PieceType} at {CurrentXCoordinate}{CurrentYCoordinate}" : $"{Color} {PieceType} at {CurrentXCoordinate}{CurrentYCoordinate} now at {FutureXCoordinate}{FutureYCoordinate}";

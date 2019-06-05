@@ -33,11 +33,9 @@ namespace ConsoleChess
                     Console.WriteLine("Please enter a valid file: ");
                     args = Console.ReadLine();
                 }
-                if (File.Exists(args))
-                {
-                    ReadFile(args);
-                }
             } while (!File.Exists(args));
+
+            ReadFile(args);
         }
         public void ReadFile(string file)
         {
@@ -79,9 +77,9 @@ namespace ConsoleChess
                 }
                 do
                 {
-                    Console.Write("Enter your file (ctrl+c to exit):");
-                    file = Console.ReadLine();
-                    if (!File.Exists(file))
+                    Console.Write("Enter your file(ctrl+c to exit):");
+                    string file1 = Console.ReadLine();
+                    if (!File.Exists(file1))
                     {
                         Console.WriteLine("enter valid path");
                     }
@@ -179,57 +177,24 @@ namespace ConsoleChess
             {
                 if (piece1 == null)
                 {
-                    piece.Move(piece.FutureXCoordinate = (char)s[3], piece.FutureYCoordinate = validYCoord(s[4]));
-                    if (piece.CanMove == true)
+                    piece.Move(piece.FutureXCoordinate = (char)s[3], piece.FutureYCoordinate = validYCoord(s[4]), chessy.board);
+                    if (piece.CanMove)
                     {
                         Console.WriteLine($"\n{piece}");
                         piece.CurrentXCoordinate = piece.FutureXCoordinate;
                         piece.CurrentYCoordinate = piece.FutureYCoordinate;
-               
-                        foreach (Piece p in AllPieces)
-                        {
-                            if (p.GetType().Equals(Piece.ChessPieces.K))
-                            {
-                                if (chessy.isInCheck(p))
-                                {
-                                    if (chessy.isInCheckmate(p))
-                                    {
-                                        Console.WriteLine("YOUR KING IS IN CHECKMATE");
-                                        break;
-                                    }
-                                    Console.WriteLine("YOUR KING IS IN CHECK");
-                                }
-                            }
-                        }
                     }
                 }
                 else if (piece1.Color != piece.Color)
                 {
-                    piece.Move(piece.FutureXCoordinate = (char)s[3], piece.FutureYCoordinate = validYCoord(s[4]));
-                    if (piece.CanMove == true)
+                    piece.Move(piece.FutureXCoordinate = (char)s[3], piece.FutureYCoordinate = validYCoord(s[4]), chessy.board);
+                    if (piece.CanMove)
                     {
                         Console.WriteLine($"\n{piece}");
                         piece.CurrentXCoordinate = piece.FutureXCoordinate;
                         piece.CurrentYCoordinate = piece.FutureYCoordinate;
                         AllPieces.Remove(piece1);
                         Console.WriteLine("Piece Captured");
- 
-                        foreach (Piece p in AllPieces)
-                        {
-                            if (p.GetType().Equals(Piece.ChessPieces.K))
-                            {
-                                if (chessy.isInCheck(p))
-                                {
-                                    if (chessy.isInCheckmate(p))
-                                    {
-                                        Console.WriteLine("YOUR KING IS IN CHECKMATE");
-                                        break;
-                                    }
-                                    Console.WriteLine("YOUR KING IS IN CHECK");
-                                }
-                            }
-                        }
-
                     }
                 }
                 else
@@ -242,6 +207,29 @@ namespace ConsoleChess
             {
                 Console.WriteLine("\nThere is no piece there to move");
                 chessy.GenerateBoard();
+            }
+
+            InCheck();
+            
+        }
+
+        public void InCheck()
+        {
+            foreach (Piece p in AllPieces)
+            {
+                if (p.PieceType == Piece.ChessPieces.K)
+                {
+                    if (chessy.isInCheck(p, chessy.board))
+                    {
+                        if (chessy.isInCheckmate(p, chessy.board))
+                        {
+                            Console.WriteLine($"THE {p.Color} KING IS IN CHECKMATE");
+                            break;
+                        }
+                        Console.WriteLine($"THE {p.Color} KING IS IN CHECK");
+                        break;
+                    }
+                }
             }
         }
 
