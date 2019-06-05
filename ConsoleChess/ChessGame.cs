@@ -47,6 +47,7 @@ namespace ConsoleChess
                 }
                 Console.Write("\n");
             }
+
         }
 
         public bool isInCheck(Piece p)
