@@ -72,6 +72,9 @@ namespace ConsoleChess
                     if(kingCheck == false)
                     {
 
+                        //check to see if king is checked 
+
+
                         //Print Board
                         Console.Clear();
                         chessy.GenerateBoard();
