@@ -35,8 +35,6 @@ namespace ConsoleChess
             this.HasMoved = hasMoved;
         }
 
-        private int min = 1;
-        private int max = 8;
 
         public override void Move(char futureX, int futureY, string[,] board)
         {
@@ -47,7 +45,6 @@ namespace ConsoleChess
                 //CanMove = true;
                 PieceInWay(futureX, futureY, board);
                 ReadInPieces.player.Turn(this);
-                //ReadInPieces.chessy.GenerateBoard();
             }
             else
             {
