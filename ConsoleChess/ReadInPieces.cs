@@ -371,6 +371,15 @@ namespace ConsoleChess
                         }
                        
 
+                    if (p.Color == Piece.PieceColors.WHITE)
+                    {
+                        if (p.CanMove)
+                        {
+
+                            sidePieces.Add(p);
+
+                        }
+                       
 
                     }
 
@@ -400,6 +409,22 @@ namespace ConsoleChess
 
                 moveablePieces.Add(n.ToString());
                 moveablePieceList.Add(n);
+
+                    }
+
+
+                }
+                //else if (Person.turn == 2)
+                //{
+
+                //    if (p.Color == Piece.PieceColors.BLACK)
+                //    {
+
+                //        moveablePieces.Add(n.to);
+
+                //    }
+
+                //}
 
             }
 
