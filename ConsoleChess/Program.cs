@@ -10,10 +10,10 @@ namespace ConsoleChess
     {
         static void Main(string[] args)
         {
-            //string file = "C:\\Users\\ACastellon\\source\\repos\\ConsoleChess\\ConsoleChess\\bin\\Debug\\NoPawns.txt";
+            string file = "..\\ConsoleChess\\bin\\Debug\\completechess.txt";
             ReadInPieces pieced = new ReadInPieces();
-           // pieced.run(file);
-          pieced.run(args[0]);
+            pieced.run(file);
+         // pieced.run(args[0]);
         }
     }
 }
