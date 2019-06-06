@@ -17,6 +17,13 @@ namespace ConsoleChess
         public static List<string> moveablePieces = new List<string>();
         public static List<string> moveableSpots = new List<string>();
 
+        public List<string> returnMoveable()
+        {
+
+            return moveablePieces;
+
+        }
+
         public static string placePiece = @"(^[PNBRQK][ld][a-h][1-8]$)";
         public static string movePiece = @"(^[a-h][1-8] [a-h][1-8]$)";
         public static string capturePiece = @"(^[a-h][1-8] [a-h][1-8][*]$)";
@@ -334,7 +341,9 @@ namespace ConsoleChess
 
         public void canPieceMove()
         {
-
+            sidePieces.Clear();
+            moveablePieceList.Clear();
+            moveablePieces.Clear();
             foreach (Piece p in AllPieces)
             {
                 if (Person.turn == 1)
@@ -344,7 +353,6 @@ namespace ConsoleChess
                     {
                         if (p.CanMove)
                         {
-
                             sidePieces.Add(p);
 
                         }
@@ -371,11 +379,6 @@ namespace ConsoleChess
 
             foreach (Piece n in sidePieces)
             {
-                //    char x = n.CurrentXCoordinate;
-                //    int y = n.CurrentYCoordinate;
-                //    n.PieceInWay(x += (char)1, y += 1);
-                //    if (n.CanMove)
-                //    {
 
                 moveablePieces.Add(n.ToString());
                 moveablePieceList.Add(n);
@@ -388,6 +391,15 @@ namespace ConsoleChess
         {
 
 
+
+        }
+
+        public void clearList()
+        {
+
+            sidePieces.Clear();
+            moveablePieceList.Clear();
+            moveablePieces.Clear();
 
         }
 
