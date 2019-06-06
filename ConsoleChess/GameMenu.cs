@@ -19,12 +19,15 @@ namespace ConsoleChess
             int selection = 0;
             bool kingCheck = false;
             int turn = 2;
+            ReadInPieces r = new ReadInPieces();
 
             while (play)
             {
+                r.clearList();
 
                 bool GamePlay = true;
                 ChessGame chessy = new ChessGame();
+                Console.Clear();
 
                 //Opening Menu
                 if (replay == false)
@@ -37,6 +40,8 @@ namespace ConsoleChess
                 else if(replay == true)
                 {
 
+                    
+                    r.clearList();
                     selection = CIO.PromptForMenuSelection(new string[] { "Play Again" }, true);
                     Console.Clear();
 
@@ -58,8 +63,8 @@ namespace ConsoleChess
 
                     //Setting the Board 
                     string file = "completeChess.txt";
-                    ReadInPieces pieced = new ReadInPieces();
-                    pieced.run(file);
+                    
+                    r.run(file);
 
 
                     GamePlay = true;
@@ -95,7 +100,7 @@ namespace ConsoleChess
                         }
 
                         //Piece Selection Menu
-                        ReadInPieces r = new ReadInPieces();
+                        
                         //r.canPieceMove();
                         r.canPieceMove();
                         IEnumerable<string> pieceList = (IEnumerable<string>)ReadInPieces.moveablePieces; 
@@ -123,7 +128,7 @@ namespace ConsoleChess
                             //generate list of possible movements for selected piece
                             r.whereCanPieceMove(PieceSelect);
                             //Piece Movement Menu
-                            IEnumerable<string> MoveableSpots = (IEnumerable<string>)ReadInPieces.moveableSpots;
+                            IEnumerable<string> MoveableSpots = (IEnumerable<string>)ReadInPieces.moveablePieces;
                             int PieceMovement = CIO.PromptForMenuSelection(MoveableSpots, true);
                             if(PieceMovement == 0)
                             {
@@ -156,6 +161,9 @@ namespace ConsoleChess
 
                     }
 
+                //ReadInPieces.moveablePieces.Clear();
+                //ReadInPieces.moveablePieceList.Clear();
+                //ReadInPieces.sidePieces.Clear();
                 }
 
             }
