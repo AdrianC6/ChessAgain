@@ -12,7 +12,6 @@ namespace ConsoleChess
         Piece.PieceColors Color;
         public Person()
         {
-
         }
 
         public Person(Piece.PieceColors colors)

@@ -21,3 +21,4 @@ C:\Users\Matthew\Desktop\Part7\ChessAgain\ConsoleChess\bin\Debug\ConsoleChess.ex
 C:\Users\Matthew\Desktop\Part7\ChessAgain\ConsoleChess\bin\Debug\ConsoleChess.pdb
 C:\Users\Matthew\Desktop\Part7\ChessAgain\ConsoleChess\bin\Debug\ConsolIO.dll
 C:\Users\Matthew\Desktop\Part7\ChessAgain\ConsoleChess\obj\Debug\ConsoleChess.csproj.CopyComplete
+C:\Users\Amush\Documents\GitHub\ChessAgain\ConsoleChess\obj\Debug\ConsoleChess.csproj.CopyComplete

@@ -19,9 +19,7 @@ namespace ConsoleChess
 
         public List<string> returnMoveable()
         {
-
             return moveablePieces;
-
         }
 
         public static string placePiece = @"(^[PNBRQK][ld][a-h][1-8]$)";
@@ -89,20 +87,7 @@ namespace ConsoleChess
                     chessy.GenerateBoard();
                     IsInitiallyPrinted = true;
                 }
-                //do
-                //{
-                //    Console.Write("Enter your file (ctrl+c to exit):");
-                //    file = Console.ReadLine();
-                //    if (!File.Exists(file))
-                //    {
-                //        Console.WriteLine("enter valid path");
-                //    }
-                //    if (File.Exists(file))
-                //    {
-                //        run(file);
-                //        chessy.GenerateBoard();
-                //    }
-                //} while (!File.Exists(file));
+               
             }
             catch (IOException e)
             {
@@ -357,11 +342,8 @@ namespace ConsoleChess
 
                         }
                        
-
-
                     }
-
-
+                    
                 }
                 //else if (Person.turn == 2)
                 //{
