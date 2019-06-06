@@ -80,7 +80,7 @@ namespace ConsoleChess
                 do
                 {
                     Console.Write("Enter your file(ctrl+c to exit):");
-                  string file1 = Console.ReadLine();
+                    string file1 = Console.ReadLine();
                     if (!File.Exists(file1))
                     {
                         Console.WriteLine("enter valid path");
@@ -173,7 +173,6 @@ namespace ConsoleChess
                         Console.WriteLine($"\n{piece}");
                         piece.CurrentXCoordinate = piece.FutureXCoordinate;
                         piece.CurrentYCoordinate = piece.FutureYCoordinate;
-                        //chessy.GenerateBoard();
                     }
                 }
                 else if (piece1.Color != piece.Color)
@@ -186,7 +185,6 @@ namespace ConsoleChess
                         piece.CurrentYCoordinate = piece.FutureYCoordinate;
                         AllPieces.Remove(piece1);
                         Console.WriteLine("Piece Captured");
-                        //chessy.GenerateBoard();
                     }
                 }
                 else
@@ -284,4 +282,3 @@ namespace ConsoleChess
         }
     }
 }
-
