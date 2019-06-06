@@ -1,5 +1,6 @@
 a1 a2
 b8 c6
+c1 c3
 a2 b2
 e8 e6
 c1 c3
